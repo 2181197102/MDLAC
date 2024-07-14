@@ -3,6 +3,8 @@ from django.core.paginator import Paginator
 from .models import JdGood
 
 # Create your views here.
+
+# http://127.0.0.1:8000/shows/jdgoods/
 def jdgood_list(request):
     query = request.GET.get('q')
     if query:
