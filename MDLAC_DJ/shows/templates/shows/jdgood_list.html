@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>JD Goods List</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'shows/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>JD Goods List</h1>
+        <form method="get" action="">
+            <input type="text" name="q" placeholder="Search..." value="{{ query }}">
+            <button type="submit">Search</button>
+        </form>
+        <table>
+            <tr>
+                <th>ACID</th>
+                <th>Name</th>
+                <th>Link</th>
+                <th>Shop Name</th>
+                <th>Price</th>
+                <th>Operation</th>
+                <th>Level</th>
+                <th>Frequency</th>
+                <th>Purify</th>
+                <th>Type</th>
+                <th>CWType</th>
+                <th>Horse</th>
+                <th>Good Func</th>
+                <th>Apply Space</th>
+                <th>Featured</th>
+                <th>Statu</th>
+                <th>Set Type</th>
+                <th>Apply House</th>
+                <th>Duct Form</th>
+                <th>Brand</th>
+                <th>Wind Position</th>
+                <th>No Drainage</th>
+                <th>Min Height</th>
+                <th>Cost</th>
+                <th>User Preference</th>
+                <th>Comment Count</th>
+                <th>Average Score</th>
+                <th>Good Count</th>
+                <th>General Count</th>
+                <th>Poor Count</th>
+                <th>Good Rate</th>
+            </tr>
+            {% for good in page_obj %}
+            <tr>
+                <td>{{ good.acid }}</td>
+                <td>{{ good.name }}</td>
+                <td><a href="{{ good.link }}" target="_blank">Link</a></td>
+                <td>{{ good.shop_name }}</td>
+                <td>{{ good.price }}</td>
+                <td>{{ good.operation }}</td>
+                <td>{{ good.level }}</td>
+                <td>{{ good.frequency }}</td>
+                <td>{{ good.purify }}</td>
+                <td>{{ good.type }}</td>
+                <td>{{ good.cwtype }}</td>
+                <td>{{ good.horse }}</td>
+                <td>{{ good.good_func }}</td>
+                <td>{{ good.apply_space }}</td>
+                <td>{{ good.featured }}</td>
+                <td>{{ good.statu }}</td>
+                <td>{{ good.set_type }}</td>
+                <td>{{ good.apply_house }}</td>
+                <td>{{ good.duct_form }}</td>
+                <td>{{ good.brand }}</td>
+                <td>{{ good.wind_position }}</td>
+                <td>{{ good.no_drainage }}</td>
+                <td>{{ good.min_height }}</td>
+                <td>{{ good.cost }}</td>
+                <td>{{ good.user_preference }}</td>
+                <td>{{ good.comment_count_str }}</td>
+                <td>{{ good.average_score }}</td>
+                <td>{{ good.good_count_str }}</td>
+                <td>{{ good.general_count_str }}</td>
+                <td>{{ good.poor_count_str }}</td>
+                <td>{{ good.good_rate }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+</body>
+</html>
