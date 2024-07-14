@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="zh-CN">
+ <head>
+  <meta charset="utf-8">
+  <link rel="canonical" href="https://blog.csdn.net/xiaoquantouer/article/details/51840332">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="report" content="{&quot;pid&quot;: &quot;blog&quot;, &quot;spm&quot;:&quot;1001.2101&quot;}">
+  <meta name="referrer" content="always">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <link rel="alternate" media="handheld" href="#">
+  <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848">
+  <meta name="applicable-device" content="pc">
+  <link href="http://toolman.ddnsfree.com:8585/csdnimg/g/static/logo/favicon32.ico" rel="shortcut icon" type="image/x-icon">
+  <title>scrapy爬取京东商城某一类商品的信息和评论（一）_京东商品爬取-CSDN博客</title>
+  <meta name="keywords" content="京东商品爬取">
+  <meta name="csdn-baidu-search" content="{&quot;autorun&quot;:true,&quot;install&quot;:true,&quot;keyword&quot;:&quot;京东商品爬取&quot;}">
+  <meta name="description" content="文章浏览阅读2.7w次，点赞15次，收藏87次。一、前提默认已用scrapy爬取过网站，有爬虫基础，有爬虫环境二、以爬取电子烟为例1、任务一：爬取商品信息在搜索框里面直接搜索电子烟，搜出来的界面，你会发现它是动态加载的。即一开始源代码里面只能看到30条商品的信息，随着你的下拉，另外30条才会加载出来。因此爬取起来比较麻烦。后来发现，从京东左边的商品分类中找到电子烟这一分类_京东商品爬取">
+  <link rel="stylesheet" type="text/css" href="http://toolman.ddnsfree.com:8585/csdnimg/release/blogv2/dist/pc/css/detail_enter-78e97c8075.min.css">
+  <link rel="stylesheet" type="text/css" href="http://toolman.ddnsfree.com:8585/csdnimg/release/blogv2/dist/pc/themesSkin/skin-yellow/skin-yellow-28d34ab5fa.min.css">
+  <meta name="toolbar" content="{&quot;type&quot;:&quot;0&quot;,&quot;fixModel&quot;:&quot;1&quot;}">
+  <link rel="stylesheet" type="text/css" href="http://toolman.ddnsfree.com:8585/csdnimg/public/sandalstrap/1.4/css/sandalstrap.min.css">
+  <style>
+        .MathJax, .MathJax_Message, .MathJax_Preview{
+            display: none
+        }
+    </style>
+ </head>
+ <body class="nodata " style="">
+  <link rel="stylesheet" href="http://toolman.ddnsfree.com:8585/csdnimg/release/blogv2/dist/pc/css/blog_code-01256533b5.min.css">
+  <link rel="stylesheet" href="http://toolman.ddnsfree.com:8585/csdnimg/release/blogv2/dist/mdeditor/css/editerView/chart-3456820cac.css">
+  <link rel="stylesheet" href="http://toolman.ddnsfree.com:8585/csdnimg/g/lib/swiper/6.0.4/css/swiper.css"><div class="main_father clearfix d-flex justify-content-center mainfather-concision" style="height:100%;"><div class="container clearfix container-concision" id="mainBox">
+    <main>
+     <div class="blog-content-box"><div class="article-header-box"><div class="article-header"><div class="article-title-box">
+         <h1 class="title-article" id="articleContentId">scrapy爬取京东商城某一类商品的信息和评论（一）</h1></div><div class="article-info-box"><div class="up-time">
+          最新推荐文章于&nbsp;2020-04-15 17:05:12&nbsp;发布</div><div class="article-bar-top"><img class="article-type-img" src="http://toolman.ddnsfree.com:8585/csdnimg/release/blogv2/dist/pc/img/original.png" alt=""><div class="bar-content"><span class="c-gray">置顶</span> <img class="article-vip-img-new" src="http://toolman.ddnsfree.com:8585/csdnimg/release/blogv2/dist/pc/img/identityVipNew.png" alt=""> <a class="follow-nickName " href="https://blog.csdn.net/xiaoquantouer" target="_blank" rel="noopener" title="小拳头">小拳头</a> <img class="article-time-img article-heard-img" src="http://toolman.ddnsfree.com:8585/csdnimg/release/blogv2/dist/pc/img/newCurrentTime2.png" alt=""> <span class="time blog-postTime" data-time="2016-07-06 17:28:18">最新推荐文章于&nbsp;2020-04-15 17:05:12&nbsp;发布</span>
+           <div class="read-count-box"><img class="article-read-img article-heard-img" src="http://toolman.ddnsfree.com:8585/csdnimg/release/blogv2/dist/pc/img/articleReadEyes2.png" alt=""> <span class="read-count">阅读量2.7w</span> <a id="blog_detail_zk_collection" class="un-collection" data-report-click="{&quot;mod&quot;:&quot;popu_823&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4232&quot;,&quot;ab&quot;:&quot;new&quot;}"> <img class="article-collect-img article-heard-img un-collect-status isdefault" style="display:inline-block" src="http://toolman.ddnsfree.com:8585/csdnimg/release/blogv2/dist/pc/img/tobarCollect2.png" alt=""> <img class="article-collect-img article-heard-img collect-status isactive" style="display:none" src="http://toolman.ddnsfree.com:8585/csdnimg/release/blogv2/dist/pc/img/tobarCollectionActive2.png" alt=""> <span class="name">收藏</span> <span class="get-collection"> 87 </span> </a>
+            <div class="read-count-box is-like"><img class="article-read-img article-heard-img" style="display:none" id="is-like-imgactive-new" src="http://toolman.ddnsfree.com:8585/csdnimg/release/blogv2/dist/pc/img/newHeart2023Active.png" alt=""> <img class="article-read-img article-heard-img" style="display:block" id="is-like-img-new" src="http://toolman.ddnsfree.com:8585/csdnimg/release/blogv2/dist/pc/img/newHeart2023Black.png" alt=""> <span class="read-count" id="blog-digg-num">点赞数 15 </span></div></div></div></div><div class="blog-tags-box"><div class="tags-box artic-tag-box"><span class="label">分类专栏：</span> <a class="tag-link" href="https://blog.csdn.net/xiaoquantouer/category_6299567.html" target="_blank" rel="noopener">scrapy</a> <span class="label">文章标签：</span> <a rel="nofollow" data-report-click="{&quot;mod&quot;:&quot;popu_626&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4223&quot;,&quot;strategy&quot;:&quot;爬虫&quot;,&quot;ab&quot;:&quot;new&quot;,&quot;extra&quot;:&quot;{\&quot;searchword\&quot;:\&quot;爬虫\&quot;}&quot;}" class="tag-link" href="https://so.csdn.net/so/search/s.do?q=%E7%88%AC%E8%99%AB&amp;t=all&amp;o=vip&amp;s=&amp;l=&amp;f=&amp;viparticle=" target="_blank">爬虫</a> <a rel="nofollow" data-report-click="{&quot;mod&quot;:&quot;popu_626&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4223&quot;,&quot;strategy&quot;:&quot;scrapy&quot;,&quot;ab&quot;:&quot;new&quot;,&quot;extra&quot;:&quot;{\&quot;searchword\&quot;:\&quot;scrapy\&quot;}&quot;}" class="tag-link" href="https://so.csdn.net/so/search/s.do?q=scrapy&amp;t=all&amp;o=vip&amp;s=&amp;l=&amp;f=&amp;viparticle=" target="_blank">scrapy</a></div></div><div class="slide-content-box"><div class="article-copyright"><div class="creativecommons">
+            版权声明：本文为博主原创文章，遵循<a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener"> CC 4.0 BY-SA </a>版权协议，转载请附上原文出处链接和本声明。</div><div class="article-source-link">
+            本文链接：<a href="https://blog.csdn.net/xiaoquantouer/article/details/51840332" target="_blank">https://blog.csdn.net/xiaoquantouer/article/details/51840332</a></div></div></div><div class="operating"><a class="href-article-edit slide-toggle">版权</a></div></div></div></div><div id="blogHuaweiyunAdvert"></div>
+      <article class="baidu_pl"><div id="article_content" class="article_content clearfix">
+        <link rel="stylesheet" href="http://toolman.ddnsfree.com:8585/csdnimg/release/blogv2/dist/mdeditor/css/editerView/kdoc_html_views-1a98987dfd.css">
+        <link rel="stylesheet" href="http://toolman.ddnsfree.com:8585/csdnimg/release/blogv2/dist/mdeditor/css/editerView/ck_htmledit_views-044f2cf1dc.css"><div id="content_views" class="htmledit_views">
+         <p><strong><span style="font-size:18px">刚写完京东爬虫，趁着记忆还深刻，写点总结吧。</span></strong></p>
+         <p><span style="font-size:24px"><strong><br> </strong></span></p>
+         <p><span style="font-size:24px"><strong>一、前提</strong></span></p>
+         <p><span style="font-size:18px"><br> </span></p>
+         <p><span style="font-size:18px">默认已用scrapy爬取过网站，有爬虫基础，有爬虫环境</span></p>
+         <p><br></p>
+         <p><span style="font-size:24px"><strong>二、以爬取电子烟为例</strong></span></p>
+         <p><br></p>
+         <p><span style="font-size:18px"><strong>1、任务一：爬取商品信息</strong></span></p>
+         <p><span style="font-size:18px"><br> </span></p>
+         <p><span style="font-size:18px">在搜索框里面直接搜索电子烟，搜出来的界面，你会发现它是动态加载的。即一开始源代码里面只能看到30条商品的信息，随着你的下拉，另外30条才会加载出来。因此爬取起来比较麻烦。后来发现，从京东左边的商品分类中找到电子烟这一分类</span></p>
+         <p><br></p>
+         <p><img src="http://toolman.ddnsfree.com:8585/csdn/img-blog/20160706163722852" alt=""><br></p>
+         <p><br></p>
+         <p><span style="font-size:18px">此时的搜索到的电子烟分类的展示网页是一开始就已加载了全部60条商品信息的。商品信息准备从这一页入手。</span></p>
+         <p><span style="font-size:18px"><br> </span></p>
+         <p><span style="font-size:18px">有爬虫基础的很快就能知道下一步要怎么做了，首先我们需要获得每个商品的信息和链接，称搜索出来的展示页面为搜索页面，进入到商品的详情页面为详情页面。</span></p>
+         <p><span style="font-size:18px"><br> </span></p>
+         <p><span style="font-size:18px"><strong>（1）我们先从搜索页的处理开始</strong></span></p>
+         <p><br></p>
+         <p><img src="http://toolman.ddnsfree.com:8585/csdn/img-blog/20160706164016247" alt=""><br></p>
+         <p><br></p>
+         <p><span style="font-size:18px">通过抽取&lt;li class="<span style="color:rgb(34,34,34); font-family:Consolas,&quot;Lucida Console&quot;,monospace; white-space:pre-wrap">gl-item</span>"&gt; 标签，很快能得到商品的信息。</span></p>
+         <p><span style="font-size:18px">从搜索页面能抓取到商品的ID，详情页链接，商品名字，店铺名字这些信息。而价钱是动态加载的，注意千万不要被检查（就是chrome通过右键点击检查看到的代码）误解。爬虫爬到的是源代码，检查看到的代码和源代码的代码是不一样的。以源代码为主。</span></p>
+         <p><span style="font-size:18px"><br> </span></p>
+         <p><span style="font-size:18px">这是检查看到的代码</span></p>
+         <p><span style="font-size:18px"><br> </span></p>
+         <p><img src="http://toolman.ddnsfree.com:8585/csdn/img-blog/20160706164520348" alt=""><br></p>
+         <p><br></p>
+         <p><span style="font-size:18px">这是源代码看到的代码</span></p>
+         <p><img src="http://toolman.ddnsfree.com:8585/csdn/img-blog/20160706164540489" alt=""><br></p>
+         <p><br></p>
+         <p><span style="font-size:18px">不信可以用爬虫爬取网页试试。所以确定价钱通过网页爬取不到，需要另想办法，先放下。</span></p>
+         <p><span style="font-size:18px"><br> </span></p>
+         <p><span style="font-size:18px">商品的评论数，你会发现你在搜索页看到的评论数和进入商品详情页看到的评论数不一样，详情页的评论数多一些。因此准备以商品详情页为主，先放下。</span></p>
+         <p><span style="font-size:18px"><br> </span></p>
+         <p><span style="font-size:18px">搜索页暂时只能爬取到这些信息了。下面进入详情页。</span></p>
+         <p><span style="font-size:18px"><br> </span></p>
+         <p><span style="font-size:18px">这部分代码如下：</span></p>
+         <p></p>
+         <pre class="set-code-show"><code class="language-python">def parse(self, response):  # 解析搜索页
+        sel = Selector(response)  # Xpath选择器
+        goods = sel.xpath('//li[@class="gl-item"]')
+        # print 'goods'
+        # print len(goods)  # 总共60条商品信息
+        for good in goods:
+            item1 = goodsItem()
+            item1['ID'] = good.xpath('./div/@data-sku').extract()
+            item1['name'] = good.xpath('./div/div[@class="p-name"]/a/em/text()').extract()
+            item1['shop_name'] = good.xpath('./div/div[@class="p-shop"]/@data-shop_name').extract()
+            item1['link'] = good.xpath('./div/div[@class="p-img"]/a/@href').extract()
+            url = "http:" + item1['link'][0] + "#comments-list"
+            # print detail
+            yield scrapy.Request(url, meta={'item': item1}, callback=self.parse_detail)</code></pre> <br> <br>
+         <p></p>
+         <p><span style="font-size:18px"><strong>（2）第二步解析详情页</strong></span></p>
+         <p><br></p>
+         <p><span style="font-size:18px">想想我们还需要什么信息，商品信息的话就还有价钱和评论数没有取到了，通过查看详情页的源代码很遗憾地发现，评论数和价钱都是动态加载的。没办法直接抓取详情页抓取到。既然是动态加载的，那么我们就看看都加载了哪些文件，然后从那些文件中去找。</span></p>
+         <p><span style="font-size:18px"><br> </span></p>
+         <p><span style="font-size:18px">这里默认用的是谷歌浏览器</span></p>
+         <p><span style="font-size:18px">在详情页点击右键-&gt;检查-&gt;network-&gt;刷新详情页</span></p>
+         <p><br></p>
+         <p><img src="http://toolman.ddnsfree.com:8585/csdn/img-blog/20160706165645239" alt=""><br></p>
+         <p><span style="font-size:18px"><br> </span></p>
+         <p><span style="font-size:18px">发现加载了好多东西，没关系，不要怕，慢慢看。点击Type进行排序，主要看script文件就好。</span></p>
+         <p><span style="font-size:18px"><br> </span></p>
+         <p><span style="font-size:18px">咦。。发现一个script文件里面有GetCommentsCount这个方法，这不就是得到评论数的文件么。点开来看</span></p>
+         <p><br></p>
+         <p><img src="http://toolman.ddnsfree.com:8585/csdn/img-blog/20160706165834392" alt=""><br></p>
+         <p><span style="font-size:18px"><br> </span></p>
+         <p><span style="font-size:18px">里面的内容是json格式的，放入在线json解析网站解析一下</span></p>
+         <p><br></p>
+         <p><img src="http://toolman.ddnsfree.com:8585/csdn/img-blog/20160706170132362" alt=""><br></p>
+         <p><br></p>
+         <p><span style="font-size:18px">正好有我们想要的。对比一下详情页，该条商品确实是 347条，另外该json里面还有其他信息。Score1Count 应该是指该商品一颗星的评论数，Score2Count指的是二颗星的评论数，而详情页中只有好评，中评，差评。随便算算就知道好评指的是：五颗星+四颗星的，中评是三颗星+两颗星的，差评是一颗星的。对比一下，bingo，数是对的。</span></p>
+         <p><span style="font-size:18px"><br> </span></p>
+         <p><span style="font-size:18px">好了，信息找到了，下面该看看这个文件的地址了，</span></p>
+         <p><span style="font-size:18px"><br> </span></p>
+         <p><span style="font-size:18px">原始地址是：http://club.jd.com/clubservice.aspx?method=GetCommentsCount&amp;referenceIds=10321370917&amp;callback=jQuery8556269&amp;_=1467795361109</span></p>
+         <p><span style="font-size:18px">有很多数，很快就能发现referenceIds=10321370917 就是商品的ID，在爬取搜索页的时候不是存了商品的ID吗，这个数字的来源解决。</span></p>
+         <p><span style="font-size:18px">尝试着删了最后的&nbsp;&amp;callback=jQuery8556269&amp;_=1467795361109 &nbsp;发现网页不变。哈哈。正好，那就删掉这部分。问题解决。</span></p>
+         <p><span style="font-size:18px">只需要爬取网页：http://club.jd.com/clubservice.aspx?method=GetCommentsCount&amp;referenceIds= 这里加上要抓取的商品ID即可。</span></p>
+         <p><span style="font-size:18px"><br> </span></p>
+         <p><span style="font-size:18px">这部分代码如下：</span></p>
+         <p></p>
+         <pre class="set-code-show"><code class="language-python">def parse_detail(self, response):
+        item1 = response.meta['item']
+        sel = Selector(response)
+        # item1['comment_num'] = sel.xpath('//div[@id="summary"]//a[@href="#comment"]/text()').extract()
+
+        temp = response.body.split('commentVersion:')
+        pattern = re.compile("[\'](\d+)[\']")
+        if len(temp) &lt; 2:
+            item1['commentVersion'] = -1
+        else:
+            match = pattern.match(temp[1][:10])
+            item1['commentVersion'] = match.group()
+
+        url = "http://club.jd.com/clubservice.aspx?method=GetCommentsCount&amp;referenceIds=" + str(item1['ID'][0])
+        yield scrapy.Request(url, meta={'item': item1}, callback=self.parse_getCommentnum)</code></pre> <br> <br>
+         <p></p>
+         <p><span style="font-size:18px">这里为什么要存储commentVersion这个变量，后面再说，在爬取评论的时候会用到这个参数。</span></p>
+         <p><span style="font-size:18px"><br> </span></p>
+         <p><span style="font-size:18px">接下来就是解析json串的事了。</span></p>
+         <p><span style="font-size:18px"><br> </span></p>
+         <p><span style="font-size:18px">这部分代码如下：</span></p>
+         <p></p>
+         <pre class="set-code-show"><code class="language-cpp">def parse_getCommentnum(self, response):
+        item1 = response.meta['item']
+        # response.body是一个json格式的
+        js = json.loads(str(response.body))
+        # js = json.loads(str)
+        # print js['CommentsCount'][0]['Score1Count']
+        item1['score1count'] = js['CommentsCount'][0]['Score1Count']
+        item1['score2count'] = js['CommentsCount'][0]['Score2Count']
+        item1['score3count'] = js['CommentsCount'][0]['Score3Count']
+        item1['score4count'] = js['CommentsCount'][0]['Score4Count']
+        item1['score5count'] = js['CommentsCount'][0]['Score5Count']
+        item1['comment_num'] = js['CommentsCount'][0]['CommentCount']
+        num = item1['ID']  # 获得商品ID
+        s1 = str(num)
+        url = "http://pm.3.cn/prices/pcpmgets?callback=jQuery&amp;skuids=" + s1[3:-2] + "&amp;origin=2"
+        yield scrapy.Request(url, meta={'item': item1}, callback=self.parse_price)</code></pre> <br> <br>
+         <p></p>
+         <p><span style="font-size:18px">然后就只剩下价钱了，同样的方法，刷新页面看加载的文件。看price在哪个文件中。</span></p>
+         <p><br></p>
+         <p><img src="http://toolman.ddnsfree.com:8585/csdn/img-blog/20160706172247117" alt=""><br></p>
+         <p><span style="font-size:18px"><br> </span></p>
+         <p><span style="font-size:18px">这个文件的名字好像看不到里面包含了价钱信息，我也是找了很久才发现。</span></p>
+         <p><br></p>
+         <p><img src="http://toolman.ddnsfree.com:8585/csdn/img-blog/20160706172313230" alt=""><br></p>
+         <p><span style="font-size:18px"><br> </span></p>
+         <p><span style="font-size:18px">有的有pcp和p值还不一样，在首页上找到相应的数字就会发现，pcp出现的时候是商品在电脑端购买和手机客户端购买的价钱不一样时，pcp是电脑端的价钱。所以在抽取的时候如果有pcp值就抽取pcp，没有pcp，就用p的值。</span></p>
+         <p><span style="font-size:18px"><br> </span></p>
+         <p><span style="font-size:18px">信息找到了，现在看看网址：</span></p>
+         <p><span style="font-size:18px">http://pm.3.cn/prices/pcpmgets?callback=jQuery8132619&amp;skuids=10321370917&amp;origin=2&amp;source=1&amp;area=1_72_2799_0&amp;_=1467796414912<br> </span></p>
+         <p><span style="font-size:18px"><br> </span></p>
+         <p><span style="font-size:18px">老套路，删些不知道是什么数字试试网页会不会变。尝试后发现可以把链接缩成：</span></p>
+         <p><span style="font-size:18px">http://pm.3.cn/prices/pcpmgets?callback=jQuery&amp;skuids=10321370917&amp;origin=2<br> </span></p>
+         <p><span style="font-size:18px">其中skuids后面接的是商品ID， origin=2 固定就好</span></p>
+         <p><span style="font-size:18px"><br> </span></p>
+         <p><span style="font-size:18px">这部分代码如下：</span></p>
+         <p></p>
+         <pre class="set-code-show"><code class="language-python">def parse_price(self, response):
+        item1 = response.meta['item']
+        temp1 = response.body.split('jQuery([')
+        s = temp1[1][:-4]  # 获取到需要的json内容
+        # str = str.decode("gbk").encode("utf-8")
+        # js = json.loads(unicode(str, "utf-8"))
+        js = json.loads(str(s))  # js是一个list
+        if js.has_key('pcp'):
+            item1['price'] = js['pcp']
+        else:
+            item1['price'] = js['p']
+        return item1</code></pre> <br> <br>
+         <p></p>
+         <p><span style="font-size:18px">到此，商品信息已经抓取完毕</span></p>
+         <p><span style="font-size:18px"><br> </span></p>
+         <p><span style="font-size:18px">数据库如下图所示：</span></p>
+         <p><span style="font-size:18px"><br> </span></p>
+         <p><span style="font-size:18px"><img src="http://toolman.ddnsfree.com:8585/csdn/img-blog/20160706175045922" alt=""><br> </span></p>
+         <p><span style="font-size:18px"><br> </span></p>
+         <p><span style="font-size:18px">全部代码已上传github：</span></p>
+         <p><span style="font-size:18px"><a target="_blank" href="https://github.com/xiaoquantou/jd_spider" rel="noopener noreferrer">https://github.com/xiaoquantou/jd_spider</a><br> </span></p>
+         <p><br></p></div></div>
+      </article></div>
+    </main></div><div class="recommend-right align-items-stretch clearfix" id="rightAside" data-type="recommend"></div></div>
+  <link rel="stylesheet" href="http://toolman.ddnsfree.com:8585/csdnimg/release/blog_editor_html/release1.6.12/ckeditor/plugins/chart/chart.css">
+  <link rel="stylesheet" href="http://toolman.ddnsfree.com:8585/csdnimg/g/lib/cboxEditor/1.1.2/embed-editor.min.css">
+  <link rel="stylesheet" href="http://toolman.ddnsfree.com:8585/csdnimg/release/blog_editor_html/release1.6.12/ckeditor/plugins/codesnippet/lib/highlight/styles/atom-one-light.css">
+ </body> 
+</html>

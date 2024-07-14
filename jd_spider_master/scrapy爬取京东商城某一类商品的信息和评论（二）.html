@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+ <head>
+  <meta charset="utf-8">
+  <link rel="canonical" href="https://blog.csdn.net/xiaoquantouer/article/details/51841016">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="report" content="{&quot;pid&quot;: &quot;blog&quot;, &quot;spm&quot;:&quot;1001.2101&quot;}">
+  <meta name="referrer" content="always">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <link rel="alternate" media="handheld" href="#">
+  <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848">
+  <meta name="applicable-device" content="pc">
+  <link href="http://toolman.ddnsfree.com:8585/csdnimg/g/static/logo/favicon32.ico" rel="shortcut icon" type="image/x-icon">
+  <title>scrapy爬取京东商城某一类商品的信息和评论（二）_爬取电商网站某类商品的评论-CSDN博客</title>
+  <meta name="keywords" content="爬取电商网站某类商品的评论">
+  <meta name="csdn-baidu-search" content="{&quot;autorun&quot;:true,&quot;install&quot;:true,&quot;keyword&quot;:&quot;爬取电商网站某类商品的评论&quot;}">
+  <meta name="description" content="文章浏览阅读1w次。2、任务二：爬取商品评论信息如果不需要爬取用户的地域信息，那么用这个网址爬就好：http://club.jd.com/review/10321370917-1-1-0.html其中10321370917是商品的ID，评论的第一页就是&nbsp;-1-1-0.html， 第二页就是-1-2-0.html。之前商品不是存了评论总数吗，一页30个评论，除一下就可以知道多少页了，">
+  <link rel="stylesheet" type="text/css" href="http://toolman.ddnsfree.com:8585/csdnimg/release/blogv2/dist/pc/css/detail_enter-78e97c8075.min.css">
+  <link rel="stylesheet" type="text/css" href="http://toolman.ddnsfree.com:8585/csdnimg/release/blogv2/dist/pc/themesSkin/skin-yellow/skin-yellow-28d34ab5fa.min.css">
+  <meta name="toolbar" content="{&quot;type&quot;:&quot;0&quot;,&quot;fixModel&quot;:&quot;1&quot;}">
+  <link rel="stylesheet" type="text/css" href="http://toolman.ddnsfree.com:8585/csdnimg/public/sandalstrap/1.4/css/sandalstrap.min.css">
+  <style>
+        .MathJax, .MathJax_Message, .MathJax_Preview{
+            display: none
+        }
+    </style>
+ </head>
+ <body class="nodata " style="">
+  <link rel="stylesheet" href="http://toolman.ddnsfree.com:8585/csdnimg/release/blogv2/dist/pc/css/blog_code-01256533b5.min.css">
+  <link rel="stylesheet" href="http://toolman.ddnsfree.com:8585/csdnimg/release/blogv2/dist/mdeditor/css/editerView/chart-3456820cac.css">
+  <link rel="stylesheet" href="http://toolman.ddnsfree.com:8585/csdnimg/g/lib/swiper/6.0.4/css/swiper.css"><div class="main_father clearfix d-flex justify-content-center mainfather-concision" style="height:100%;"><div class="container clearfix container-concision" id="mainBox">
+    <main>
+     <div class="blog-content-box"><div class="article-header-box"><div class="article-header"><div class="article-title-box">
+         <h1 class="title-article" id="articleContentId">scrapy爬取京东商城某一类商品的信息和评论（二）</h1></div><div class="article-info-box"><div class="up-time">
+          最新推荐文章于&nbsp;2018-10-17 17:14:35&nbsp;发布</div><div class="article-bar-top"><img class="article-type-img" src="http://toolman.ddnsfree.com:8585/csdnimg/release/blogv2/dist/pc/img/original.png" alt=""><div class="bar-content"><span class="c-gray">置顶</span> <img class="article-vip-img-new" src="http://toolman.ddnsfree.com:8585/csdnimg/release/blogv2/dist/pc/img/identityVipNew.png" alt=""> <a class="follow-nickName " href="https://blog.csdn.net/xiaoquantouer" target="_blank" rel="noopener" title="小拳头">小拳头</a> <img class="article-time-img article-heard-img" src="http://toolman.ddnsfree.com:8585/csdnimg/release/blogv2/dist/pc/img/newCurrentTime2.png" alt=""> <span class="time blog-postTime" data-time="2016-07-06 17:48:55">最新推荐文章于&nbsp;2018-10-17 17:14:35&nbsp;发布</span>
+           <div class="read-count-box"><img class="article-read-img article-heard-img" src="http://toolman.ddnsfree.com:8585/csdnimg/release/blogv2/dist/pc/img/articleReadEyes2.png" alt=""> <span class="read-count">阅读量1w</span> <a id="blog_detail_zk_collection" class="un-collection" data-report-click="{&quot;mod&quot;:&quot;popu_823&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4232&quot;,&quot;ab&quot;:&quot;new&quot;}"> <img class="article-collect-img article-heard-img un-collect-status isdefault" style="display:inline-block" src="http://toolman.ddnsfree.com:8585/csdnimg/release/blogv2/dist/pc/img/tobarCollect2.png" alt=""> <img class="article-collect-img article-heard-img collect-status isactive" style="display:none" src="http://toolman.ddnsfree.com:8585/csdnimg/release/blogv2/dist/pc/img/tobarCollectionActive2.png" alt=""> <span class="name">收藏</span> <span class="get-collection"> 16 </span> </a>
+            <div class="read-count-box is-like"><img class="article-read-img article-heard-img" style="display:none" id="is-like-imgactive-new" src="http://toolman.ddnsfree.com:8585/csdnimg/release/blogv2/dist/pc/img/newHeart2023Active.png" alt=""> <img class="article-read-img article-heard-img" style="display:block" id="is-like-img-new" src="http://toolman.ddnsfree.com:8585/csdnimg/release/blogv2/dist/pc/img/newHeart2023Black.png" alt=""> <span class="read-count" id="blog-digg-num">点赞数 1 </span></div></div></div></div><div class="blog-tags-box"><div class="tags-box artic-tag-box"><span class="label">分类专栏：</span> <a class="tag-link" href="https://blog.csdn.net/xiaoquantouer/category_6299567.html" target="_blank" rel="noopener">scrapy</a> <span class="label">文章标签：</span> <a rel="nofollow" data-report-click="{&quot;mod&quot;:&quot;popu_626&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4223&quot;,&quot;strategy&quot;:&quot;scrapy&quot;,&quot;ab&quot;:&quot;new&quot;,&quot;extra&quot;:&quot;{\&quot;searchword\&quot;:\&quot;scrapy\&quot;}&quot;}" class="tag-link" href="https://so.csdn.net/so/search/s.do?q=scrapy&amp;t=all&amp;o=vip&amp;s=&amp;l=&amp;f=&amp;viparticle=" target="_blank">scrapy</a> <a rel="nofollow" data-report-click="{&quot;mod&quot;:&quot;popu_626&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4223&quot;,&quot;strategy&quot;:&quot;爬虫&quot;,&quot;ab&quot;:&quot;new&quot;,&quot;extra&quot;:&quot;{\&quot;searchword\&quot;:\&quot;爬虫\&quot;}&quot;}" class="tag-link" href="https://so.csdn.net/so/search/s.do?q=%E7%88%AC%E8%99%AB&amp;t=all&amp;o=vip&amp;s=&amp;l=&amp;f=&amp;viparticle=" target="_blank">爬虫</a></div></div><div class="slide-content-box"><div class="article-copyright"><div class="creativecommons">
+            版权声明：本文为博主原创文章，遵循<a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener"> CC 4.0 BY-SA </a>版权协议，转载请附上原文出处链接和本声明。</div><div class="article-source-link">
+            本文链接：<a href="https://blog.csdn.net/xiaoquantouer/article/details/51841016" target="_blank">https://blog.csdn.net/xiaoquantouer/article/details/51841016</a></div></div></div><div class="operating"><a class="href-article-edit slide-toggle">版权</a></div></div></div></div><div id="blogHuaweiyunAdvert"></div><div class="ai-abstract-box"><div class="ai-abstract"><div class="abstract-content"><img class="lock-img" src="http://toolman.ddnsfree.com:8585/csdnimg/img-home/images/20240709112858.png" alt=""> 2、任务二：爬取商品评论信息如果不需要爬取用户的地域信息，那么用这个网址爬就好：http://club.jd.com/review/10321370917-1-1-0.html其中10321370917是商品的ID，评论的第一页就是&nbsp;-1-1-0.html， 第二页就是-1-2-0.html。之前商品不是存了评论总数吗，一页30个评论，除一下就可以知道多少页了，</div> <span>摘要由CSDN通过智能技术生成</span></div></div>
+      <article class="baidu_pl"><div id="article_content" class="article_content clearfix">
+        <link rel="stylesheet" href="http://toolman.ddnsfree.com:8585/csdnimg/release/blogv2/dist/mdeditor/css/editerView/kdoc_html_views-1a98987dfd.css">
+        <link rel="stylesheet" href="http://toolman.ddnsfree.com:8585/csdnimg/release/blogv2/dist/mdeditor/css/editerView/ck_htmledit_views-044f2cf1dc.css"><div id="content_views" class="htmledit_views">
+         <p><span style="font-size:18px"><strong>2、任务二：爬取商品评论信息</strong></span></p>
+         <p><br></p>
+         <p><span style="font-size:18px">如果不需要爬取用户的地域信息，那么用这个网址爬就好：</span></p>
+         <p><span style="font-size:18px">http://club.jd.com/review/10321370917-1-1-0.html<br> </span></p>
+         <p><span style="font-size:18px"><br> </span></p>
+         <p><span style="font-size:18px">其中10321370917是商品的ID，评论的第一页就是&nbsp;-1-1-0.html， 第二页就是-1-2-0.html。</span></p>
+         <p><span style="font-size:18px">之前商品不是存了评论总数吗，一页30个评论，除一下就可以知道多少页了，或者直接抓取下一页的链接也行。</span></p>
+         <p><span style="font-size:18px"><br> </span></p>
+         <p><span style="font-size:18px">但是这里的评论是没有用户地区信息的。下面放两个图对比一下</span></p>
+         <p><span style="font-size:18px">没地区信息的：</span></p>
+         <p><img src="http://toolman.ddnsfree.com:8585/csdn/img-blog/20160706173904377" alt=""><br></p>
+         <p><br></p>
+         <p>有地区信息的：</p>
+         <p><img src="http://toolman.ddnsfree.com:8585/csdn/img-blog/20160706173915674" alt=""><br></p>
+         <p><br></p>
+         <p><span style="font-size:18px">因此如果不需要地区信息，就按上面的方法抓取就好，很简单。但是如果要地区信息的话，就会复杂一些了。因为你会发现商品详情页中的评论也是动态加载的，不管你点第一页，网址都不变。</span></p>
+         <p><span style="font-size:18px"><br> </span></p>
+         <p><span style="font-size:18px">老套路，从评论第一页点到第二页看network，看都加载了什么文件，找出有评论信息的文件。</span></p>
+         <p><br></p>
+         <p><img src="http://toolman.ddnsfree.com:8585/csdn/img-blog/20160706174151378" alt=""><br></p>
+         <p><br></p>
+         <p><br></p>
+         <p><span style="font-size:18px">这个比起前面的就少太多东西了。而且只有一个script文件，不用找，就是它了，点开看看。</span></p>
+         <p><span style="font-size:18px"><br> </span></p>
+         <p><span style="font-size:18px">很多东西，用在线json解析网站解析一下，对比一下详情页的评论发现可以对应上。接下来看看网址：</span></p>
+         <p><span style="font-size:18px">http://sclub.jd.com/productpage/p-10321370917-s-0-t-3-p-1.html?callback=fetchJSON_comment98vv341<br> </span></p>
+         <p><span style="font-size:18px"><br> </span></p>
+         <p><span style="font-size:18px">10321370917 是商品ID，第一页是s-0-t-3-p-1 &nbsp;第二页是s-0-t-3-p-2 第三页是s-0-t-3-p-3 &nbsp;这个规律试一试就知道了</span></p>
+         <p><span style="font-size:18px">fetchJSON_comment98vv341去不掉，而且修改341网页也会变。这时候我们需要去找找这个341在哪。<br> </span></p>
+         <p><span style="font-size:18px">点开详情页的源代码，ctrl+F搜索一下341，发现有一个叫commentVersion的东西，所以在抓取详情页的时候需要存一下commentVersion后面的值，在这里会用到。</span></p>
+         <p><span style="font-size:18px"><br> </span></p>
+         <p><span style="font-size:18px">看到上一篇抓取商品信息博文的就知道，之前有个铺垫。</span></p>
+         <p><span style="font-size:18px"><br> </span></p>
+         <p><span style="font-size:18px">这部分代码：</span></p>
+         <p></p>
+         <pre class="set-code-show"><code class="language-python">def parse(self, response):
+        temp1 = response.body.split('productAttr')
+        # if len(temp1) &lt; 2:
+        #     item2 = commentItem()
+        #     item2['content'] = response.url.encode('utf-8')
+        #     return item2
+        #
+        str = '{"productAttr' + temp1[1][:-2]
+        str = str.decode("gbk").encode("utf-8")
+        js = json.loads(unicode(str, "utf-8"))
+        comments = js['comments']  # 该页所有评论
+
+        items = []
+        for comment in comments:
+            item1 = commentItem()
+            item1['user_name'] = comment['nickname']
+            item1['user_ID'] = comment['id']
+            item1['userProvince'] = comment['userProvince']
+            item1['content'] = comment['content']
+            item1['good_ID'] = comment['referenceId']
+            item1['good_name'] = comment['referenceName']
+            item1['date'] = comment['referenceTime']
+            item1['replyCount'] = comment['replyCount']
+            item1['score'] = comment['score']
+            item1['status'] = comment['status']
+            title = ""
+            if comment.has_key('title'):
+                item1['title'] = comment['title']
+            item1['title'] = title
+            item1['userRegisterTime'] = comment['userRegisterTime']
+            item1['productColor'] = comment['productColor']
+            item1['productSize'] = comment['productSize']
+            item1['userLevelName'] = comment['userLevelName']
+            item1['isMobile'] = comment['isMobile']
+            item1['days'] = comment['days']
+            tags = ""
+            if comment.has_key('commentTags'):
+                for i in comment['commentTags']:
+                    tags = tags + i['name'] + " "
+            item1['commentTags'] = tags
+            items.append(item1)
+        return items</code></pre>
+         <p></p>
+         <p><br></p>
+         <p><br></p> <span style="font-size:18px">最后存储到数据库的数据如下图：</span>
+         <p><span style="font-size:18px"><br> </span></p>
+         <p><img src="http://toolman.ddnsfree.com:8585/csdn/img-blog/20160706174754513" alt=""></p>
+         <p><br></p>
+         <p><span style="font-size:18px"></span></p>
+         <p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; font-family:&quot;Microsoft YaHei&quot;; font-size:15px; color:rgb(102,102,102); line-height:26px"><span style="margin:0px; padding:0px; font-size:18px">全部代码已上传github：</span></p>
+         <p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; font-family:&quot;Microsoft YaHei&quot;; font-size:15px; color:rgb(102,102,102); line-height:26px"><a target="_blank" href="https://github.com/xiaoquantou/jd_spider" rel="noopener noreferrer">https://github.com/xiaoquantou/jd_spider</a><br></p> <br> <br></div></div>
+      </article></div>
+    </main></div><div class="recommend-right align-items-stretch clearfix" id="rightAside" data-type="recommend"></div></div>
+  <link rel="stylesheet" href="http://toolman.ddnsfree.com:8585/csdnimg/release/blog_editor_html/release1.6.12/ckeditor/plugins/chart/chart.css">
+  <link rel="stylesheet" href="http://toolman.ddnsfree.com:8585/csdnimg/g/lib/cboxEditor/1.1.2/embed-editor.min.css">
+  <link rel="stylesheet" href="http://toolman.ddnsfree.com:8585/csdnimg/release/blog_editor_html/release1.6.12/ckeditor/plugins/codesnippet/lib/highlight/styles/atom-one-light.css">
+ </body> 
+</html>
