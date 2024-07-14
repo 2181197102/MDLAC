@@ -14,7 +14,7 @@ class jd_spider(Spider):
     name = "jd"
     start_urls = []
     start_urls = copy.deepcopy(start_urls)
-    for i in range(38, 39):  # 这里需要自己设置页数，目前只能抓取空调分类下前10页的商品
+    for i in range(39, 40):  # 这里需要自己设置页数，目前只能抓取空调分类下前10页的商品
         url = f'https://list.jd.com/list.html?cat=737%2C794%2C870&isList=1&page={i}'
         start_urls.append(url)
 
