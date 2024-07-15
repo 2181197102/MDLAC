@@ -9,7 +9,7 @@ def index(request):
 
 def login(request):
     pass
-    return render(request, 'login/login.html')
+    return render(request, 'login/pages-login.html')
 
 
 def register(request):

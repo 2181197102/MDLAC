@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -9,14 +10,14 @@
         <meta content="ThemeDesign" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
+        <link rel="shortcut icon" href="{% static 'shows/vertical/assets/images/favicon.ico' %}">
 
         <!-- Magnific popup -->
-        <link href="../plugins/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
+        <link href="{% static 'shows/plugins/magnific-popup/magnific-popup.css' %}" rel="stylesheet" type="text/css">
 
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-        <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
-        <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+        <link href="{% static 'shows/vertical/assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'shows/vertical/assets/css/icons.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'shows/vertical/assets/css/style.css' %}" rel="stylesheet" type="text/css">
 
     </head>
 
@@ -48,7 +49,7 @@
                 <div class="left-side-logo d-block d-lg-none">
                     <div class="text-center">
                         
-                        <a href="index.html" class="logo"><img src="assets/images/logo_dark.png" height="20" alt="logo"></a>
+                        <a href="index.html" class="logo"><img src="{% static 'shows/vertical/assets/images/logo_dark.png' %}" height="20" alt="logo"></a>
                     </div>
                 </div>
 
@@ -205,7 +206,7 @@
 
                         <div class="topbar-left	d-none d-lg-block">
                             <div class="text-center">
-                                <a href="index.html" class="logo"><img src="assets/images/logo.png" height="22" alt="logo"></a>
+                                <a href="index.html" class="logo"><img src="{% static 'shows/vertical/assets/images/logo.png' %}" height="22" alt="logo"></a>
                             </div>
                         </div>
 
@@ -286,7 +287,7 @@
                                 <li class="list-inline-item dropdown notification-list nav-user">
                                     <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button"
                                     aria-haspopup="false" aria-expanded="false">
-                                        <img src="assets/images/users/avatar-6.jpg" alt="user" class="rounded-circle">
+                                        <img src="{% static 'shows/vertical/assets/images/users/avatar-6.jpg' %}" alt="user" class="rounded-circle">
                                         <span class="d-none d-md-inline-block ml-1">David M. Bailey <i class="mdi mdi-chevron-down"></i> </span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown">
@@ -380,14 +381,14 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <h6 class="mt-0 m-b-15 text-muted">Fits (Horz/Vert)</h6>
-                                                    <a class="image-popup-vertical-fit" href="assets/images/small/img-2.jpg" title="Caption. Can be aligned it to any side and contain any HTML.">
-                                                        <img class="img-fluid d-block mo-mb-2" src="assets/images/small/img-2.jpg" alt=""  width="145">
+                                                    <a class="image-popup-vertical-fit" href="{% static 'shows/vertical/assets/images/small/img-2.jpg' %}" title="Caption. Can be aligned it to any side and contain any HTML.">
+                                                        <img class="img-fluid d-block mo-mb-2" src="{% static 'shows/vertical/assets/images/small/img-2.jpg' %}" alt=""  width="145">
                                                     </a>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <h6 class="mt-0 mo-mt-2 m-b-15 text-muted">Effects</h6>
-                                                    <a class="image-popup-no-margins" href="assets/images/small/img-3.jpg">
-                                                        <img class="img-fluid d-block" src="assets/images/small/img-3.jpg" alt="" width="75">
+                                                    <a class="image-popup-no-margins" href="{% static 'shows/vertical/assets/images/small/img-3.jpg' %}">
+                                                        <img class="img-fluid d-block" src="{% static 'shows/vertical/assets/images/small/img-3.jpg' %}" alt="" width="75">
                                                     </a>
                                                     <p class="mt-2 mb-0 text-muted">No gaps, zoom animation, close icon in top-right corner.</p>
                                                 </div>
@@ -404,34 +405,34 @@
                                             <p class="text-muted m-b-30">In this example lazy-loading of images is enabled for the next image based on move direction. </p>
             
                                             <div class="popup-gallery">
-                                                <a class="float-left" href="assets/images/small/img-1.jpg" title="Project 1">
+                                                <a class="float-left" href="{% static 'shows/vertical/assets/images/small/img-1.jpg' %}" title="Project 1">
                                                     <div class="img-fluid d-block mx-auto">
-                                                        <img src="assets/images/small/img-1.jpg" alt="" width="120">
+                                                        <img src="{% static 'shows/vertical/assets/images/small/img-1.jpg' %}" alt="" width="120">
                                                     </div>
                                                 </a>
-                                                <a class="float-left" href="assets/images/small/img-2.jpg" title="Project 2">
+                                                <a class="float-left" href="{% static 'shows/vertical/assets/images/small/img-2.jpg' %}" title="Project 2">
                                                     <div class="img-fluid d-block mx-auto">
-                                                        <img src="assets/images/small/img-2.jpg" alt="" width="120">
+                                                        <img src="{% static 'shows/vertical/assets/images/small/img-2.jpg' %}" alt="" width="120">
                                                     </div>
                                                 </a>
-                                                <a class="float-left" href="assets/images/small/img-3.jpg" title="Project 3">
+                                                <a class="float-left" href="{% static 'shows/vertical/assets/images/small/img-3.jpg' %}" title="Project 3">
                                                     <div class="img-fluid d-block mx-auto">
-                                                        <img src="assets/images/small/img-3.jpg" alt="" width="120">
+                                                        <img src="{% static 'shows/vertical/assets/images/small/img-3.jpg' %}" alt="" width="120">
                                                     </div>
                                                 </a>
-                                                <a class="float-left" href="assets/images/small/img-4.jpg" title="Project 4">
+                                                <a class="float-left" href="{% static 'shows/vertical/assets/images/small/img-4.jpg' %}" title="Project 4">
                                                     <div class="img-fluid d-block mx-auto">
-                                                        <img src="assets/images/small/img-4.jpg" alt="" width="120">
+                                                        <img src="{% static 'shows/vertical/assets/images/small/img-4.jpg' %}" alt="" width="120">
                                                     </div>
                                                 </a>
-                                                <a class="float-left" href="assets/images/small/img-5.jpg" title="Project 5">
+                                                <a class="float-left" href="{% static 'shows/vertical/assets/images/small/img-5.jpg' %}" title="Project 5">
                                                     <div class="img-fluid d-block mx-auto">
-                                                        <img src="assets/images/small/img-5.jpg" alt="" width="120">
+                                                        <img src="{% static 'shows/vertical/assets/images/small/img-5.jpg' %}" alt="" width="120">
                                                     </div>
                                                 </a>
-                                                <a class="float-left" href="assets/images/small/img-6.jpg" title="Project 6">
+                                                <a class="float-left" href="{% static 'shows/vertical/assets/images/small/img-6.jpg' %}" title="Project 6">
                                                     <div class="img-fluid d-block mx-auto">
-                                                        <img src="assets/images/small/img-6.jpg" alt="" width="120">
+                                                        <img src="{% static 'shows/vertical/assets/images/small/img-6.jpg' %}" alt="" width="120">
                                                     </div>
                                                 </a>
                                             </div>
@@ -451,8 +452,8 @@
                                             <p class="text-muted m-b-30">Zoom effect works only with images.</p>
             
                                             <div class="zoom-gallery">
-                                                <a class="float-left" href="assets/images/small/img-3.jpg" title="Project 1"><img src="assets/images/small/img-3.jpg" alt="" width="275" class="img-fluid"></a>
-                                                <a class="float-left" href="assets/images/small/img-7.jpg" title="Project 2"><img src="assets/images/small/img-7.jpg" alt="" width="275" class="img-fluid"></a>
+                                                <a class="float-left" href="{% static 'shows/vertical/assets/images/small/img-3.jpg' %}" title="Project 1"><img src="{% static 'shows/vertical/assets/images/small/img-3.jpg' %}" alt="" width="275" class="img-fluid"></a>
+                                                <a class="float-left" href="{% static 'shows/vertical/assets/images/small/img-7.jpg' %}" title="Project 2"><img src="{% static 'shows/vertical/assets/images/small/img-7.jpg' %}" alt="" width="275" class="img-fluid"></a>
                                             </div>
                                         </div>
                                     </div>
@@ -496,23 +497,23 @@
 
 
         <!-- jQuery  -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/js/modernizr.min.js"></script>
-        <script src="assets/js/detect.js"></script>
-        <script src="assets/js/fastclick.js"></script>
-        <script src="assets/js/jquery.slimscroll.js"></script>
-        <script src="assets/js/jquery.blockUI.js"></script>
-        <script src="assets/js/waves.js"></script>
-        <script src="assets/js/jquery.nicescroll.js"></script>
-        <script src="assets/js/jquery.scrollTo.min.js"></script>
+        <script src="{% static 'shows/vertical/assets/js/jquery.min.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/js/modernizr.min.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/js/detect.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/js/fastclick.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/js/jquery.slimscroll.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/js/jquery.blockUI.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/js/waves.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/js/jquery.nicescroll.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/js/jquery.scrollTo.min.js' %}"></script>
 
         <!-- Magnific popup -->
-        <script src="../plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
-        <script src="assets/pages/lightbox.js"></script>
+        <script src="../plugins/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/pages/lightbox.js' %}"></script>
 
         <!-- App js -->
-        <script src="assets/js/app.js"></script>
+        <script src="{% static 'shows/vertical/assets/js/app.js' %}"></script>
 
     </body>
 </html>

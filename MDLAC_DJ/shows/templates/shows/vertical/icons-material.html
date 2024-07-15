@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -9,11 +10,11 @@
         <meta content="ThemeDesign" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
+        <link rel="shortcut icon" href="{% static 'shows/vertical/assets/images/favicon.ico' %}">
 
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-        <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
-        <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+        <link href="{% static 'shows/vertical/assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'shows/vertical/assets/css/icons.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'shows/vertical/assets/css/style.css' %}" rel="stylesheet" type="text/css">
 
     </head>
 
@@ -45,7 +46,7 @@
                 <div class="left-side-logo d-block d-lg-none">
                     <div class="text-center">
                         
-                        <a href="index.html" class="logo"><img src="assets/images/logo_dark.png" height="20" alt="logo"></a>
+                        <a href="index.html" class="logo"><img src="{% static 'shows/vertical/assets/images/logo_dark.png' %}" height="20" alt="logo"></a>
                     </div>
                 </div>
 
@@ -202,7 +203,7 @@
 
                         <div class="topbar-left	d-none d-lg-block">
                             <div class="text-center">
-                                <a href="index.html" class="logo"><img src="assets/images/logo.png" height="22" alt="logo"></a>
+                                <a href="index.html" class="logo"><img src="{% static 'shows/vertical/assets/images/logo.png' %}" height="22" alt="logo"></a>
                             </div>
                         </div>
 
@@ -283,7 +284,7 @@
                                 <li class="list-inline-item dropdown notification-list nav-user">
                                     <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button"
                                     aria-haspopup="false" aria-expanded="false">
-                                        <img src="assets/images/users/avatar-6.jpg" alt="user" class="rounded-circle">
+                                        <img src="{% static 'shows/vertical/assets/images/users/avatar-6.jpg' %}" alt="user" class="rounded-circle">
                                         <span class="d-none d-md-inline-block ml-1">David M. Bailey <i class="mdi mdi-chevron-down"></i> </span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown">
@@ -1290,7 +1291,7 @@
                                                     <i class="mdi mdi-camera-control"></i> mdi mdi-camera-control
                                                 </div>
                                                 <div class="col-xl-3 col-md-4 col-sm-6">
-                                                    <i class="mdi mdi-pan-horizontal"></i> mdi mdi-pan-horizontal
+                                                    <i class="mdi mdi-pan-vertical"></i> mdi mdi-pan-vertical
                                                 </div>
                                                 <div class="col-xl-3 col-md-4 col-sm-6">
                                                     <i class="mdi mdi-pan-vertical"></i> mdi mdi-pan-vertical
@@ -1860,7 +1861,7 @@
                                                     <i class="mdi mdi-arrow-collapse-down"></i> mdi mdi-arrow-collapse-down
                                                 </div>
                                                 <div class="col-xl-3 col-md-4 col-sm-6">
-                                                    <i class="mdi mdi-arrow-collapse-horizontal"></i> mdi mdi-arrow-collapse-horizontal
+                                                    <i class="mdi mdi-arrow-collapse-vertical"></i> mdi mdi-arrow-collapse-vertical
                                                 </div>
                                                 <div class="col-xl-3 col-md-4 col-sm-6">
                                                     <i class="mdi mdi-arrow-collapse-left"></i> mdi mdi-arrow-collapse-left
@@ -1932,7 +1933,7 @@
                                                     <i class="mdi mdi-arrow-expand-down"></i> mdi mdi-arrow-expand-down
                                                 </div>
                                                 <div class="col-xl-3 col-md-4 col-sm-6">
-                                                    <i class="mdi mdi-arrow-expand-horizontal"></i> mdi mdi-arrow-expand-horizontal
+                                                    <i class="mdi mdi-arrow-expand-vertical"></i> mdi mdi-arrow-expand-vertical
                                                 </div>
                                                 <div class="col-xl-3 col-md-4 col-sm-6">
                                                     <i class="mdi mdi-arrow-expand-left"></i> mdi mdi-arrow-expand-left
@@ -2022,7 +2023,7 @@
                                                     <i class="mdi mdi-arrow-right-thick"></i> mdi mdi-arrow-right-thick
                                                 </div>
                                                 <div class="col-xl-3 col-md-4 col-sm-6">
-                                                    <i class="mdi mdi-arrow-split-horizontal"></i> mdi mdi-arrow-split-horizontal
+                                                    <i class="mdi mdi-arrow-split-vertical"></i> mdi mdi-arrow-split-vertical
                                                 </div>
                                                 <div class="col-xl-3 col-md-4 col-sm-6">
                                                     <i class="mdi mdi-arrow-split-vertical"></i> mdi mdi-arrow-split-vertical
@@ -2577,7 +2578,7 @@
                                                     <i class="mdi mdi-border-color"></i> mdi mdi-border-color
                                                 </div>
                                                 <div class="col-xl-3 col-md-4 col-sm-6">
-                                                    <i class="mdi mdi-border-horizontal"></i> mdi mdi-border-horizontal
+                                                    <i class="mdi mdi-border-vertical"></i> mdi mdi-border-vertical
                                                 </div>
                                                 <div class="col-xl-3 col-md-4 col-sm-6">
                                                     <i class="mdi mdi-border-inside"></i> mdi mdi-border-inside
@@ -4230,10 +4231,10 @@
                                                     <i class="mdi mdi-dot-net"></i> mdi mdi-dot-net
                                                 </div>
                                                 <div class="col-xl-3 col-md-4 col-sm-6">
-                                                    <i class="mdi mdi-dots-horizontal"></i> mdi mdi-dots-horizontal
+                                                    <i class="mdi mdi-dots-vertical"></i> mdi mdi-dots-vertical
                                                 </div>
                                                     <div class="col-xl-3 col-md-4 col-sm-6">
-                                                    <i class="mdi mdi-dots-horizontal-circle"></i> mdi mdi-dots-horizontal-circle
+                                                    <i class="mdi mdi-dots-vertical-circle"></i> mdi mdi-dots-vertical-circle
                                                 </div>
                                                 <div class="col-xl-3 col-md-4 col-sm-6">
                                                     <i class="mdi mdi-dots-vertical"></i> mdi mdi-dots-vertical
@@ -4257,7 +4258,7 @@
                                                     <i class="mdi mdi-drag"></i> mdi mdi-drag
                                                 </div>
                                                     <div class="col-xl-3 col-md-4 col-sm-6">
-                                                    <i class="mdi mdi-drag-horizontal"></i> mdi mdi-drag-horizontal
+                                                    <i class="mdi mdi-drag-vertical"></i> mdi mdi-drag-vertical
                                                 </div>
                                                 <div class="col-xl-3 col-md-4 col-sm-6">
                                                     <i class="mdi mdi-drag-vertical"></i> mdi mdi-drag-vertical
@@ -5052,13 +5053,13 @@
                                                     <i class="mdi mdi-format-header-pound"></i> mdi mdi-format-header-pound
                                                 </div>
                                                 <div class="col-xl-3 col-md-4 col-sm-6">
-                                                    <i class="mdi mdi-format-horizontal-align-center"></i> mdi mdi-format-horizontal-align-center
+                                                    <i class="mdi mdi-format-vertical-align-center"></i> mdi mdi-format-vertical-align-center
                                                 </div>
                                                 <div class="col-xl-3 col-md-4 col-sm-6">
-                                                    <i class="mdi mdi-format-horizontal-align-left"></i> mdi mdi-format-horizontal-align-left
+                                                    <i class="mdi mdi-format-vertical-align-left"></i> mdi mdi-format-vertical-align-left
                                                 </div>
                                                 <div class="col-xl-3 col-md-4 col-sm-6">
-                                                    <i class="mdi mdi-format-horizontal-align-right"></i> mdi mdi-format-horizontal-align-right
+                                                    <i class="mdi mdi-format-vertical-align-right"></i> mdi mdi-format-vertical-align-right
                                                 </div>
                                                 <div class="col-xl-3 col-md-4 col-sm-6">
                                                     <i class="mdi mdi-format-indent-decrease"></i> mdi mdi-format-indent-decrease
@@ -5313,7 +5314,7 @@
                                                     <i class="mdi mdi-gesture-swipe-down"></i> mdi mdi-gesture-swipe-down
                                                 </div>
                                                 <div class="col-xl-3 col-md-4 col-sm-6">
-                                                    <i class="mdi mdi-gesture-swipe-horizontal"></i> mdi mdi-gesture-swipe-horizontal
+                                                    <i class="mdi mdi-gesture-swipe-vertical"></i> mdi mdi-gesture-swipe-vertical
                                                 </div>
                                                 <div class="col-xl-3 col-md-4 col-sm-6">
                                                     <i class="mdi mdi-gesture-swipe-left"></i> mdi mdi-gesture-swipe-left
@@ -7155,7 +7156,7 @@
                                                     <i class="mdi mdi-panorama-fisheye"></i> mdi mdi-panorama-fisheye
                                                 </div>
                                                 <div class="col-xl-3 col-md-4 col-sm-6">
-                                                    <i class="mdi mdi-panorama-horizontal"></i> mdi mdi-panorama-horizontal
+                                                    <i class="mdi mdi-panorama-vertical"></i> mdi mdi-panorama-vertical
                                                 </div> 
                                                 <div class="col-xl-3 col-md-4 col-sm-6">
                                                     <i class="mdi mdi-panorama-vertical"></i> mdi mdi-panorama-vertical
@@ -7737,7 +7738,7 @@
                                                     <i class="mdi mdi-redo-variant"></i> mdi mdi-redo-variant
                                                 </div>
                                                 <div class="col-xl-3 col-md-4 col-sm-6">
-                                                    <i class="mdi mdi-reflect-horizontal"></i> mdi mdi-reflect-horizontal
+                                                    <i class="mdi mdi-reflect-vertical"></i> mdi mdi-reflect-vertical
                                                 </div>
                                                 <div class="col-xl-3 col-md-4 col-sm-6">
                                                     <i class="mdi mdi-reflect-vertical"></i> mdi mdi-reflect-vertical
@@ -7770,7 +7771,7 @@
                                                     <i class="mdi mdi-rename-box"></i> mdi mdi-rename-box
                                                 </div> 
                                                 <div class="col-xl-3 col-md-4 col-sm-6">
-                                                    <i class="mdi mdi-reorder-horizontal"></i> mdi mdi-reorder-horizontal
+                                                    <i class="mdi mdi-reorder-vertical"></i> mdi mdi-reorder-vertical
                                                 </div>
                                                 <div class="col-xl-3 col-md-4 col-sm-6">
                                                     <i class="mdi mdi-reorder-vertical"></i> mdi mdi-reorder-vertical
@@ -8649,10 +8650,10 @@
                                                     <i class="mdi mdi-svg"></i> mdi mdi-svg
                                                 </div>
                                                 <div class="col-xl-3 col-md-4 col-sm-6">
-                                                    <i class="mdi mdi-swap-horizontal"></i> mdi mdi-swap-horizontal
+                                                    <i class="mdi mdi-swap-vertical"></i> mdi mdi-swap-vertical
                                                 </div>
                                                 <div class="col-xl-3 col-md-4 col-sm-6">
-                                                    <i class="mdi mdi-swap-horizontal-variant"></i> mdi mdi-swap-horizontal-variant
+                                                    <i class="mdi mdi-swap-vertical-variant"></i> mdi mdi-swap-vertical-variant
                                                 </div> 
                                                 <div class="col-xl-3 col-md-4 col-sm-6">
                                                     <i class="mdi mdi-swap-vertical"></i> mdi mdi-swap-vertical
@@ -9225,13 +9226,13 @@
                                                     <i class="mdi mdi-undo-variant"></i> mdi mdi-undo-variant
                                                 </div> 
                                                 <div class="col-xl-3 col-md-4 col-sm-6">
-                                                    <i class="mdi mdi-unfold-less-horizontal"></i> mdi mdi-unfold-less-horizontal
+                                                    <i class="mdi mdi-unfold-less-vertical"></i> mdi mdi-unfold-less-vertical
                                                 </div> 
                                                 <div class="col-xl-3 col-md-4 col-sm-6">
                                                     <i class="mdi mdi-unfold-less-vertical"></i> mdi mdi-unfold-less-vertical
                                                 </div> 
                                                 <div class="col-xl-3 col-md-4 col-sm-6">
-                                                    <i class="mdi mdi-unfold-more-horizontal"></i> mdi mdi-unfold-more-horizontal
+                                                    <i class="mdi mdi-unfold-more-vertical"></i> mdi mdi-unfold-more-vertical
                                                 </div> 
                                                 <div class="col-xl-3 col-md-4 col-sm-6">
                                                     <i class="mdi mdi-unfold-more-vertical"></i> mdi mdi-unfold-more-vertical
@@ -10018,19 +10019,19 @@
 
 
         <!-- jQuery  -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/js/modernizr.min.js"></script>
-        <script src="assets/js/detect.js"></script>
-        <script src="assets/js/fastclick.js"></script>
-        <script src="assets/js/jquery.slimscroll.js"></script>
-        <script src="assets/js/jquery.blockUI.js"></script>
-        <script src="assets/js/waves.js"></script>
-        <script src="assets/js/jquery.nicescroll.js"></script>
-        <script src="assets/js/jquery.scrollTo.min.js"></script>
+        <script src="{% static 'shows/vertical/assets/js/jquery.min.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/js/modernizr.min.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/js/detect.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/js/fastclick.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/js/jquery.slimscroll.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/js/jquery.blockUI.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/js/waves.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/js/jquery.nicescroll.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/js/jquery.scrollTo.min.js' %}"></script>
 
         <!-- App js -->
-        <script src="assets/js/app.js"></script>
+        <script src="{% static 'shows/vertical/assets/js/app.js' %}"></script>
 
     </body>
 </html>
