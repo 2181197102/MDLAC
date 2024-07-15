@@ -40,15 +40,27 @@ USER_AGENTS = [
 ]
 
 # 这里使用的代理IP，因为IP的存活期的限制，请定期更新下面的IP，可从http://www.xicidaili.com/ 中找免费的代理IP
-PROXIES = [
-    {'ip_port': '223.100.178.167:80', 'user_pass': ''},
-    {'ip_port': '8.213.151.128:80', 'user_pass': ''},
-    {'ip_port': '60.12.168.114:80', 'user_pass': ''},
-    {'ip_port': '198.44.255.3:80', 'user_pass': ''},
-    {'ip_port': '111.59.4.88:80', 'user_pass': ''},
-    {'ip_port': '125.77.25.178:80', 'user_pass': ''},
-    {'ip_port': '52.82.123.144:8080', 'user_pass': ''},
-]
+# PROXIES = []
+# for i in range(5):
+#     # 提取代理API接口，获取1个代理IP
+#     api_url = "https://api.jiliuip.com/getdip/?app_id=ojupaif04vzjh816257n&num=1&app_secret=vlw8v693q5m47pyaypjm0zy25qz6nob6&pt=1&sep=1"
+#
+#
+#     # 获取API接口返回的代理IP
+#     proxy_ip = requests.get(api_url).text
+#
+#     # 用户名密码认证
+#     username = "jd3812134932"
+#     password = "yb7utld6"
+#
+#     proxie = {
+#         "ip_port": "http://%(user)s:%(pwd)s@%(proxy)s/" % {"user": username, "pwd": password, "proxy": proxy_ip},
+#         "https": "http://%(user)s:%(pwd)s@%(proxy)s/" % {"user": username, "pwd": password, "proxy": proxy_ip}
+#     }
+#     PROXIES.append(proxie)
+# print("获取代理IP：", PROXIES)
+
+# 从网址中提取动态代理IP（每次10个）
 
 COOKIES_ENABLED = False
 
@@ -56,23 +68,23 @@ DEFAULT_REQUEST_HEADERS = {
    'Accept': "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
    'Accept-Language': 'en',
    'User-Agent': random.choice(USER_AGENTS),
-   'cookie': '''
-    __jdv=76161171|direct|-|none|-|1720079782815; cud=f0f713fcba73a5ba342febc6312c13e9; areaId=22; shshshfpa=6e85e595-0bef-6ddd-9c7d-8c57e637a665-1720079786; shshshfpx=6e85e595-0bef-6ddd-9c7d-8c57e637a665-1720079786; pinId=V7_fTAH2CoVWdKwqftNFwg; pin=jd_hxDAmSuHIgHb; unick=jd_dt61a8d1ql8hzg; _tp=lRvvjMK18fwPkKL4mAOS3w%3D%3D; _pst=jd_hxDAmSuHIgHb; ipLoc-djd=22-1930-50948-71603; mt_xid=V2_52007VwMUUVxZVFIZQBpVBWIDEVNUXFdZHkwZbAFvAkAAX1BTRhYZHloZYgAWWkEIBl8XVU1VBTABFQEICFJTHnkaXQZiHxNUQVhSSx9BEl0FbAcUYl9oUmoWSx1YDGMCFVVdXlZYHU4RXgFhMxJUWVw%3D; user-key=4f5cb687-3372-4ce0-a5cc-86816ec6bb0b; __jdu=17208459747021983347191; PCSYCityID=CN_510000_510100_0; jsavif=1; cvt=8; token=22cb1f85f82b38909bd3940564512a56,3,956066; __tk=b89be79e009c9407b27d94d8c2fa545f,3,956066; mba_muid=17208459747021983347191; mba_sid=17209190521921239513184614769.3; wlfstk_smdl=76euj4chy91njmj20z86cuwjpmtd3a2b; TrackID=1qKlNheODgJmSMJaw6Ql8h3szGpV9_44UZmFDq6DCukd6LAehfrpi_SRAM_6kq44BY2K07plgU0Hog8kB-1LBrmFX0mLL7KzjdfUFm1hR_HM; thor=93B747036CF37D2472C60CE738F0B592FDDA5FCA67FEAD7A2D8EC157DCA15AC67FBD18AEAA37C51199E814FF0BE5CBDFC93639FA508AC5261B21EAF7EE33ECE1D9DAC4F250CC1FA30116646E96EAC79ABFBCA37CA5CD029A01E478AFC0FFC9E3373B8F24B7CD30FDAEF9C36B7138F0A93806B5B111F5D22E7B1BADE549F0DB70FF9D85BA78CD03A7ADAED3AC4B3566DB1251843F83C6FF33E75B429C27D99081; flash=2_fN301KKPHXax7b7WPJO0pZH2rhE8WDnFTfjNL2V8o4meHgYITvfik8bdBfYv-DE1kVXJl7xWZ0Nb5vobsnBiwHqCZDNdajXGZJOjnJ75w_1TBYMmoMdB83X_hGJ_zvRhIQohKWgQaC3d8PWeFB55jK3uHd0pMEMkji_EQ80FFSD*; ceshi3.com=000; __jda=29846306.17208459747021983347191.1720845975.1720915225.1720918485.9; __jdc=29846306; 3AB9D23F7A4B3CSS=jdd03ZTXX3WYEKBJ4HAVY47CU45L434JUPHNN6FK7TM22KYW6DZ7UK4S4GAY2S7W7NF2IRPBEOLWI4TBSFKMJUHT7B7PYDQAAAAMQV3EV3PAAAAAAC4DG45YAHKNJVEX; _gia_d=1; shshshfpb=BApXcRPPBrfVAc0uF-aiDaS605SBd8Re_BmJGkKlp9xJ1MhE9j4C2; 3AB9D23F7A4B3C9B=ZTXX3WYEKBJ4HAVY47CU45L434JUPHNN6FK7TM22KYW6DZ7UK4S4GAY2S7W7NF2IRPBEOLWI4TBSFKMJUHT7B7PYDQ; __jdb=29846306.34.17208459747021983347191|9.1720918485; csn=28
-   '''}
+}
 # 如果不想使用代理IP，可以将下面这段DOWNLOADER_MIDDLEWARES代码注释掉
 # DOWNLOADER_MIDDLEWARES = {
-#     'jd_spider.middlewares.RandomUserAgent': 1,
-#     'scrapy.contrib.downloadermiddleware.httpproxy.HttpProxyMiddleware': 110,
-#     'jd_spider.middlewares.ProxyMiddleware': 100,
+#     # 'jd_spider.middlewares.RandomUserAgent': 1,
+#     # 'jd_spider.middlewares.ProxyMiddleware': 100,
+#     # 'jd_spider.middlewares.LoginMiddleware': 105,
+#     # 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 110,
 # }
 
 DOWNLOAD_DELAY = 1  # 下载延迟
 
 LOG_LEVEL = 'DEBUG'
+# COOKIES_DEBUG = True  # 开启cookie的调试信息
 
 ITEM_PIPELINES = {
-    'jd_spider.pipelines.PrintPipeline_comment': 300, # 抓取评论信息时，使用该通道
-    # 'jd_spider.pipelines.PrintPipeline': 300, # 抓取商品信息时，使用该通道
+    # 'jd_spider.pipelines.PrintPipeline_comment': 300, # 抓取评论信息时，使用该通道
+    'jd_spider.pipelines.PrintPipeline': 300,  # 抓取商品信息时，使用该通道
 }
 
 # 链接长度最大值
