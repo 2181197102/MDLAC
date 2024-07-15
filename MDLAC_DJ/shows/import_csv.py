@@ -37,6 +37,7 @@ def clean_value(value, default=None, value_type=str):
     except (ValueError, TypeError):
         return default
 
+
 def import_goods():
     csv_file_path = 'D:\\course\\intern\\MDLAC-master\\MDLAC\\dataset\\goods.csv'
 
@@ -93,10 +94,11 @@ def import_goods():
 
     print(f"Total rows: {total_rows}, Inserted rows: {inserted_rows}, Updated rows: {updated_rows}")
 
+
 def import_comments():
     csv_file_path = 'D:\\course\\intern\\MDLAC-master\\MDLAC\\dataset\\comments.csv'
 
-    df = pd.read_csv(csv_file_path, encoding='gbk')
+    df = pd.read_csv(csv_file_path, encoding='gbk', dtype={'good_ID': str})
 
     df.drop_duplicates(inplace=True)
 
@@ -106,30 +108,34 @@ def import_comments():
     for index, row in df.iterrows():
         good = JdGood.objects.filter(acid=clean_value(row['good_ID'])).first()
 
-        JdComment.objects.create(
-            content=clean_value(row['content']),
-            date=clean_value(row['date'], value_type=datetime),
-            good_ref=good,
-            good_id=clean_value(row['good_ID']),
-            good_name=clean_value(row['good_name']),
-            comment_tags=clean_value(row['commentTags']),
-            reply_count=clean_value(row['replyCount'], default=0, value_type=int),
-            score=clean_value(row['score'], value_type=int),
-            user_level_id=clean_value(row['userLevelId'], value_type=int),
-            user_province=clean_value(row['userProvince']),
-            user_id=clean_value(row['user_ID']),
-            user_name=clean_value(row['user_name']),
-            score1=clean_value(row['score1'], default=0, value_type=int),
-            score2=clean_value(row['score2'], default=0, value_type=int),
-            score3=clean_value(row['score3'], default=0, value_type=int),
-            score4=clean_value(row['score4'], default=0, value_type=int),
-            score5=clean_value(row['score5'], default=0, value_type=int)
-        )
-        inserted_rows += 1
-        if inserted_rows % 100 == 0:
-            print(f"Processed {inserted_rows}/{total_rows} rows last inserted good_id: {row['good_ID']}")
+        if good is not None:
+            JdComment.objects.create(
+                content=clean_value(row['content']),
+                date=clean_value(row['date'], value_type=datetime),
+                good_ref=good,
+                good_id=clean_value(row['good_ID']),
+                good_name=clean_value(row['good_name']),
+                comment_tags=clean_value(row['commentTags']),
+                reply_count=clean_value(row['replyCount'], default=0, value_type=int),
+                score=clean_value(row['score'], value_type=int),
+                user_level_id=clean_value(row['userLevelId'], value_type=int),
+                user_province=clean_value(row['userProvince']),
+                user_id=clean_value(row['user_ID']),
+                user_name=clean_value(row['user_name']),
+                score1=clean_value(row['score1'], default=0, value_type=int),
+                score2=clean_value(row['score2'], default=0, value_type=int),
+                score3=clean_value(row['score3'], default=0, value_type=int),
+                score4=clean_value(row['score4'], default=0, value_type=int),
+                score5=clean_value(row['score5'], default=0, value_type=int)
+            )
+            inserted_rows += 1
+            if inserted_rows % 100 == 0:
+                print(f"Processed {inserted_rows}/{total_rows} rows last inserted good_id: {row['good_ID']}")
+        else:
+            print(f"Skipping row {index} due to missing good_ref for good_ID: {row['good_ID']}")
 
     print(f"Total rows: {total_rows}, Inserted rows: {inserted_rows}")
+
 
 def run():
     import_goods()
