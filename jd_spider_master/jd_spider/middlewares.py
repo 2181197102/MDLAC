@@ -1,11 +1,7 @@
 # coding=utf-8
-__author__ = 'jiangqiaowei'
 import random
 import base64
-from jd_spider.settings import PROXIES
-
-
-# 主要用来动态获取user agent, user agent列表USER_AGENTS在setting.py中进行配置
+from MDLAC.jd_spider_master.jd_spider.settings import PROXIES
 class RandomUserAgent(object):
     """Randomly rotate user agents based on a list of predefined ones"""
 
@@ -17,17 +13,15 @@ class RandomUserAgent(object):
         return cls(crawler.settings.getlist('USER_AGENTS'))
 
     def process_request(self, request, spider):
-        #print "**************************" + random.choice(self.agents)
         request.headers.setdefault('User-Agent', random.choice(self.agents))
 
 
-# 用来切换代理，proxy列表PROXIES也是在settings.py中进行配置
 class ProxyMiddleware(object):
     def process_request(self, request, spider):
         proxy = random.choice(PROXIES)
         if proxy['user_pass'] is not None:
             request.meta['proxy'] = "http://%s" % proxy['ip_port']
-            encoded_user_pass = base64.encodestring(proxy['user_pass'])
+            encoded_user_pass = base64.b64encode(proxy['user_pass'].encode('utf-8')).decode('utf-8')
             request.headers['Proxy-Authorization'] = 'Basic ' + encoded_user_pass
             print("**************ProxyMiddleware have pass************" + proxy['ip_port'])
         else:
