@@ -105,15 +105,18 @@ def import_comments():
     total_rows = len(df)
     inserted_rows = 0
 
+    missing_goods = set()
+
     for index, row in df.iterrows():
-        good = JdGood.objects.filter(acid=clean_value(row['good_ID'])).first()
+        good_id_cleaned = str(clean_value(row['good_ID']))  # 确保 good_ID 是字符串类型
+        good = JdGood.objects.filter(acid=good_id_cleaned).first()
 
         if good is not None:
             JdComment.objects.create(
                 content=clean_value(row['content']),
                 date=clean_value(row['date'], value_type=datetime),
                 good_ref=good,
-                good_id=clean_value(row['good_ID']),
+                good_id=good_id_cleaned,
                 good_name=clean_value(row['good_name']),
                 comment_tags=clean_value(row['commentTags']),
                 reply_count=clean_value(row['replyCount'], default=0, value_type=int),
@@ -130,11 +133,14 @@ def import_comments():
             )
             inserted_rows += 1
             if inserted_rows % 100 == 0:
-                print(f"Processed {inserted_rows}/{total_rows} rows last inserted good_id: {row['good_ID']}")
+                print(f"Processed {inserted_rows}/{total_rows} rows, last inserted good_id: {row['good_ID']}")
         else:
+            missing_goods.add(good_id_cleaned)
             print(f"Skipping row {index} due to missing good_ref for good_ID: {row['good_ID']}")
 
     print(f"Total rows: {total_rows}, Inserted rows: {inserted_rows}")
+    if missing_goods:
+        print(f"Missing good_refs for good_IDs: {', '.join(missing_goods)}")
 
 
 def run():

@@ -28,9 +28,9 @@ def search(request):
 
 
 # tables-responsive.html
-# def get_data(request):
-#     data = list(JdGood.objects.values())
-#     return JsonResponse(data, safe=False)
+def get_data(request):
+    data = list(JdGood.objects.values())
+    return JsonResponse(data, safe=False)
 
 
 def get_data(request):
