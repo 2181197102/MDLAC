@@ -873,38 +873,59 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
 
     <script>
-        $(function() {
-            $('.table-responsive').responsiveTable({
-                addDisplayAllBtn: 'btn btn-secondary'
-            });
-        });
-    
-        // 页面加载时获取数据并更新表格
         document.addEventListener('DOMContentLoaded', function() {
-            fetch('/api/get-data')
+            $(function() {
+                $('.table-responsive').responsiveTable({
+                    addDisplayAllBtn: 'btn btn-secondary'
+                });
+            });
+
+            // 页面加载时获取数据并更新表格
+            fetch('http://127.0.0.1:8000/shows/get_data/')
                 .then(response => response.json())
                 .then(data => {
                     updateTable(data);
+                    syncTableHeader();
                 })
                 .catch(error => console.error('Error fetching data:', error));
-        });
-    
-        function updateTable(data) {
-            var tbody = document.querySelector('#tech-companies-1 tbody');
-            tbody.innerHTML = '';  // 清空现有数据
-            data.forEach(function(row, rowIndex) {
-                if (rowIndex === 0) return;  // 跳过标题行
-                var tr = document.createElement('tr');
-                row.forEach(function(cell) {
-                    var td = document.createElement('td');
-                    td.textContent = cell;
-                    tr.appendChild(td);
+
+            function updateTable(data) {
+                var tbody = document.querySelector('#tech-companies-1 tbody');
+                tbody.innerHTML = '';  // 清空现有数据
+                data.forEach(function(row, rowIndex) {
+                    if (rowIndex === 0) return;  // 跳过标题行
+                    var tr = document.createElement('tr');
+                    Object.values(row).forEach(function(cell) {
+                        var td = document.createElement('td');
+                        td.textContent = cell;
+                        tr.appendChild(td);
+                    });
+                    tbody.appendChild(tr);
                 });
-                tbody.appendChild(tr);
-            });
-        }
+            }
+
+            function syncTableHeader() {
+                var contentTable = document.getElementById('tech-companies-1');
+                var headerTable = document.getElementById('tech-companies-1-header');
+                var headerCells = headerTable.querySelectorAll('th');
+                var contentCells = contentTable.querySelectorAll('th');
+
+                for (var i = 0; i < headerCells.length; i++) {
+                    headerCells[i].style.width = contentCells[i].offsetWidth + 'px';
+                }
+            }
+
+            var tableContent = document.querySelector('.table-content');
+            var tableHeader = document.querySelector('.table-header');
+
+            if (tableContent && tableHeader) {
+                tableContent.addEventListener('scroll', function() {
+                    var scrollLeft = this.scrollLeft;
+                    tableHeader.scrollLeft = scrollLeft;
+                });
+            }
+        });
     </script>
-    
 
 <style>
     .table-container {
@@ -941,6 +962,6 @@
 </style>
 
 
-    
+
 </body>
 </html>

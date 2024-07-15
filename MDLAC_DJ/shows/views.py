@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator
 from .models import JdGood
+from django.http import JsonResponse
 
 # Create your views here.
 
@@ -16,3 +17,10 @@ def jdgood_list(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, "shows/jdgood_list.html", {'page_obj': page_obj, 'query': query})
+
+
+# tables-responsive.html
+def get_data(request):
+    data = list(JdGood.objects.values())
+    return JsonResponse(data, safe=False)
+
