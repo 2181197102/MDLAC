@@ -24,11 +24,15 @@ def search(request):
     filter_answer = JdGood.objects.all()
     for temp in filter_answer:
         answer[temp.brand] += temp.price
-    return render(request, "search.html",{'n1':answer})
+    return render(request, "shows/search.html",{'n1':answer})
 
 
 # tables-responsive.html
+# def get_data(request):
+#     data = list(JdGood.objects.values())
+#     return JsonResponse(data, safe=False)
+
+
 def get_data(request):
     data = list(JdGood.objects.values())
-    return JsonResponse(data, safe=False)
-
+    return render(request, "shows/horizontal/tables-responsive.html",{ 'data': data})

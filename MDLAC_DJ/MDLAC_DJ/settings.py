@@ -84,6 +84,22 @@ DATABASES = {
         "PASSWORD": "123456",
         "HOST": "8.130.80.152",
         "PORT": "3306",
+    },
+    "shows_db": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "shows_db",
+        "USER": "root",
+        "PASSWORD": "123456",
+        "HOST": "8.130.80.152",
+        "PORT": "3306",
+    },
+    "auth_db": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "auth_db",
+        "USER": "root",
+        "PASSWORD": "123456",
+        "HOST": "8.130.80.152",
+        "PORT": "3306",
     }
 }
 
