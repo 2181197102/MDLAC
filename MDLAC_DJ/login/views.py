@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 # Create your views here.
 def index(request):
     pass
-    return render(request, 'login/index.html')
+    return render(request, 'index/index.html')
 
 
 def login(request):
@@ -14,7 +14,7 @@ def login(request):
 
 def register(request):
     pass
-    return render(request, 'login/register.html')
+    return render(request, 'login/pages-register.html')
 
 
 def logout(request):
