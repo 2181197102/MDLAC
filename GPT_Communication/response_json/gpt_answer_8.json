@@ -1,0 +1,23 @@
+{
+    "id": "chatcmpl-9l9IfN6PYMro1lWBhQFkFYVSjwUJv",
+    "object": "chat.completion",
+    "created": 1721024193,
+    "model": "gpt-3.5-turbo-0125",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "空调滤网的清洁频率取决于使用环境和空调使用频率。一般建议每个月至少清洁一次空调滤网，以确保空气质量和空调系统的性能。在空气污染比较严重的地区或者空调长时间使用的情况下，建议更频繁地清洁空调滤网，可能需要每两周清洁一次。确保定期清洁空调滤网可以提高空调系统的效率，延长空调的使用寿命，并保持室内空气清洁。"
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 55,
+        "completion_tokens": 167,
+        "total_tokens": 222
+    },
+    "system_fingerprint": null
+}

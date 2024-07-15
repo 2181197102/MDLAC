@@ -1,0 +1,23 @@
+{
+    "id": "chatcmpl-9l9NTtV9H3iRNP6UHF6tuVNDXFY1U",
+    "object": "chat.completion",
+    "created": 1721024491,
+    "model": "gpt-3.5-turbo-0125",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "是的，空调连续运行时间过长会对空调产生损害。长时间运行会导致空调系统过度劳累，增加故障和损坏的风险。此外，长时间运行还会消耗更多的能源，增加使用成本。因此建议在使用空调时，根据具体情况适当地控制运行时间，定期进行清洁和维护，确保空调系统的正常运行和延长使用寿命。"
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 61,
+        "completion_tokens": 143,
+        "total_tokens": 204
+    },
+    "system_fingerprint": null
+}

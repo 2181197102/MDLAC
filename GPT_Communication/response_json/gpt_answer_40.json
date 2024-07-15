@@ -1,0 +1,23 @@
+{
+    "id": "chatcmpl-9l9MlCAEIw6LePBb2AEuNqHgBxb7z",
+    "object": "chat.completion",
+    "created": 1721024447,
+    "model": "gpt-3.5-turbo-0125",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "新房装修后空调安装的最佳时间是在装修工程基本完成、家具摆放整齐且没有人居住的情况下进行安装。这样可以确保空调安装过程不会受到其他施工活动的干扰，也可以避免对已经居住的家庭生活造成困扰。通常建议在装修工程快要完成时即可预约空调安装服务，以确保在入住前完成空调的安装工作。"
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 58,
+        "completion_tokens": 146,
+        "total_tokens": 204
+    },
+    "system_fingerprint": null
+}

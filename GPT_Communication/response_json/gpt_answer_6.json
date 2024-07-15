@@ -1,0 +1,23 @@
+{
+    "id": "chatcmpl-9l9IQxL1DyYuNqv91oyVdHusZ6dzO",
+    "object": "chat.completion",
+    "created": 1721024178,
+    "model": "gpt-3.5-turbo-0125",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "选择空调时，主要应该关注以下能效标识：\n1. SEER（季度能效比）：SEER是制冷季节的能效比，数值越高表示空调在制冷模式下的能效越好。\n2. EER（能效比）：EER是耗电量和产生的冷气量的比值，数值越高表示空调在制冷模式下的能效越好。\n3. COP（性能系数）：COP代表制热模式下的能效性能，数值越高表示空调在制热模式下的能效越好。\n4. CEER（整体能效比）： CEER考虑了制冷和制热模式下的能效表现，是一个综合的能效标识。\n5. ENERGYSTAR标识：标有ENERGYSTAR标识的空调符合美国能源部和环保署的能效要求，通常能更好地节能。\n在选择空调时，这些能效标识可以帮助您了解空调的能效性能，从而选择节能环保的产品。"
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 53,
+        "completion_tokens": 301,
+        "total_tokens": 354
+    },
+    "system_fingerprint": null
+}

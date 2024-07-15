@@ -1,0 +1,23 @@
+{
+    "id": "chatcmpl-9l9KForOzA08AnL3yES7ZLkmYSGl1",
+    "object": "chat.completion",
+    "created": 1721024291,
+    "model": "gpt-3.5-turbo-0125",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "如果空调开始漏水，以下是一些处理建议：\n\n1. 首先，立即关闭空调，停止使用，并断开电源。\n2. 检查空调周围是否有大量积聚的水，用毛巾或吸水器将水吸干净，避免水渗漏到地板或墙壁。\n3. 检查空调的排水管是否堵塞或有漏水的地方。清理或修理排水管，确保排水系统畅通。\n4. 检查空调的滤网是否需要清洁或更换。脏污的滤网可能会导致空调工作不畅，造成漏水情况。\n5. 如果以上措施无法解决漏水问题，建议联系专业空调维修人员进行检查和维修。\n\n记住，任何时候当空调出现漏水问题时，最好不要自行拆卸或修理，以免造成更严重的损坏或安全隐患。最好请专业人士来处理。"
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 52,
+        "completion_tokens": 299,
+        "total_tokens": 351
+    },
+    "system_fingerprint": null
+}

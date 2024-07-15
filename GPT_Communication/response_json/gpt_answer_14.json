@@ -1,0 +1,23 @@
+{
+    "id": "chatcmpl-9l9JRPA8F9aR5oyDDt50g6XYki09C",
+    "object": "chat.completion",
+    "created": 1721024241,
+    "model": "gpt-3.5-turbo-0125",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "在夏季高温天气中，室内温度的最佳设置取决于个人的舒适感受和偏好。一般来说，推荐的室内温度为摄氏 25-26 度。这个温度可以让您感觉舒适，同时也能够节约能源和降低供电成本。您可以根据自己的喜好和身体感受进行微调，但要注意不要设置过低的温度，以避免浪费能源和导致室内温差过大。"
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 61,
+        "completion_tokens": 167,
+        "total_tokens": 228
+    },
+    "system_fingerprint": null
+}
