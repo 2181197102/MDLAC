@@ -1,0 +1,23 @@
+{
+    "id": "chatcmpl-9l9Ju338ggFLYjXVWCO6flJK10uAX",
+    "object": "chat.completion",
+    "created": 1721024270,
+    "model": "gpt-3.5-turbo-0125",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "空调的使用寿命一般是10到15年，这取决于多个因素，包括空调设备的品牌、质量、使用频率、维护保养情况以及环境条件等等。定期进行清洁、维护和保养可以延长空调的寿命。另外，正确使用空调，避免频繁开关和过度使用也是延长空调寿命的关键。如果您认为空调性能下降或出现故障，及时联系专业技术人员进行维修更换也是非常重要的。"
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 51,
+        "completion_tokens": 171,
+        "total_tokens": 222
+    },
+    "system_fingerprint": null
+}

@@ -1,0 +1,23 @@
+{
+    "id": "chatcmpl-9l9NLLrrEUv1QRT5AJzS5rzoOswE7",
+    "object": "chat.completion",
+    "created": 1721024483,
+    "model": "gpt-3.5-turbo-0125",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "使用空调时避免感冒的方法包括：\n\n1. 保持空调温度适宜：避免将空调温度调得过低，最好将温度保持在23-26摄氏度之间，以避免突然的温差对身体的影响。\n\n2. 避免直接吹风：尽量避免直接将空调的风口对着身体吹，可以通过调整风向或者使用扇风机等方式来均匀分散空气流动。\n\n3. 保持室内空气流通：定时打开门窗通风，有利于室内空气的流通和更新，减少空调对空气的干燥影响。\n\n4. 衣着保暖：适当增加衣物层次，尤其是在空调房间内，以保持身体的温暖。\n\n5. 加湿：使用加湿器或者放置水盆等方法增加室内空气的湿度，有助于减少干燥对呼吸道的刺激。\n\n通过以上方法，可以有效避免在使用空调时感冒的风险。"
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 49,
+        "completion_tokens": 344,
+        "total_tokens": 393
+    },
+    "system_fingerprint": null
+}

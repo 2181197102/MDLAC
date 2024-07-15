@@ -1,0 +1,23 @@
+{
+    "id": "chatcmpl-9l9LZILeAAXxCTzgAq1tdD1VY6btj",
+    "object": "chat.completion",
+    "created": 1721024373,
+    "model": "gpt-3.5-turbo-0125",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "在购买空调时，品牌和性能指标都是重要的考虑因素。品牌方面，知名的品牌通常拥有更好的品质和售后服务，因此选择知名品牌可以提高您购买产品的信心和保障。而性能指标包括制冷/制热能力、能效比、静音程度等，这些指标直接影响到空调的使用效果和耗能情况。因此，您可以结合品牌和性能指标来选择最适合自己需求的空调产品。"
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 57,
+        "completion_tokens": 165,
+        "total_tokens": 222
+    },
+    "system_fingerprint": null
+}

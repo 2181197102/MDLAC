@@ -1,0 +1,23 @@
+{
+    "id": "chatcmpl-9l9LnSG9A915aWdzudxlK3TGdxuqP",
+    "object": "chat.completion",
+    "created": 1721024387,
+    "model": "gpt-3.5-turbo-0125",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "室内空调主要使用的制冷剂通常是氟利昂（R-22）或者氢氟碳化物（R-410A）。为了保证使用安全，您可以采取以下措施：\n\n1. 确保系统正常运转：定期检查空调系统，确保其正常运转，避免制冷剂泄露。\n\n2. 避免自行添加制冷剂：如果您发现空调系统需要添加制冷剂，应该联系专业技术人员来进行添加操作，避免因操作不当导致安全问题。\n\n3. 避免制冷剂泄露：制冷剂泄露对环境和健康都有害。一旦发现泄露迹象，应立即停止使用空调并联系专业人员修理。\n\n4. 避免与制冷剂直接接触：制冷剂是有毒的，接触后可能会对人体造成伤害。因此，在使用空调或维修空调时，应避免直接接触制冷剂。\n\n以上是几点关于如何安全使用室内空调中制冷剂的建议，希望对您有所帮助。如有更多疑问，欢迎随时向我提问。"
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 58,
+        "completion_tokens": 372,
+        "total_tokens": 430
+    },
+    "system_fingerprint": null
+}

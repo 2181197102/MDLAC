@@ -1,0 +1,23 @@
+{
+    "id": "chatcmpl-9l9It3CpeSeZqKdtguINQzCVJCBLs",
+    "object": "chat.completion",
+    "created": 1721024207,
+    "model": "gpt-3.5-turbo-0125",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "在夏季炎热天气里，使用空调时应该遵循以下原则：\n\n1. 合理设置温度：推荐设置空调温度在25-26摄氏度，避免过低的温度设置，这样可节约能源并减少能耗。\n\n2. 合理使用定时开关：在实际需要的时间段内使用空调，可以减少使用时间，降低能源消耗。\n\n3. 保持空调滤网清洁：定期清洁空调滤网，可保持空调效果，减少能耗。\n\n4. 保持房间密封：关闭门窗，避免冷气流失，提高空调效果，降低能耗。\n\n5. 选择合适的风速：一般情况下，选择中风速即可满足舒适需求，高风速会增加能耗。\n\n6. 定期检查空调：定期请专业人员进行清洁与检查，确保空调运行正常，提高使用效率。\n\n遵循以上原则，可以有效提高空调的使用效率，减少能源消耗，同时保证室内舒适度。"
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 64,
+        "completion_tokens": 340,
+        "total_tokens": 404
+    },
+    "system_fingerprint": null
+}

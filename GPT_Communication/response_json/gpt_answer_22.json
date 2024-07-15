@@ -1,0 +1,23 @@
+{
+    "id": "chatcmpl-9l9KMxFjtHDodK5QFhu8Ufc3bnK9Y",
+    "object": "chat.completion",
+    "created": 1721024298,
+    "model": "gpt-3.5-turbo-0125",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "家用空调的安装费用会根据多种因素而有所差异，比如安装的类型（分体式、中央空调等），所需材料的价格，安装的难易程度，以及所在地区的劳动力成本等。一般来说，家用空调的安装费用大约在1000-3000美元之间。建议您在选择安装服务提供商时，要先向多家公司咨询报价，以便获取最合理的价格。"
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 52,
+        "completion_tokens": 138,
+        "total_tokens": 190
+    },
+    "system_fingerprint": null
+}
