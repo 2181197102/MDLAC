@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 from django.shortcuts import render
 from django.core.paginator import Paginator
 from .models import JdGood
@@ -17,6 +19,12 @@ def jdgood_list(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, "shows/jdgood_list.html", {'page_obj': page_obj, 'query': query})
+def search(request):
+    answer =defaultdict(int)
+    filter_answer = JdGood.objects.all()
+    for temp in filter_answer:
+        answer[temp.brand] += temp.price
+    return render(request, "search.html",{'n1':answer})
 
 
 # tables-responsive.html
