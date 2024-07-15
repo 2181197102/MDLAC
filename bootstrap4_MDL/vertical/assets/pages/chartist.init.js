@@ -223,8 +223,8 @@ new Chartist.Line('#chart-with-area', {
 var data = {
   labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
   series: [
-    [5, 4, 3, 7, 5, 10, 3, 4, 8, 10, 6, 8],
-    [3, 2, 9, 5, 4, 6, 4, 6, 7, 8, 7, 4]
+    [111, 64, 88, 491, 895, 3643, 1938, 106, 29, 23, 54, 61],
+    [31, 19, 47, 83, 141, 2220, 1032, 31, 7, 12, 26, 25]
   ]
 };
 
@@ -243,6 +243,7 @@ var responsiveOptions = [
   }]
 ];
 
+new Chartist.Bar('#overlapping-bars', data, options, responsiveOptions);
 new Chartist.Bar('#overlapping-bars', data, options, responsiveOptions);
 
 
