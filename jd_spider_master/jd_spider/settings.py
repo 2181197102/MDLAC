@@ -41,13 +41,13 @@ USER_AGENTS = [
 
 # 这里使用的代理IP，因为IP的存活期的限制，请定期更新下面的IP，可从http://www.xicidaili.com/ 中找免费的代理IP
 PROXIES = [
-    {'ip_port': '202.108.2.42:80', 'user_pass': ''},
-    {'ip_port': '122.96.59.104:80', 'user_pass': ''},
-    {'ip_port': '120.76.243.40:80', 'user_pass': ''},
-    {'ip_port': '139.196.108.68:80', 'user_pass': ''},
-    {'ip_port': '60.194.100.51:80', 'user_pass': ''},
-    {'ip_port': '202.171.253.72:80', 'user_pass': ''},
-    {'ip_port': '123.56.74.13:8080', 'user_pass': ''},
+    {'ip_port': '223.100.178.167:80', 'user_pass': ''},
+    {'ip_port': '8.213.151.128:80', 'user_pass': ''},
+    {'ip_port': '60.12.168.114:80', 'user_pass': ''},
+    {'ip_port': '198.44.255.3:80', 'user_pass': ''},
+    {'ip_port': '111.59.4.88:80', 'user_pass': ''},
+    {'ip_port': '125.77.25.178:80', 'user_pass': ''},
+    {'ip_port': '52.82.123.144:8080', 'user_pass': ''},
 ]
 
 COOKIES_ENABLED = False
@@ -66,15 +66,13 @@ DEFAULT_REQUEST_HEADERS = {
 #     'jd_spider.middlewares.ProxyMiddleware': 100,
 # }
 
-DOWNLOAD_DELAY = 3  # 下载延迟
+DOWNLOAD_DELAY = 1  # 下载延迟
 
 LOG_LEVEL = 'DEBUG'
 
 ITEM_PIPELINES = {
-    # 'jd_spider.pipelines.PrintPipeline_comment': 300,
-    'jd_spider.pipelines.PrintPipeline': 300,
-    # 'jd_spider.pipelines.MySQLPipeline': 300,  # 抓取商品信息时，使用该通道
-    # 'jd_spider.pipelines.CommentPipeline': 300,  # 抓取评论信息时，使用该通道
+    'jd_spider.pipelines.PrintPipeline_comment': 300, # 抓取评论信息时，使用该通道
+    # 'jd_spider.pipelines.PrintPipeline': 300, # 抓取商品信息时，使用该通道
 }
 
 # 链接长度最大值
