@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from shows.views import search
-from login.views import index, login, register, logout
+from login.views import index, login, register, logout, recoverpw
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -28,5 +28,6 @@ urlpatterns = [
     path('login/', login, name='login'),
     path('register/', register, name='register'),
     path('logout/', logout, name='logout'),
+    path('recoverpw/', recoverpw, name='recoverpw'),
 
 ]

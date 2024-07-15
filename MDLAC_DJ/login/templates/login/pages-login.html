@@ -57,9 +57,7 @@
                     <div class="card mb-0">
                         <div class="card-body">
                             <div class="p-2">
-                                <a href="{%  url 'register' %}">
                                     <h4 class="text-muted float-right font-18 mt-4">Sign In </h4>
-                                </a>
                                 <div>
                                     <a href="index.html" class="logo logo-admin"><img src="{% static 'shows/vertical/assets/images/logo_dark.png' %}" height="28" alt="logo"></a>
                                 </div>
@@ -91,10 +89,10 @@
                                     </div>
                                     <div class="form-group m-t-10 mb-0 row">
                                         <div class="col-sm-7 m-t-20">
-                                            <a href="pages-recoverpw.html" class="text-muted"><i class="mdi mdi-lock"></i> Forgot your password?</a>
+                                            <a href="{% url 'recoverpw' %}" class="text-muted"><i class="mdi mdi-lock"></i> Forgot your password?</a>
                                         </div>
                                         <div class="col-sm-5 m-t-20">
-                                            <a href="pages-register.html" class="text-muted"><i class="mdi mdi-account-circle"></i> Create an account</a>
+                                            <a href="{% url 'register' %}" class="text-muted"><i class="mdi mdi-account-circle"></i> Create an account</a>
                                         </div>
                                     </div>
                                 </form>

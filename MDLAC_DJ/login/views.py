@@ -16,6 +16,10 @@ def register(request):
     pass
     return render(request, 'login/pages-register.html')
 
+def recoverpw(request):
+    pass
+    return render(request, 'login/pages-recoverpw.html')
+
 
 def logout(request):
     pass
