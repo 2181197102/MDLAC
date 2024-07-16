@@ -16,18 +16,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.shortcuts import redirect
 
 from shows.views import search
-from login.views import index, login, register, logout, recoverpw
+from login.views import index, login_view, register, logout_view, recoverpw
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('shows/', include('shows.urls')),
+    path('index/', include('index.urls')),
     path('search/', search),
     path('index/', index, name='index'),
-    path('login/', login, name='login'),
+    path('login/', login_view, name='login'),
     path('register/', register, name='register'),
-    path('logout/', logout, name='logout'),
+    path('logout/', logout_view, name='logout'),
     path('recoverpw/', recoverpw, name='recoverpw'),
-
+    path('', lambda request: redirect('login', permanent=False)),  # 访问 http://127.0.0.1:8000/ 时转到登录页面
 ]

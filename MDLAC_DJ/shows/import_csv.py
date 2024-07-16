@@ -12,6 +12,27 @@ import pytz
 # import_goods()
 # import_comments()
 
+from django.contrib.auth.hashers import make_password,check_password
+
+
+def verify_password(stored_hashed_password, input_password):
+    return check_password(input_password, stored_hashed_password)
+
+def makemypassword():
+    password1 = '123456'
+    hashed_password1 = make_password(password1)
+    print(hashed_password1)
+    input_password = '123456'
+    is_correct1 = verify_password(hashed_password1, input_password)
+    print(is_correct1)  # 输出 True
+    password2 = 'admin_user'
+    hashed_password2 = make_password(password2)
+    print(hashed_password2)
+    input_password = 'admin_user'
+    is_correct2 = verify_password(hashed_password2, input_password)
+    print(is_correct2)  # 输出 True
+
+
 def clean_value(value, default=None, value_type=str):
     """
     清理和转换值。
