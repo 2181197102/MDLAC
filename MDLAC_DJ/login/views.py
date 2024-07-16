@@ -75,34 +75,3 @@ def logout_view(request):  # 避免与内置logout函数重名
     logout(request)  # 使用Django内置的logout函数
     print("User logged out successfully")
     return redirect('login')
-
-
-# 加密算法验证
-# def authenticate(username, password):
-#     print(f"Authenticating user: {username}")
-#     try:
-#         user = User.objects.get(username=username)
-#         print(f"User found: {user.username}")
-#         if check_password(password, user.password):
-#             print(f"Password check passed for user: {username}")
-#             return user
-#         else:
-#             print(f"Password check failed for user: {username}")
-#     except User.DoesNotExist:
-#         print(f"User not found: {username}")
-#     return None
-
-# 明文密码验证
-def authenticate(username, password):
-    print(f"Authenticating user: {username}")
-    try:
-        user = User.objects.get(username=username)
-        print(f"User found: {user.username}")
-        if password == user.password:
-            print(f"Password check passed for user: {username}")
-            return user
-        else:
-            print(f"Password check failed for user: {username}")
-    except User.DoesNotExist:
-        print(f"User not found: {username}")
-    return None
