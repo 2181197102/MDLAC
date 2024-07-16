@@ -19,7 +19,7 @@ from django.urls import path, include
 from django.shortcuts import redirect
 
 from shows.views import search
-from login.views import index, login_view, register, logout_view, recoverpw
+from login.views import index, login_view, register, logout_view, recoverpw, recoverpw_withsq, reset_password
 
 
 urlpatterns = [
@@ -32,5 +32,7 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('logout/', logout_view, name='logout'),
     path('recoverpw/', recoverpw, name='recoverpw'),
+    path('recoverpw_withsq/', recoverpw_withsq, name='recoverpw_withsq'),
+    path('reset_password/', reset_password, name='reset_password'),
     path('', lambda request: redirect('login', permanent=False)),  # 访问 http://127.0.0.1:8000/ 时转到登录页面
 ]

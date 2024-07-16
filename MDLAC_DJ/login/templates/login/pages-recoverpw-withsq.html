@@ -76,22 +76,55 @@
                                 {% endif %}
                                 <!-- 结束消息显示 -->
 
-                                <form class="form-vertical m-t-20" method="post" action="{% url 'recoverpw' %}">
+                                <form class="form-vertical m-t-20" method="post" action="{% url 'recoverpw_withsq' %}">
                                     {% csrf_token %}
-                                    <div class="alert alert-danger alert-dismissible">
+                                    <div class="alert alert-success alert-dismissible">
                                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                        请输入注册时的 <b>邮箱</b> 来验证你的账户!
+                                        <strong>账户已验证成功</strong> 请回答您的<b>密保问题</b>以重置密码。
                                     </div>
-
                                     <div class="form-group row">
                                         <div class="col-12">
-                                            <input class="form-control" type="email" name="email" required="" placeholder="Email">
+                                            <input class="form-control" type="email" name="email" value="{{ Email }}" id="Email" readonly>
                                         </div>
                                     </div>
-
+                                    <div class="form-group row">
+                                        <div class="col-12">
+                                            <input class="form-control" type="text" name="username" value="{{ username }}" id="username" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-12">
+                                            <input class="form-control" type="text" value="{{ security_question1 }}" id="security_question1" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-12">
+                                            <input class="form-control" type="text" name="answer1" required="" placeholder="请输入密保问题的答案">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-12">
+                                            <input class="form-control" type="text" value="{{ security_question2 }}" id="security_question2" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-12">
+                                            <input class="form-control" type="text" name="answer2" required="" placeholder="请输入密保问题的答案">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-12">
+                                            <input class="form-control" type="text" value="{{ security_question3 }}" id="security_question3" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-12">
+                                            <input class="form-control" type="text" name="answer3" required="" placeholder="请输入密保问题的答案">
+                                        </div>
+                                    </div>
                                     <div class="form-group text-center row m-t-20">
                                         <div class="col-12">
-                                            <button class="btn btn-primary btn-block waves-effect waves-light" type="submit">Send Email</button>
+                                            <button class="btn btn-primary btn-block waves-effect waves-light" type="submit">验证</button>
                                         </div>
                                     </div>
                                 </form>

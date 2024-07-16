@@ -1,13 +1,16 @@
-from django.contrib.auth.hashers import make_password
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import User, Role
 
+from django.contrib import messages
+from .models import User
+
 
 def index(request):
     print("Rendering index page")
     return render(request, 'index/index.html')
+
 
 def login_view(request):  # 避免与内置login函数重名
     if request.method == 'POST':
@@ -28,6 +31,7 @@ def login_view(request):  # 避免与内置login函数重名
             return render(request, 'login/pages-login.html', context)
     print("Rendering login page")
     return render(request, 'login/pages-login.html')
+
 
 def register(request):
     if request.method == 'POST':
@@ -73,9 +77,80 @@ def register(request):
     # 处理 GET 请求或其他请求情况，返回登录页面
     return render(request, 'login/pages-register.html')
 
+
 def recoverpw(request):
-    print("Rendering recover password page")
+    if request.method == 'POST':
+        email = request.POST.get('email')
+
+        try:
+            user = User.objects.get(email=email)
+            print(
+                f'User found: {user.email}, {user.security_question1}, {user.security_question2}, {user.security_question3}, {user.username}')
+            return render(request, 'login/pages-recoverpw-withsq.html',
+                          {'Email': user.email, 'security_question1': user.security_question1,
+                           'security_question2': user.security_question2,
+                           'security_question3': user.security_question3,
+                           'username': user.username, })
+
+        except User.DoesNotExist:
+            messages.error(request, '未找到该邮箱对应的用户，请重试')
+            return render(request, 'login/pages-recoverpw.html')
+
     return render(request, 'login/pages-recoverpw.html')
+
+
+def recoverpw_withsq(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        answer1 = request.POST.get('answer1')
+        answer2 = request.POST.get('answer2')
+        answer3 = request.POST.get('answer3')
+        print(f'User input: {email}, {answer1}, {answer2}, {answer3}')
+
+        try:
+            user = User.objects.get(email=email)
+            if (user.security_answer1 == answer1 and
+                    user.security_answer2 == answer2 and
+                    user.security_answer3 == answer3):
+                # 验证成功
+                messages.success(request, '验证成功，请重置你的密码')
+                request.session['reset_user_id'] = user.id  # Store user id in session
+                return redirect('reset_password')
+            else:
+                # 验证失败
+                messages.error(request, '密保问题答案错误，请重试')
+                return render(request, 'login/pages-recoverpw-withsq.html', {'Email': user.email,
+                                                                             'security_question1': user.security_question1,
+                                                                             'security_question2': user.security_question2,
+                                                                             'security_question3': user.security_question3,
+                                                                             'username': user.username}, )
+
+        except User.DoesNotExist:
+            messages.error(request, '未找到该邮箱对应的用户，请重试')
+            return render(request, 'login/pages-recoverpw.html')
+
+    return render(request, 'login/pages-recoverpw.html')
+
+
+def reset_password(request):
+    if request.method == 'POST':
+        new_password = request.POST.get('new_password')
+        user_id = request.session.get('reset_user_id')
+
+        if user_id:
+            try:
+                user = User.objects.get(id=user_id)
+                user.set_password(new_password)
+                user.save()
+                messages.success(request, '密码重置成功，请使用新密码登录')
+                return redirect('login')
+            except User.DoesNotExist:
+                messages.error(request, '用户不存在，请重试')
+        else:
+            messages.error(request, '无效的会话，请重试')
+
+    return render(request, 'login/pages-resetpw.html')
+
 
 def logout_view(request):  # 避免与内置logout函数重名
     logout(request)  # 使用Django内置的logout函数
