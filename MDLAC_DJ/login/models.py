@@ -36,6 +36,12 @@ class User(models.Model):
     phone = models.CharField(max_length=11, unique=True)
     sex = models.CharField(max_length=32, choices=gender, default='男')
     role_ID = models.ForeignKey(Role, on_delete=models.CASCADE, null=True, blank=True)
+    security_question1 = models.CharField(max_length=256)
+    security_answer1 = models.CharField(max_length=256)
+    security_question2 = models.CharField(max_length=256)
+    security_answer2 = models.CharField(max_length=256)
+    security_question3 = models.CharField(max_length=256)
+    security_answer3 = models.CharField(max_length=256)
     c_time = models.DateTimeField(auto_now_add=True)
 
     class Meta:

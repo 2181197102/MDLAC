@@ -80,7 +80,7 @@ WSGI_APPLICATION = "MDLAC_DJ.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "mydatabase03",
+        "NAME": "mydatabase01",
         "USER": "root",
         "PASSWORD": "123456",
         "HOST": "8.130.80.152",
