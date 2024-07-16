@@ -15,6 +15,7 @@
         <link href="{% static 'shows/vertical/assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
         <link href="{% static 'shows/vertical/assets/css/icons.css' %}" rel="stylesheet" type="text/css">
         <link href="{% static 'shows/vertical/assets/css/style.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'shows/vertical/assets/css/radio.css' %}" rel="stylesheet" type="text/css">
 
     </head>
 
@@ -71,26 +72,74 @@
                                 </div>
         
                                 <div class="p-2">
-                                    <form class="form-vertical m-t-20" action="{% url 'login' %}">
-        
+                                    <form class="form-vertical m-t-20" action="{% url 'register' %}" method="post">
+                                        {% csrf_token %}
                                         <div class="form-group row">
                                             <div class="col-12">
-                                                <input class="form-control" type="email" required="" placeholder="Email">
+                                                <input class="form-control" type="text" required="" name="username" placeholder="username">
                                             </div>
                                         </div>
-            
                                         <div class="form-group row">
                                             <div class="col-12">
-                                                <input class="form-control" type="text" required="" placeholder="Username">
+                                                <input class="form-control" type="password" required="" name="password" placeholder="password">
                                             </div>
                                         </div>
-            
                                         <div class="form-group row">
                                             <div class="col-12">
-                                                <input class="form-control" type="password" required="" placeholder="Password">
+                                                <input class="form-control" type="email"  name="email" required="" placeholder="Email">
                                             </div>
                                         </div>
-            
+                                        <div class="form-group row">
+                                            <div class="col-12">
+                                                <input class="form-control" type="text" name="phone" required="" placeholder="Phone">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-auto">
+                                                <input class="col-12" type="radio" id="female" name="sex" value="female">
+                                                <label class="col-12" for="female">女</label>
+                                            </div>
+                                            <div class="col-auto">
+                                                <input class="col-12" type="radio" id="male" name="sex" value="male">
+                                                <label class="col-12" for="male">男</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-12">
+                                                <input class="form-control" type="text" name="nickname" required="" placeholder="昵称">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-12">
+                                                <input class="form-control" type="text" name="security_question1" required="" placeholder="问题1">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-12">
+                                                <input class="form-control" type="text" name="security_answer1" required="" placeholder="答案1">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-12">
+                                                <input class="form-control" type="text" name="security_question2" required="" placeholder="问题2">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-12">
+                                                <input class="form-control" type="text" name="security_answer2" required="" placeholder="答案2">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-12">
+                                                <input class="form-control" type="text" name="security_question3" required="" placeholder="问题3">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-12">
+                                                <input class="form-control" type="text" name="security_answer3" required="" placeholder="答案3">
+                                            </div>
+                                        </div>
                                         <div class="form-group row">
                                             <div class="col-12">
                                                 <div class="custom-control custom-checkbox">
@@ -105,7 +154,7 @@
                                                 <button class="btn btn-primary btn-block waves-effect waves-light" type="submit">Register</button>
                                             </div>
                                         </div>
-            
+
                                         <div class="form-group m-t-10 mb-0 row">
                                             <div class="col-12 m-t-20 text-center">
                                                 <a href="{% url 'login' %}" class="text-muted">Already have account?</a>

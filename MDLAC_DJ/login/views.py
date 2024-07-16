@@ -28,7 +28,43 @@ def login_view(request):  # 避免与内置login函数重名
     return render(request, 'login/pages-login.html')
 
 def register(request):
-    print("Rendering register page")
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        sex = request.POST.get('sex')
+        nickname = request.POST.get('nickname')
+        security_question1 = request.POST.get('security_question1')
+        security_question2 = request.POST.get('security_question2')
+        security_question3 = request.POST.get('security_question3')
+        security_answer1 = request.POST.get('security_answer1')
+        security_answer2 = request.POST.get('security_answer2')
+        security_answer3 = request.POST.get('security_answer3')
+        role_ID = '101'
+        try:
+            User.objects.create(
+                username=username,
+                password=password,  # 注意：密码应该经过适当的哈希处理，不应以明文形式存储
+                email=email,
+                phone=phone,
+                sex=sex,
+                nickname=nickname,
+                security_question1=security_question1,
+                security_question2=security_question2,
+                security_question3=security_question3,
+                security_answer1=security_answer1,
+                security_answer2=security_answer2,
+                security_answer3=security_answer3,
+                role_ID=role_ID,
+            )
+            print("insert成功了")
+            return redirect('login')
+        except Exception as e:
+            context = {'error_message': '注册失败'}
+            return render(request, 'login/pages-register.html', context)
+
+    # 处理 GET 请求或其他请求情况，返回登录页面
     return render(request, 'login/pages-register.html')
 
 def recoverpw(request):
@@ -39,3 +75,34 @@ def logout_view(request):  # 避免与内置logout函数重名
     logout(request)  # 使用Django内置的logout函数
     print("User logged out successfully")
     return redirect('login')
+
+
+# 加密算法验证
+# def authenticate(username, password):
+#     print(f"Authenticating user: {username}")
+#     try:
+#         user = User.objects.get(username=username)
+#         print(f"User found: {user.username}")
+#         if check_password(password, user.password):
+#             print(f"Password check passed for user: {username}")
+#             return user
+#         else:
+#             print(f"Password check failed for user: {username}")
+#     except User.DoesNotExist:
+#         print(f"User not found: {username}")
+#     return None
+
+# 明文密码验证
+def authenticate(username, password):
+    print(f"Authenticating user: {username}")
+    try:
+        user = User.objects.get(username=username)
+        print(f"User found: {user.username}")
+        if password == user.password:
+            print(f"Password check passed for user: {username}")
+            return user
+        else:
+            print(f"Password check failed for user: {username}")
+    except User.DoesNotExist:
+        print(f"User not found: {username}")
+    return None
