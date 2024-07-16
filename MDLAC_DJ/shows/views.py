@@ -28,11 +28,11 @@ def search(request):
 
 
 # tables-responsive.html
-# def get_data(request):
-#     data = list(JdGood.objects.values())
-#     return JsonResponse(data, safe=False)
-
-
 def get_data(request):
     data = list(JdGood.objects.values())
-    return render(request, "shows/horizontal/tables-responsive.html",{ 'data': data})
+    return JsonResponse(data, safe=False)
+
+
+# def get_data(request):
+#     data = list(JdGood.objects.values())
+#     return render(request, "shows/horizontal/tables-responsive.html",{ 'data': data})

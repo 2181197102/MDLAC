@@ -19,7 +19,35 @@
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+    <style>
+    .table-content {
+        overflow-x: auto;
+        max-height: 400px; /* 根据需要调整表格内容的最大高度 */
+    }
 
+    .table-content th {
+        position: sticky;
+        top: 0;
+        background: white;
+        z-index: 2;
+    }
+
+    .table-content table {
+        width: 100%;
+        table-layout: fixed;
+    }
+
+    .table-content th,
+    .table-content td {
+        min-width: 100px; /* 根据需要调整最小宽度 */
+        word-wrap: break-word;
+    }
+
+    .table-content th {
+        background-color: #f8f9fa; /* 设置表头背景颜色 */
+    }
+
+    </style>
 </head>
 
 <body>
@@ -368,12 +396,9 @@
                             <p class="text-muted m-b-30 font-14">This is an experimental awesome solution for responsive tables with complex data.</p>
 
                             <div class="table-rep-plugin">
-                                <div class="table-responsive b-0" data-pattern="priority-columns">
+                                <div class="table-responsive b-0 table-container" data-pattern="priority-columns">
                                     <table id="tech-companies-1" class="table  table-striped">
-                                        <div class="table-container">
-                                            <div class="table-responsive table-content">
-                                                
-                                                    <thead>
+                                            <thead class="table-header">
                                                         <tr>
                                                             <th data-priority="1">ACID</th>
                                                             <th data-priority="3">name</th>
@@ -407,8 +432,8 @@
                                                             <th data-priority="6">PoorCountStr</th>
                                                             <th data-priority="6">GoodRate</th>
                                                         </tr>
-                                                    </thead>
-                                                    <tbody>
+                                            </thead>
+                                                    <tbody class="table-content">
                                                         <tr>
                                                             <th><span class="co-name">100091564307</span></th>
                                                             <td>长虹KFR-26GW/ZDHQW1+R1</td>
@@ -441,28 +466,6 @@
                                                             <td>300+</td>
                                                             <td>800+</td>
                                                             <td>0.99</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>AAPL <span class="co-name">Apple Inc.</span></th>
-                                                            <td>378.94</td>
-                                                            <td>12:22PM</td>
-                                                            <td>5.74 (1.54%)</td>
-                                                            <td>373.20</td>
-                                                            <td>381.02</td>
-                                                            <td>378.92 x 300</td>
-                                                            <td>378.99 x 100</td>
-                                                            <td>505.94</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>AMZN <span class="co-name">Amazon.com Inc.</span></th>
-                                                            <td>191.55</td>
-                                                            <td>12:23PM</td>
-                                                            <td>3.16 (1.68%)</td>
-                                                            <td>188.39</td>
-                                                            <td>194.99</td>
-                                                            <td>191.52 x 300</td>
-                                                            <td>191.58 x 100</td>
-                                                            <td>240.32</td>
                                                         </tr>
                                                         <tr>
                                                             <th><span class="co-name">100091564307</span></th>
@@ -829,9 +832,7 @@
                                                         </tr>
                                                         <!-- 原始数据行 -->
                                                     </tbody>
-                                                
-                                            </div>
-                                        </div>
+
                                     </table>
                                 </div>
                             </div>
@@ -872,94 +873,97 @@
     <!-- XLSX.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            $(function() {
-                $('.table-responsive').responsiveTable({
-                    addDisplayAllBtn: 'btn btn-secondary'
-                });
-            });
-
-            // 页面加载时获取数据并更新表格
-            fetch('http://127.0.0.1:8000/shows/get_data/')
-                .then(response => response.json())
-                .then(data => {
-                    updateTable(data);
-                    syncTableHeader();
-                })
-                .catch(error => console.error('Error fetching data:', error));
-
-            function updateTable(data) {
-                var tbody = document.querySelector('#tech-companies-1 tbody');
-                tbody.innerHTML = '';  // 清空现有数据
-                data.forEach(function(row, rowIndex) {
-                    if (rowIndex === 0) return;  // 跳过标题行
-                    var tr = document.createElement('tr');
-                    Object.values(row).forEach(function(cell) {
-                        var td = document.createElement('td');
-                        td.textContent = cell;
-                        tr.appendChild(td);
-                    });
-                    tbody.appendChild(tr);
-                });
-            }
-
-            function syncTableHeader() {
-                var contentTable = document.getElementById('tech-companies-1');
-                var headerTable = document.getElementById('tech-companies-1-header');
-                var headerCells = headerTable.querySelectorAll('th');
-                var contentCells = contentTable.querySelectorAll('th');
-
-                for (var i = 0; i < headerCells.length; i++) {
-                    headerCells[i].style.width = contentCells[i].offsetWidth + 'px';
-                }
-            }
-
-            var tableContent = document.querySelector('.table-content');
-            var tableHeader = document.querySelector('.table-header');
-
-            if (tableContent && tableHeader) {
-                tableContent.addEventListener('scroll', function() {
-                    var scrollLeft = this.scrollLeft;
-                    tableHeader.scrollLeft = scrollLeft;
-                });
-            }
+<script>
+    $(function() {
+        $('.table-responsive').responsiveTable({
+            addDisplayAllBtn: 'btn btn-secondary'
         });
-    </script>
+    });
 
-<style>
-    .table-container {
-        position: relative;
-        margin-top: 20px;
+    // 页面加载时获取数据并更新表格
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch('http://127.0.0.1:8000/shows/get_data/')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Data received:', data); // 输出接收到的数据
+                updateTable(data);
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    });
+
+    function updateTable(data) {
+        var tbody = document.querySelector('#tech-companies-1 tbody');
+        tbody.innerHTML = '';  // 清空现有数据
+        data.forEach(function(row, rowIndex) {
+            var tr = document.createElement('tr');
+            Object.values(row).forEach(function(cell) {
+                var td = document.createElement('td');
+                td.textContent = cell;
+                tr.appendChild(td);
+            });
+            tbody.appendChild(tr);
+        });
+    }
+    function syncTableHeader() {
+        var contentTable = document.querySelector('.table-content');
+        var headerTable = document.querySelector('.table-header');
+        console.log('Content Table:', contentTable);
+        console.log('Header Table:', headerTable);
+
+        if (!contentTable || !headerTable) {
+            console.error('Error: Content Table or Header Table is not found.');
+            return;
+        }
+
+        var headerCells = headerTable.querySelectorAll('th');
+        var contentCells = contentTable.querySelectorAll('th');
+        console.log('Header Cells:', headerCells);
+        console.log('Content Cells:', contentCells);
+
+        if (headerCells.length !== contentCells.length) {
+            console.error('Error: Header Cells and Content Cells count mismatch.');
+            return;
+        }
+
+        for (var i = 0; i < headerCells.length; i++) {
+            if (contentCells[i]) {
+                headerCells[i].style.width = contentCells[i].offsetWidth + 'px';
+                console.log(`Header Cell ${i} Width:`, headerCells[i].style.width);
+            } else {
+                console.error(`Error: Content Cell ${i} is not found.`);
+            }
+        }
     }
 
-    .table-content {
-        overflow-x: auto;
-        max-height: 400px; /* 根据需要调整表格内容的最大高度 */
-    }
+    // 表格滚动时同步表头
+    document.querySelector('.table-content').addEventListener('scroll', function() {
+        var scrollLeft = this.scrollLeft;
+        var headerTable = document.querySelector('.table-header');
+        if (headerTable) {
+            headerTable.scrollLeft = scrollLeft;
+            console.log('Scroll Left:', scrollLeft);
+        } else {
+            console.error('Error: Header Table is not found.');
+        }
+    });
 
-    .table-content th {
-        position: sticky;
-        top: 0;
-        background: white;
-        z-index: 2;
-    }
+    // 页面加载时同步表头宽度
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOMContentLoaded event triggered');
+        syncTableHeader();
+    });
 
-    .table-content table {
-        width: 100%;
-        table-layout: fixed;
-    }
+    window.addEventListener('resize', function() {
+        console.log('Resize event triggered');
+        syncTableHeader();
+    });
 
-    .table-content th, 
-    .table-content td {
-        min-width: 100px; /* 根据需要调整最小宽度 */
-        word-wrap: break-word;
-    }
-
-    .table-content th {
-        background-color: #f8f9fa; /* 设置表头背景颜色 */
-    }
-</style>
+</script>
 
 
 
