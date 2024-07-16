@@ -17,11 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from shows import views
+from shows.views import search
+from login.views import index, login, register, logout, recoverpw
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('shows/', include('shows.urls')),
-    path('search/', views.search),
+    path('search/', search),
+    path('index/', index, name='index'),
+    path('login/', login, name='login'),
+    path('register/', register, name='register'),
+    path('logout/', logout, name='logout'),
+    path('recoverpw/', recoverpw, name='recoverpw'),
 
 ]

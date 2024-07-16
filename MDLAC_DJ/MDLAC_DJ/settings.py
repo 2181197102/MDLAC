@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "shows.apps.ShowsConfig",
     'corsheaders',
+    "login.apps.LoginConfig",
 ]
 
 MIDDLEWARE = [
@@ -57,7 +58,7 @@ ROOT_URLCONF = "MDLAC_DJ.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "templates"],
+        "DIRS": [],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -79,7 +80,7 @@ WSGI_APPLICATION = "MDLAC_DJ.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "mydatabase",
+        "NAME": "mydatabase01",
         "USER": "root",
         "PASSWORD": "123456",
         "HOST": "8.130.80.152",
@@ -93,9 +94,9 @@ DATABASES = {
         "HOST": "8.130.80.152",
         "PORT": "3306",
     },
-    "auth_db": {
+    "login_db": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "auth_db",
+        "NAME": "login_db",
         "USER": "root",
         "PASSWORD": "123456",
         "HOST": "8.130.80.152",
@@ -103,6 +104,7 @@ DATABASES = {
     }
 }
 
+DATABASE_ROUTERS = ['MDLAC_DJ.routers.MyDBRouter']
 
 
 # Password validation

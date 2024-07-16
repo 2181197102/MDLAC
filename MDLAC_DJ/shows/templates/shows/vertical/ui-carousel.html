@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -9,11 +10,11 @@
         <meta content="ThemeDesign" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
+        <link rel="shortcut icon" href="{% static 'shows/vertical/assets/images/favicon.ico' %}">
 
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-        <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
-        <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+        <link href="{% static 'shows/vertical/assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'shows/vertical/assets/css/icons.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'shows/vertical/assets/css/style.css' %}" rel="stylesheet" type="text/css">
 
     </head>
 
@@ -45,7 +46,7 @@
                 <div class="left-side-logo d-block d-lg-none">
                     <div class="text-center">
                         
-                        <a href="index.html" class="logo"><img src="assets/images/logo_dark.png" height="20" alt="logo"></a>
+                        <a href="index.html" class="logo"><img src="{% static 'shows/vertical/assets/images/logo_dark.png' %}" height="20" alt="logo"></a>
                     </div>
                 </div>
 
@@ -202,7 +203,7 @@
 
                         <div class="topbar-left	d-none d-lg-block">
                             <div class="text-center">
-                                <a href="index.html" class="logo"><img src="assets/images/logo.png" height="22" alt="logo"></a>
+                                <a href="index.html" class="logo"><img src="{% static 'shows/vertical/assets/images/logo.png' %}" height="22" alt="logo"></a>
                             </div>
                         </div>
 
@@ -283,7 +284,7 @@
                                 <li class="list-inline-item dropdown notification-list nav-user">
                                     <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button"
                                     aria-haspopup="false" aria-expanded="false">
-                                        <img src="assets/images/users/avatar-6.jpg" alt="user" class="rounded-circle">
+                                        <img src="{% static 'shows/vertical/assets/images/users/avatar-6.jpg' %}" alt="user" class="rounded-circle">
                                         <span class="d-none d-md-inline-block ml-1">David M. Bailey <i class="mdi mdi-chevron-down"></i> </span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown">
@@ -380,13 +381,13 @@
                                             <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" data-interval="3000">
                                                 <div class="carousel-inner" role="listbox">
                                                     <div class="carousel-item active">
-                                                        <img class="d-block img-fluid mx-auto" src="assets/images/small/img-1.jpg" alt="First slide">
+                                                        <img class="d-block img-fluid mx-auto" src="{% static 'shows/vertical/assets/images/small/img-1.jpg' %}" alt="First slide">
                                                     </div>
                                                     <div class="carousel-item">
-                                                        <img class="d-block img-fluid mx-auto" src="assets/images/small/img-2.jpg" alt="Second slide">
+                                                        <img class="d-block img-fluid mx-auto" src="{% static 'shows/vertical/assets/images/small/img-2.jpg' %}" alt="Second slide">
                                                     </div>
                                                     <div class="carousel-item">
-                                                        <img class="d-block img-fluid mx-auto" src="assets/images/small/img-3.jpg" alt="Third slide">
+                                                        <img class="d-block img-fluid mx-auto" src="{% static 'shows/vertical/assets/images/small/img-3.jpg' %}" alt="Third slide">
                                                     </div>
                                                 </div>
                                             </div>
@@ -404,13 +405,13 @@
                                             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                                                 <div class="carousel-inner" role="listbox">
                                                     <div class="carousel-item active">
-                                                        <img class="d-block img-fluid mx-auto" src="assets/images/small/img-4.jpg" alt="First slide">
+                                                        <img class="d-block img-fluid mx-auto" src="{% static 'shows/vertical/assets/images/small/img-4.jpg' %}" alt="First slide">
                                                     </div>
                                                     <div class="carousel-item">
-                                                        <img class="d-block img-fluid mx-auto" src="assets/images/small/img-5.jpg" alt="Second slide">
+                                                        <img class="d-block img-fluid mx-auto" src="{% static 'shows/vertical/assets/images/small/img-5.jpg' %}" alt="Second slide">
                                                     </div>
                                                     <div class="carousel-item">
-                                                        <img class="d-block img-fluid mx-auto" src="assets/images/small/img-6.jpg" alt="Third slide">
+                                                        <img class="d-block img-fluid mx-auto" src="{% static 'shows/vertical/assets/images/small/img-6.jpg' %}" alt="Third slide">
                                                     </div>
                                                 </div>
                                                 <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -445,13 +446,13 @@
                                                 </ol>
                                                 <div class="carousel-inner" role="listbox">
                                                     <div class="carousel-item active">
-                                                        <img class="d-block img-fluid mx-auto" src="assets/images/small/img-3.jpg" alt="First slide">
+                                                        <img class="d-block img-fluid mx-auto" src="{% static 'shows/vertical/assets/images/small/img-3.jpg' %}" alt="First slide">
                                                     </div>
                                                     <div class="carousel-item">
-                                                        <img class="d-block img-fluid mx-auto" src="assets/images/small/img-2.jpg" alt="Second slide">
+                                                        <img class="d-block img-fluid mx-auto" src="{% static 'shows/vertical/assets/images/small/img-2.jpg' %}" alt="Second slide">
                                                     </div>
                                                     <div class="carousel-item">
-                                                        <img class="d-block img-fluid mx-auto" src="assets/images/small/img-1.jpg" alt="Third slide">
+                                                        <img class="d-block img-fluid mx-auto" src="{% static 'shows/vertical/assets/images/small/img-1.jpg' %}" alt="Third slide">
                                                     </div>
                                                 </div>
                                                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -477,21 +478,21 @@
                                             <div id="carouselExampleCaption" class="carousel slide" data-ride="carousel">
                                                 <div class="carousel-inner" role="listbox">
                                                     <div class="carousel-item active">
-                                                        <img src="assets/images/small/img-7.jpg" alt="..." class="d-block img-fluid mx-auto">
+                                                        <img src="{% static 'shows/vertical/assets/images/small/img-7.jpg' %}" alt="..." class="d-block img-fluid mx-auto">
                                                         <div class="carousel-caption d-none d-md-block">
                                                             <h4>First slide label</h4>
                                                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                                                         </div>
                                                     </div>
                                                     <div class="carousel-item">
-                                                        <img src="assets/images/small/img-5.jpg" alt="..." class="d-block img-fluid mx-auto">
+                                                        <img src="{% static 'shows/vertical/assets/images/small/img-5.jpg' %}" alt="..." class="d-block img-fluid mx-auto">
                                                         <div class="carousel-caption d-none d-md-block">
                                                             <h4>Second slide label</h4>
                                                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                                                         </div>
                                                     </div>
                                                     <div class="carousel-item">
-                                                        <img src="assets/images/small/img-4.jpg" alt="..." class="d-block img-fluid mx-auto">
+                                                        <img src="{% static 'shows/vertical/assets/images/small/img-4.jpg' %}" alt="..." class="d-block img-fluid mx-auto">
                                                         <div class="carousel-caption d-none d-md-block">
                                                             <h4>Third slide label</h4>
                                                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -530,19 +531,19 @@
 
 
         <!-- jQuery  -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/js/modernizr.min.js"></script>
-        <script src="assets/js/detect.js"></script>
-        <script src="assets/js/fastclick.js"></script>
-        <script src="assets/js/jquery.slimscroll.js"></script>
-        <script src="assets/js/jquery.blockUI.js"></script>
-        <script src="assets/js/waves.js"></script>
-        <script src="assets/js/jquery.nicescroll.js"></script>
-        <script src="assets/js/jquery.scrollTo.min.js"></script>
+        <script src="{% static 'shows/vertical/assets/js/jquery.min.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/js/modernizr.min.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/js/detect.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/js/fastclick.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/js/jquery.slimscroll.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/js/jquery.blockUI.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/js/waves.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/js/jquery.nicescroll.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/js/jquery.scrollTo.min.js' %}"></script>
 
         <!-- App js -->
-        <script src="assets/js/app.js"></script>
+        <script src="{% static 'shows/vertical/assets/js/app.js' %}"></script>
 
     </body>
 </html>

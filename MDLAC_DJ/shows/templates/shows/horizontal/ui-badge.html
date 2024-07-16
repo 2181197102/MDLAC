@@ -10,12 +10,12 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
         <!-- App Icons -->
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
+        <link rel="shortcut icon" href="{% static 'shows/vertical/assets/images/favicon.ico' %}">
 
         <!-- App css -->
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+        <link href="{% static 'shows/vertical/assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'shows/vertical/assets/css/icons.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'shows/vertical/assets/css/style.css' %}" rel="stylesheet" type="text/css" />
 
     </head>
 
@@ -45,7 +45,7 @@
                         <div>
                             
                             <a href="index.html" class="logo">
-                                <img src="assets/images/logo.png" alt="" height="26"> 
+                                <img src="{% static 'shows/vertical/assets/images/logo.png' %}" alt="" height="26"> 
                             </a>
 
                         </div>
@@ -152,7 +152,7 @@
                                 <li class="list-inline-item dropdown notification-list nav-user">
                                     <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button"
                                     aria-haspopup="false" aria-expanded="false">
-                                        <img src="assets/images/users/avatar-6.jpg" alt="user" class="rounded-circle">
+                                        <img src="{% static 'shows/vertical/assets/images/users/avatar-6.jpg' %}" alt="user" class="rounded-circle">
                                         <span class="d-none d-md-inline-block ml-1">David M. Bailey <i class="mdi mdi-chevron-down"></i> </span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown">
@@ -458,14 +458,14 @@
 
 
         <!-- jQuery  -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/js/modernizr.min.js"></script>
-        <script src="assets/js/waves.js"></script>
-        <script src="assets/js/jquery.slimscroll.js"></script>
+        <script src="{% static 'shows/vertical/assets/js/jquery.min.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/js/modernizr.min.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/js/waves.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/js/jquery.slimscroll.js' %}"></script>
 
         <!-- App js -->
-        <script src="assets/js/app.js"></script>
+        <script src="{% static 'shows/vertical/assets/js/app.js' %}"></script>
 
     </body>
 </html>
