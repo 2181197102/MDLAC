@@ -11,7 +11,7 @@ class Role(models.Model):
     101 normal
     102 vip
     '''
-    role_ID = models.CharField(max_length=3, primary_key=True)  # 设置为主键
+    role_ID = models.CharField(max_length=3, primary_key=True, default='101')  # 设置为主键
     role_Name = models.CharField(max_length=128, default="normal")
 
     class Meta:

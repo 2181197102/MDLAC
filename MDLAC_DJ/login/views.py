@@ -1,7 +1,9 @@
+from django.contrib.auth.hashers import make_password
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import User
+from .models import User, Role
+
 
 def index(request):
     print("Rendering index page")
@@ -41,11 +43,9 @@ def register(request):
         security_answer1 = request.POST.get('security_answer1')
         security_answer2 = request.POST.get('security_answer2')
         security_answer3 = request.POST.get('security_answer3')
-        role_ID = '101'
         try:
-            User.objects.create(
+            user = User(
                 username=username,
-                password=password,  # 注意：密码应该经过适当的哈希处理，不应以明文形式存储
                 email=email,
                 phone=phone,
                 sex=sex,
@@ -56,13 +56,19 @@ def register(request):
                 security_answer1=security_answer1,
                 security_answer2=security_answer2,
                 security_answer3=security_answer3,
-                role_ID=role_ID,
+                role_ID=Role()
             )
+            user.set_password(password)  # 使用set_password方法对密码进行哈希处理
+            user.save()
             print("insert成功了")
             return redirect('login')
         except Exception as e:
+            print(e)
             context = {'error_message': '注册失败'}
             return render(request, 'login/pages-register.html', context)
+
+    # 处理 GET 请求或其他请求情况，返回登录页面
+    return render(request, 'login/pages-register.html')
 
     # 处理 GET 请求或其他请求情况，返回登录页面
     return render(request, 'login/pages-register.html')
