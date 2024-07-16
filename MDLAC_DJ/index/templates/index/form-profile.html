@@ -15,6 +15,11 @@
     <link href="{% static 'shows/vertical/assets/css/icons.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'shows/vertical/assets/css/style.css' %}" rel="stylesheet" type="text/css">
 
+    <style>
+        .black-text {
+            color: black;
+        }
+    </style>
 </head>
 <body class="fixed-left">
 
@@ -57,7 +62,7 @@
                         <li class="list-inline-item dropdown notification-list nav-user">
                             <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                 <img src="{% static 'shows/vertical/assets/images/users/avatar-6.jpg' %}" alt="user" class="rounded-circle">
-                                <span class="d-none d-md-inline-block ml-1">{{ nickname }} <i class="mdi mdi-chevron-down"></i> </span>
+                                <span class="d-none d-md-inline-block ml-1 black-text">{{ nickname }} <i class="mdi mdi-chevron-down"></i> </span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown">
                                 <a class="dropdown-item" href="#"><i class="dripicons-user text-muted"></i> Profile</a>
@@ -79,13 +84,30 @@
                                         <h4 class="page-title m-0">Profile</h4>
                                     </div>
                                     <div class="col-md-4 text-right">
-                                        <button id="editButton" class="btn btn-primary" onclick="enableEditing()">修改</button>
                                         <button id="resetPasswordButton" class="btn btn-secondary" data-toggle="modal" data-target="#resetPasswordModal">重置密码</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Add this section to display messages -->
+                    {% if messages %}
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="alert alert-dismissible fade show" role="alert">
+                                {% for message in messages %}
+                                    <div class="alert alert-{{ message.tags }} mt-2" role="alert">
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
 
                     <div class="row">
                         <div class="col-12">
@@ -99,31 +121,31 @@
                                         <div class="form-group row">
                                             <label for="username" class="col-sm-2 col-form-label">Username</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="text" value="{{ username }}" id="username" readonly>
+                                                <input class="form-control" type="text" value="{{ username }}" id="username" name="username" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="nickname" class="col-sm-2 col-form-label">Nickname</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="text" value="{{ nickname }}" id="nickname" readonly>
+                                                <input class="form-control" type="text" value="{{ nickname }}" id="nickname" name="nickname">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="email" class="col-sm-2 col-form-label">Email</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="email" value="{{ email }}" id="email" readonly>
+                                                <input class="form-control" type="email" value="{{ email }}" id="email" name="email">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="phone" class="col-sm-2 col-form-label">Phone</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="text" value="{{ phone }}" id="phone" readonly>
+                                                <input class="form-control" type="text" value="{{ phone }}" id="phone" name="phone">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="sex" class="col-sm-2 col-form-label">Sex</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="text" value="{{ sex }}" id="sex" readonly>
+                                                <input class="form-control" type="text" value="{{ sex }}" id="sex" name="sex">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -140,7 +162,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-10 offset-sm-2">
-                                                <button id="submitButton" type="submit" class="btn btn-success" disabled>提交修改</button>
+                                                <button id="submitButton" type="submit" class="btn btn-success">提交修改</button>
                                             </div>
                                         </div>
                                     </form>
@@ -169,10 +191,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="resetPasswordForm">
+                <form id="resetPasswordForm" method="POST" action="{% url 'index:reset_password' %}">
+                    {% csrf_token %}
                     <div class="form-group">
                         <label for="new_password">新密码</label>
-                        <input type="password" class="form-control" id="new_password">
+                        <input type="password" class="form-control" id="new_password" name="new_password">
                     </div>
                 </form>
             </div>
@@ -198,7 +221,6 @@
 <script src="{% static 'shows/vertical/assets/js/app.js' %}"></script>
 
 <script>
-
 function toggleResetPassword() {
     var passwordField = document.getElementById("new_password");
     if (passwordField.type === "password") {
@@ -208,26 +230,14 @@ function toggleResetPassword() {
     }
 }
 
-function enableEditing() {
-    var fields = ["nickname", "email", "phone", "sex"];
-    fields.forEach(function(field) {
-        document.getElementById(field).readOnly = false;
-    });
-    document.getElementById("submitButton").disabled = false;
-    document.getElementById("editButton").disabled = true;
-}
-
-// Enable submit button when fields are changed
-var fields = ["nickname", "email", "phone", "sex"];
-fields.forEach(function(field) {
-    document.getElementById(field).addEventListener("input", function() {
-        document.getElementById("submitButton").disabled = false;
-    });
-});
-
 function savePassword() {
     var newPassword = document.getElementById("new_password").value;
-    // TODO: Add code to save the new password to the backend
+    if (newPassword) {
+        // Submit the form to save the new password to the backend
+        document.getElementById("resetPasswordForm").submit();
+    } else {
+        alert("Password cannot be empty");
+    }
 
     // Close the modal
     $('#resetPasswordModal').modal('hide');
