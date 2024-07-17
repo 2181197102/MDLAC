@@ -67,7 +67,7 @@ class PrintPipeline(object):
 
 class PrintPipeline_comment(object):
     def __init__(self):
-        self.file = open('jd_comments.csv', 'a', encoding='gbk')
+        self.file = open('jd_comments.csv', 'a', encoding='utf-8')
         if self.file.tell() == 0:
             self.file.write('"content","date","good_ID","good_name","commentTags","replyCount","score","userLevelId","userProvince","user_ID","user_name","score1","score2","score3","score4","score5"\n')
 
@@ -84,9 +84,11 @@ class PrintPipeline_comment(object):
 
         # 使用正则表达式替换范围外的字符为空字符串
         # output_str = pattern.sub('', input_str)
-
         item['content'] = item['content'].encode('gbk', 'ignore').decode('gbk').strip()
         item['good_name'] = item['good_name'].encode('gbk', 'ignore').decode('gbk').strip()
+
+        item['content'] = item['content'].encode('utf-8', 'ignore').decode('utf-8').strip()
+        item['good_name'] = item['good_name'].encode('utf-8', 'ignore').decode('utf-8').strip()
 
         # 匹配换行符'\n'，替换为空字符串""
         import re
