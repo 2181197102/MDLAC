@@ -18,7 +18,6 @@ from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import redirect
 
-from shows.views import search
 from login.views import index, login_view, register, logout_view, recoverpw, recoverpw_withsq, reset_password
 
 
@@ -26,7 +25,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('shows/', include('shows.urls')),
     path('index/', include('index.urls')),
-    path('search/', search),
     path('index/', index, name='index'),
     path('login/', login_view, name='login'),
     path('register/', register, name='register'),
