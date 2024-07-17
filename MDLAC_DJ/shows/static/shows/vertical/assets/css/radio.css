@@ -1,0 +1,48 @@
+/* 去掉原始的单选框样式 */
+input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+}
+
+/* 定义单选框的外观 */
+input[type="radio"]::before {
+  content: '   ';
+  display: inline-block;
+  width: 18px; /* 单选框的宽度 */
+  height: 18px; /* 单选框的高度 */
+  border: 2px solid #666; /* 单选框的边框样式 */
+  border-radius: 50%; /* 使单选框呈现圆形 */
+  position: absolute;
+  left: 10px;
+  top: 0;
+  margin-top: 0; /* 调整单选框在其容器中的位置 */
+}
+
+/* 定义单选框选中时的样式 */
+input[type="radio"]:checked::before {
+  background-color: #2196F3; /* 选中时的背景色 */
+  border-color: #2196F3; /* 选中时的边框颜色 */
+}
+
+/* 悬停时改变样式 */
+input[type="radio"]:hover:not(:checked)::before {
+  border-color: #555; /* 悬停时的边框颜色 */
+}
+
+/* 禁用时的样式 */
+input[type="radio"]:disabled::before {
+  background-color: #ccc; /* 禁用时的背景色 */
+  border-color: #ccc; /* 禁用时的边框颜色 */
+}
+
+/* 单选框文本的样式 */
+label {
+  margin-left: 20px; /* 调整单选框文本与单选框之间的间距 */
+  vertical-align: middle;
+  cursor: pointer;
+}

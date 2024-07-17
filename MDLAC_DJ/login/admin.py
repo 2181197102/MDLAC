@@ -31,10 +31,10 @@ class UserAdmin(admin.ModelAdmin):
                      "security_answer1", "security_question2", "security_answer2", "security_question3",
                      "security_answer3"]})
     ]
-    list_display = ["username", "password", "nickname", "email", "phone", "sex", "role_ID", "c_time"]
-    search_fields = ["username", "nickname", "email", "phone", "sex", "role_ID", "c_time", "security_question1",
+    list_display = ["username", "nickname", "email", "phone", "sex", "role_ID", "date_joined",]
+    search_fields = ["username", "nickname", "email", "phone", "sex", "role_ID", "date_joined", "security_question1",
                      "security_question2", "security_question3"]
-    list_filter = ["sex", "role_ID", "c_time"]
+    list_filter = ["sex", "role_ID", "date_joined"]
 
 
 admin.site.register(User, UserAdmin)

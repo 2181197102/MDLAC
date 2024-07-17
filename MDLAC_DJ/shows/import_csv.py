@@ -3,6 +3,7 @@ from .models import JdGood, JdComment
 from datetime import datetime
 import pytz
 
+
 # python manage.py shell
 #
 # from shows.import_csv import run
