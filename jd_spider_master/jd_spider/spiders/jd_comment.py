@@ -69,7 +69,7 @@ class comment_spider(Spider):
             # # 设置每个商品最多抓取100页评论(1000条)
             # if pages > 10:
             #     pages = 10
-            for page in range(0, 10):
+            for page in range(0, 2):
                 # print("page: ", page)
                 url = f"https://api.m.jd.com/?appid=item-v3&functionId=pc_club_productPageComments&client=pc&clientVersion=1.0.0&t=1720801587270&body=%7B%22productId%22%3A{good_id}%2C%22score%22%3A0%2C%22sortType%22%3A5%2C%22page%22%3A{page}%2C%22pageSize%22%3A10%2C%22isShadowSku%22%3A0%2C%22rid%22%3A0%2C%22fold%22%3A1%2C%22bbtf%22%3A%22%22%2C%22shield%22%3A%22%22%7D"
                 start_urls.append(url)
