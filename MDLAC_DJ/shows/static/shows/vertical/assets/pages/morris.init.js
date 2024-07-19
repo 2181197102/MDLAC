@@ -42,7 +42,7 @@
             lineColors: lineColors
         });
     },
-    //creates area chart
+    /*//creates area chart
     MorrisCharts.prototype.createAreaChart = function(element, pointSize, lineWidth, data, xkey, ykeys, labels, lineColors) {
         Morris.Area({
             element: element,
@@ -73,6 +73,7 @@
             barColors: lineColors
         });
     },
+
     //creates Donut chart
     MorrisCharts.prototype.createDonutChart = function(element, data, colors) {
         Morris.Donut({
@@ -81,7 +82,7 @@
             resize: true,
             colors: colors
         });
-    },
+    },*/
     //creates Donut chart Dark
     MorrisCharts.prototype.createDonutChart1 = function(element, data, colors) {
         Morris.Donut({
@@ -123,7 +124,7 @@
           ];
         this.createLineChart('morris-line-example', $data, 'y', ['a', 'b'], ['Series A', 'Series B'], ['#5985ee', '#46cd93']);
 
-        //creating area chart
+        /*//creating area chart
         var $areaData = [
             {y: '2009', a: 10, b: 20},
             {y: '2010', a: 75, b: 65},
@@ -148,7 +149,7 @@
             {y: '2016', a: 90, b: 75}
         ];
         this.createBarChart('morris-bar-example', $barData, 'y', ['a', 'b'], ['Series A', 'Series B'], ['#5985ee', '#46cd93']);
-
+        */
         //creating Stacked chart
         var $stckedData  = [
             { y: '2005', a: 45, b: 180},
@@ -167,13 +168,13 @@
         this.createStackedChart('morris-bar-stacked', $stckedData, 'y', ['a', 'b'], ['Series A', 'Series B'], ['#547cda','#f9f9f9']);
 
         //creating donut chart
-        var $donutData = [
+        /*var $donutData = [
             {label: "Download Sales", value: 12},
             {label: "In-Store Sales", value: 30},
             {label: "Mail-Order Sales", value: 20}
         ];
         this.createDonutChart('morris-donut-example', $donutData, ['#4bbbce', '#5985ee', '#46cd93']);
-
+        */
         //creating donut chart Dark
         var $donutData1 = [
             {label: "Download Sales", value: 12},
@@ -193,6 +194,8 @@
             { y: '2015', a: 100, b: 90 }
         ];
         this.createLineChart1('morris-line-example-dark', $data1, 'y', ['a', 'b'], ['Series A', 'Series B'], ['#5985ee', '#46cd93']);
+
+
     },
     //init
     $.MorrisCharts = new MorrisCharts, $.MorrisCharts.Constructor = MorrisCharts
