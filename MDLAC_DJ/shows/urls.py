@@ -70,5 +70,5 @@ urlpatterns = [
     path("extras_faqs/", extras_faqs, name='extras_faqs'),
     path("extras_maintenance/", extras_maintenance, name='extras_maintenance'),
     path("extras_comingsoon/", extras_comingsoon, name='extras_comingsoon'),
-
+    path('get_csv_data/', views.get_csv_data, name='get_csv_data'),  # 新增的路由
 ]
