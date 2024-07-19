@@ -2,6 +2,8 @@ import pandas as pd
 from .models import JdGood, JdComment
 from datetime import datetime
 import pytz
+import random
+from django.db.utils import DataError  # 导入DataError
 
 
 # python manage.py shell
@@ -13,82 +15,94 @@ import pytz
 # import_goods()
 # import_comments()
 
-def clean_value(value, default=None, value_type=str):
-    """
-    清理和转换值。
-
-    :param value: 需要清理的值
-    :param default: 默认值，如果value为空或无效
-    :param value_type: 期望的值类型
-    :return: 清理后的值
-    """
+def clean_value(value, default=None, value_type=str, max_length=None):
     if pd.isna(value) or value == '#':
         return default
     try:
         if value_type == datetime:
-            # 如果是 datetime 类型，确保有时区信息
             value = pd.to_datetime(value)
             shanghai_tz = pytz.timezone('Asia/Shanghai')
-            if value.tzinfo is None:  # 检查是否有时区信息
-                value = value.tz_localize(shanghai_tz)  # 将其本地化为上海时区
+            if value.tzinfo is None:
+                value = value.tz_localize(shanghai_tz)
             else:
-                value = value.astimezone(shanghai_tz)  # 转换为上海时区
+                value = value.astimezone(shanghai_tz)
             return value
-        return value_type(value)
+        elif value_type == int and isinstance(value, str):
+            return clean_comment_count(value)
+        cleaned_value = value_type(value)
+        if isinstance(cleaned_value, str) and max_length and len(cleaned_value) > max_length:
+            return cleaned_value[:max_length]
+        return cleaned_value
     except (ValueError, TypeError):
         return default
 
+def clean_detail_link(link, acid):
+    if link.startswith("https://ccc-x.jd.com/"):
+        return f"https://item.jd.com/{acid}.html"
+    return link
+
+def clean_comment_count(comment_str):
+    if '万' in comment_str:
+        num_str = comment_str.replace('万', '')
+        if '+' in num_str:
+            base_num = int(num_str.replace('+', '')) * 10000
+            return base_num + random.randint(0, 10000)
+        else:
+            return int(num_str) * 10000
+
+    if '+' in comment_str:
+        base_num = int(comment_str.replace('+', ''))
+        increment_range = 10 ** (len(str(base_num)) - 1)
+        return base_num + random.randint(0, increment_range)
+
+    return int(comment_str)
+
+def generate_random_price(min_price, max_price):
+    while True:
+        price = round(random.uniform(min_price, max_price))
+        if str(price)[-1] in ['8', '9']:
+            return float(f"{price}.00")
 
 def import_goods():
     csv_file_path = 'D:\\course\\intern\\MDLAC-master\\MDLAC\\dataset\\goods.csv'
 
-    df = pd.read_csv(csv_file_path, encoding='gbk')
+    df = pd.read_csv(csv_file_path, encoding='utf-8')
+
+    prices = df['价格'].dropna().apply(clean_value, value_type=float)
+    min_price = prices.min()
+    max_price = prices.max()
 
     total_rows = len(df)
     inserted_rows = 0
     updated_rows = 0
-    skipped_rows = 0
 
     for index, row in df.iterrows():
-        acid = clean_value(row['ACID'])
+        acid = clean_value(row['商品ID'])
+        price = clean_value(row['价格'], default=None, value_type=float)
+        if price is None:
+            price = generate_random_price(min_price, max_price)
+
+        detail_link = clean_detail_link(clean_value(row['商品详情链接地址'], max_length=255), acid)
+
         defaults = {
-            'name': clean_value(row['name']),
-            'link': clean_value(row['link']),
-            'shop_name': clean_value(row['shop_name'], default='未知商店'),
-            'price': clean_value(row['price'], default=0.0, value_type=float),
-            'operation': clean_value(row['operation'], default='未知操作'),
-            'level': clean_value(row['level'], default='未知等级'),
-            'frequency': clean_value(row['frequency'], default='未知频率'),
-            'purify': clean_value(row.get('purify', '无')),
-            'type': clean_value(row['Type'], default='未知类型'),
-            'cwtype': clean_value(row['CWType'], default='未知类型'),
-            'horse': clean_value(row['horse'], default='未知马力'),
-            'good_func': clean_value(row.get('good_func', '无')),
-            'apply_space': clean_value(row.get('apply_space', '未知空间')),
-            'featured': clean_value(row.get('Featured', '无')),
-            'statu': clean_value(row.get('statu', '未知条件')),
-            'set_type': clean_value(row.get('Set_type', '未知类型')),
-            'apply_house': clean_value(row.get('apply_house', '未知')),
-            'duct_form': clean_value(row.get('duct_form', '未知形式')),
-            'brand': clean_value(row['brand'], default='未知品牌'),
-            'wind_position': clean_value(row.get('wind_position', '未知')),
-            'no_drainage': clean_value(row.get('NO_drainage', '未知')),
-            'min_height': clean_value(row.get('min_height', '未知')),
-            'cost': clean_value(row.get('cost', '未知')),
-            'user_preference': clean_value(row.get('user_preference', '未知')),
-            'comment_count_str': clean_value(row['CommentCountStr']),
-            'average_score': clean_value(row['AverageScore'], default=0.0, value_type=float),
-            'good_count_str': clean_value(row['GoodCountStr']),
-            'general_count_str': clean_value(row['GeneralCountStr']),
-            'poor_count_str': clean_value(row['PoorCountStr']),
-            'good_rate': clean_value(row['GoodRate'], default=0.0, value_type=float)
+            'price': price,
+            'name': clean_value(row['商品名称'], max_length=255),
+            'detail_link': detail_link,
+            'image_link': clean_value(row['商品图片链接'], max_length=255),
+            'comment_count': clean_value(row.get('评论数', 0), default=0, value_type=int),
+            'shop': clean_value(row['店铺'], max_length=255),
+            'shop_link': clean_value(row['店铺链接'], max_length=255)
         }
 
-        obj, created = JdGood.objects.update_or_create(acid=acid, defaults=defaults)
-        if created:
-            inserted_rows += 1
-        else:
-            updated_rows += 1
+        try:
+            obj, created = JdGood.objects.update_or_create(acid=acid, defaults=defaults)
+            if created:
+                inserted_rows += 1
+            else:
+                updated_rows += 1
+        except DataError as e:
+            print(f"Error inserting/updating row {index + 1}: {e}")
+            continue
 
         if (index + 1) % 100 == 0:
             print(f"Processed {index + 1}/{total_rows} rows. Inserted: {inserted_rows}, Updated: {updated_rows}")

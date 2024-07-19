@@ -1,47 +1,27 @@
 from django.db import models
 
+
 # Create your models here.
 
+# 商品模型
+# 字段：商品ID,价格,商品名称,商品详情链接地址,商品图片链接,评论数,店铺,店铺链接
 class JdGood(models.Model):
-    acid = models.CharField(max_length=50, primary_key=True)  # 将acid设置为主键
-    name = models.CharField(max_length=255)
-    link = models.CharField(max_length=255)
-    shop_name = models.CharField(max_length=255, default='未知商店')
-    price = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
-    operation = models.CharField(max_length=255, default='未知操作')
-    level = models.CharField(max_length=50, default='未知等级')
-    frequency = models.CharField(max_length=50, default='未知频率')
-    purify = models.CharField(max_length=50, null=True, default='无')
-    type = models.CharField(max_length=50, default='未知类型')
-    cwtype = models.CharField(max_length=50, default='未知类型')
-    horse = models.CharField(max_length=50, default='未知马力')
-    good_func = models.CharField(max_length=255, null=True, default='无')
-    apply_space = models.CharField(max_length=50, null=True, default='未知空间')
-    featured = models.CharField(max_length=50, null=True, default='无')
-    statu = models.CharField(max_length=50, null=True, default='未知条件')
-    set_type = models.CharField(max_length=50, null=True, default='未知类型')
-    apply_house = models.CharField(max_length=50, null=True, default='未知')
-    duct_form = models.CharField(max_length=50, null=True, default='未知形式')
-    brand = models.CharField(max_length=255, default='未知品牌')
-    wind_position = models.CharField(max_length=50, null=True, default='未知')
-    no_drainage = models.CharField(max_length=50, null=True, default='未知')
-    min_height = models.CharField(max_length=50, null=True, default='未知')
-    cost = models.CharField(max_length=50, null=True, default='未知')
-    user_preference = models.CharField(max_length=50, null=True, default='未知')
-    comment_count_str = models.CharField(max_length=50)
-    average_score = models.FloatField(default=0.0)
-    good_count_str = models.CharField(max_length=50)
-    general_count_str = models.CharField(max_length=50)
-    poor_count_str = models.CharField(max_length=50)
-    good_rate = models.FloatField(default=0.0)
+    acid = models.CharField(max_length=50, primary_key=True)  # 商品ID，作为主键
+    price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)  # 价格
+    name = models.CharField(max_length=255, null=True, blank=True)  # 商品名称
+    detail_link = models.CharField(max_length=255, null=True, blank=True)  # 商品详情链接地址
+    image_link = models.CharField(max_length=255, null=True, blank=True)  # 商品图片链接
+    comment_count = models.IntegerField(null=True, blank=True)  # 评论数
+    shop = models.CharField(max_length=255, null=True, blank=True)  # 店铺
+    shop_link = models.CharField(max_length=255, null=True, blank=True)  # 店铺链接
 
     class Meta:
         db_table = 'jd_goods'
-        verbose_name = 'JD Good'
-        verbose_name_plural = 'JD Goods'
+        verbose_name = 'JD 商品'
+        verbose_name_plural = 'JD 商品'
 
     def __str__(self):
-        return f"{self.acid} - {self.brand} - {self.price}"
+        return f"{self.acid} - {self.name} - {self.price}"
 
 
 class JdComment(models.Model):
