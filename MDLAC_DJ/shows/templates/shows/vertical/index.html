@@ -23,7 +23,6 @@
 
 
     <body class="fixed-left">
-
         <!-- Loader -->
         <div id="preloader">
             <div id="status">
@@ -49,7 +48,7 @@
                 <div class="left-side-logo d-block d-lg-none">
                     <div class="text-center">
                         
-                        <a href="{% url "index" %}" class="logo"><img src="{% static 'shows/vertical/assets/images/logo_dark.png' %}" height="20" alt="logo"></a>
+                        <a href="{% url "index" %}" class="mylogo"><img src="{% static 'shows/vertical/assets/images/logo_dark.png' %}" height="20" alt="logo"></a>
                     </div>
                 </div>
 
@@ -206,7 +205,8 @@
 
                         <div class="topbar-left	d-none d-lg-block">
                             <div class="text-center">
-                                <a href="{% url "index" %}" class="logo"><img src="{% static 'shows/vertical/assets/images/logo.png' %}" height="22" alt="logo"></a>
+{#                                <a href="{% url "index" %}" ></a>#}
+                                <div id="mylogo" style="width: 600px; height: 400px;" ></div>
                             </div>
                         </div>
 
@@ -841,12 +841,14 @@
         <!--Morris Chart-->
         <script src="{% static 'shows/plugins/morris/morris.min.js' %}"></script>
         <script src="{% static 'shows/plugins/raphael/raphael.min.js' %}"></script>
+        <script src="{% static 'shows/plugins/chartist/js/echarts.js' %}"></script>
 
         <!-- dashboard js -->
         <script src="{% static 'shows/vertical/assets/pages/dashboard.int.js' %}"></script>        
 
         <!-- App js -->
         <script src="{% static 'shows/vertical/assets/js/app.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/pages/logo.js' %}"></script>
 
     </body>
 </html>
