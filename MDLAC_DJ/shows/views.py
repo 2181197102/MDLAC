@@ -10,6 +10,7 @@ from django.http import JsonResponse
 
 # http://127.0.0.1:8000/shows/jdgoods/
 def jdgood_list(request):
+    # 获取查询参数
     query = request.GET.get('q')
     if query:
         goods_list = JdGood.objects.filter(name__icontains=query)

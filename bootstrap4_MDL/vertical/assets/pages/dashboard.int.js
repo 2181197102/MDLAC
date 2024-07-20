@@ -14,6 +14,7 @@
 
     //creates line chart
     Dashboard.prototype.createLineChart = function(element, data, xkey, ykeys, labels, lineColors) {
+
         Morris.Line({
           element: element,
           data: data,
@@ -44,15 +45,18 @@
 
         //create line chart
         var $data  = [
-            { y: '2012', a: 45, b: 65 },
+            { y: '2019', a: 44, b: 65 },
             { y: '2013', a: 75,  b: 95 },
             { y: '2014', a: 50,  b: 40 },
             { y: '2015', a: 95,  b: 65 },
             { y: '2016', a: 50,  b: 40 },
             { y: '2017', a: 65,  b: 75 },
-            { y: '2018', a: 80, b: 90 }
+            { y: '2020', a: 80, b: 90 }
           ];
-        this.createLineChart('morris-line-example', $data, 'y', ['a', 'b'], ['Series A', 'Series B'], ['#5985ee', '#46cd93']);
+
+        // 因找不到morris的重绘或销毁api，手动重绘
+
+        this.createLineChart('morris-line-example', $data, 'y', ['a', 'b'], ['商品数目', '评论数目'], ['#5985ee', '#46cd93']);
 
         //creating donut chart
         var $donutData = [
@@ -70,6 +74,8 @@
 
 //initializing
     function ($) {
+        $("#morris-line-example").empty();
+        $("#morris-line-example svg").remove();
         "use strict";
         $.Dashboard.init();
     }(window.jQuery);

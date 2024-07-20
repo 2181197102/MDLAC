@@ -67,7 +67,7 @@ class PrintPipeline(object):
 
 class PrintPipeline_comment(object):
     def __init__(self):
-        self.file = open('jd_comments.csv', 'a', encoding='utf-8')
+        self.file = open('jd_comments(2).csv', 'a', encoding='utf-8')
         if self.file.tell() == 0:
             self.file.write('"content","date","good_ID","good_name","commentTags","replyCount","score","userLevelId","userProvince","user_ID","user_name","score1","score2","score3","score4","score5"\n')
 
@@ -95,8 +95,8 @@ class PrintPipeline_comment(object):
 
         # 合并所有的替换表达式
         item['content'] = re.sub(r'[\n ，,！!。：:、；;]', '', item['content'])
-
-        item['good_name'] = re.sub(r' ', '', item['good_name'])
+        item['good_name'] = re.sub(r'[\n ，,！!。：:、；;]', '', item['good_name'])
+        # item['good_name'] = re.sub(r' ', '', item['good_name'])
         print("content:", item['content'])
         print("good_name:", item['good_name'])
         # 如果csv文件里面没有当前Item的user_ID，就写入。防止重复写入

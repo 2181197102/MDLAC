@@ -2,6 +2,10 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
+# from MDLAC.MDLAC_DJ.shows.models import JdGood
+from login.models import User
+
+
 
 @login_required
 def profile(request):
@@ -60,3 +64,6 @@ def reset_password(request):
         else:
             messages.error(request, 'Password cannot be empty')
     return redirect('index:profile')
+
+# def set_index(request):
+

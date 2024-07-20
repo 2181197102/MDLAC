@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
           },
           // 动画配置
           keyframeAnimation: {
-            duration: 30000,
+            duration: 3000,
             loop: true,
             keyframes: [
               {
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
               {
                 percent: 1,
                 style: {
-                  fill: 'blue'
+                  fill: "rgb(89,133,238)"
                 }
               }
             ]
