@@ -20,7 +20,7 @@
         <link href="{% static 'shows/vertical/assets/css/style.css' %}" rel="stylesheet" type="text/css">
         <script src="{% static 'shows/plugins/chartist/js/jquery-3.5.1.js' %}"></script>
         <script src="{% static 'shows/plugins/chartist/js/echarts.js' %}"></script>
-    </head>
+        <script src="{% static 'shows/plugins/morris/ecSimpleTransform.js' %}"></script>
 
 
     <body class="fixed-left">
@@ -377,6 +377,7 @@
                                     <div class="card m-b-30">
                                         <div class="card-body">
                                             <h4 class="mt-0 header-title">Transform Chart</h4>
+                                            <!--夏季、冬季空调平均价格的柱状图，以及日期和价格的散点图-->
                                             <div id="transform-example" class="morris-chart" style="height: 500px"></div>
 
                                         </div>
@@ -391,23 +392,8 @@
                                             <p class="text-muted m-b-30 d-inline-block text-truncate w-100">The public API is terribly simple. It's
                                                 just one function: Morris.Line (options), where options is an object
                                                 containing some of the configuration options.</p>
-
-                                            <ul class="list-inline widget-chart m-t-20 m-b-15 text-center">
-                                                <li class="list-inline-item">
-                                                    <h5>3654</h5>
-                                                    <p class="text-muted">Marketplace</p>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                    <h5>954</h5>
-                                                    <p class="text-muted">Last week</p>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                    <h5>8462</h5>
-                                                    <p class="text-muted">Last Month</p>
-                                                </li>
-                                            </ul>
-
-                                            <div id="morris-line-example" class="morris-chart" style="height: 300px"></div>
+                                            <!--每个月份的空调销售数量-->
+                                            <div id="bar-example" class="morris-chart" style="height: 450px"></div>
 
                                         </div>
                                     </div>
@@ -419,7 +405,7 @@
                                 <div class="col-xl-12">
                                     <div class="card m-b-30">
                                         <div class="card-body">
-
+                                            <!--各城市不同月份空调购买数量对比-->
                                             <div id="area-example" class="morris-chart" style="height: 450px"></div>
 
                                         </div>
@@ -429,37 +415,13 @@
 
 
                             <div class="row">
-                                <div class="col-xl-4">
-                                    <div class="card bg-primary m-b-30">
+                                <div class="col-xl-12">
+                                    <div class="card m-b-30">
                                         <div class="card-body">
 
                                             <h4 class="mt-0 text-white header-title">Stacked Chart</h4>
-
-                                            <div id="morris-bar-stacked" class="morris-chart" style="height: 300px"></div>
-
-                                        </div>
-                                    </div>
-                                </div> <!-- end col -->
-
-                                <div class="col-xl-4">
-                                    <div class="card bg-info m-b-30">
-                                        <div class="card-body">
-
-                                            <h4 class="mt-0 text-white header-title">Donut Chart</h4>
-
-                                            <div id="morris-donut-example-dark" class="morris-chart" style="height: 300px"></div>
-
-                                        </div>
-                                    </div>
-                                </div> <!-- end col -->
-
-                                <div class="col-xl-4">
-                                    <div class="card bg-dark m-b-30">
-                                        <div class="card-body">
-
-                                            <h4 class="mt-0 text-white header-title">Line Chart</h4>
-
-                                            <div id="morris-line-example-dark" class="morris-chart" style="height: 300px"></div>
+                                            <!--各个品牌的每月销售量-->
+                                            <div id="boxblot-example" class="morris-chart" style="  height: 400px"></div>
 
                                         </div>
                                     </div>
@@ -498,9 +460,11 @@
         <!--Morris Chart-->
         <script src="{% static 'shows/plugins/morris/morris.min.js' %}"></script>
         <script src="{% static 'shows/plugins/raphael/raphael.min.js' %}"></script>
-        <script src="{% static 'shows/vertical/assets/pages/morris.init.js' %}"></script>        
+{#        <script src="{% static 'shows/vertical/assets/pages/morris.init.js' %}"></script>        #}
         <script src="{% static 'shows/vertical/assets/pages/morris.1.js' %}"></script>
         <script src="{% static 'shows/vertical/assets/pages/morris.2.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/pages/morris.bar.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/pages/morris.boxblot.js' %}"></script>
         <!-- App js -->
         <script src="{% static 'shows/vertical/assets/js/app.js' %}"></script>
 
