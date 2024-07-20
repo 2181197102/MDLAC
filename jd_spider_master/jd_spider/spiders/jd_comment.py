@@ -56,9 +56,9 @@ class comment_spider(Spider):
 
     name = "comment"
     start_urls = []
-    with open(r'C:\Users\LiuXiang\Desktop\MDLAC-master\MDLAC\dataset\拆分文件（不用看）\test.csv', 'r', encoding='utf-8') as file:
+    with open(r'C:\Users\LiuXiang\Desktop\MDLAC-master\MDLAC\dataset\拆分文件（不用看）\goods_0.csv', 'r', encoding='utf-8') as file:
         reader = csv.reader(file)
-        header = next(reader)
+        header = next(reader);
         for row in reader:
             # 在这里处理每一行数据
             good_id = row[0]  # 商品ID
@@ -69,7 +69,7 @@ class comment_spider(Spider):
             # # 设置每个商品最多抓取100页评论(1000条)
             # if pages > 10:
             #     pages = 10
-            for page in range(0, 2):
+            for page in range(2, 15):
                 # print("page: ", page)
                 url = f"https://api.m.jd.com/?appid=item-v3&functionId=pc_club_productPageComments&client=pc&clientVersion=1.0.0&t=1720801587270&body=%7B%22productId%22%3A{good_id}%2C%22score%22%3A0%2C%22sortType%22%3A5%2C%22page%22%3A{page}%2C%22pageSize%22%3A10%2C%22isShadowSku%22%3A0%2C%22rid%22%3A0%2C%22fold%22%3A1%2C%22bbtf%22%3A%22%22%2C%22shield%22%3A%22%22%7D"
                 start_urls.append(url)
@@ -114,10 +114,11 @@ class comment_spider(Spider):
                 item1['score'] = comments[i]['score']
                 item1['userLevelId'] = comments[i]['plusAvailable']
                 item1['good_name'] = comments[i]['productColor']
+                yield item1
                 # print(item1)
-                items.append(item1)
-            url = "https://www.jd.com/"
-            yield scrapy.Request(url=url, callback=self.parse_return, meta={'item': items}, dont_filter=True)
+                # items.append(item1)
+            # url = "https://www.jd.com/"
+            # yield scrapy.Request(url=url, callback=self.parse_return, meta={'item': items}, dont_filter=True)
 
 
 cmdline.execute("scrapy crawl comment".split())

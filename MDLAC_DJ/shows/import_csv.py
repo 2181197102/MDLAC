@@ -1,9 +1,10 @@
 import pandas as pd
-from .models import JdGood, JdComment
+from .models import JdGood, JdComment, JdDetail
 from datetime import datetime
 import pytz
 import random
 from django.db.utils import DataError  # 导入DataError
+import re
 
 
 # python manage.py shell
@@ -11,9 +12,10 @@ from django.db.utils import DataError  # 导入DataError
 # from shows.import_csv import run
 # run()
 #
-# from shows.import_csv import import_goods, import_comments
+# from shows.import_csv import import_goods, import_comments, import_details
 # import_goods()
 # import_comments()
+# import_details()
 
 def clean_value(value, default=None, value_type=str, max_length=None):
     if pd.isna(value) or value == '#':
@@ -36,10 +38,14 @@ def clean_value(value, default=None, value_type=str, max_length=None):
     except (ValueError, TypeError):
         return default
 
+
+
+# 商品表导入处理方法
 def clean_detail_link(link, acid):
-    if link.startswith("https://ccc-x.jd.com/"):
+    if not link or link.startswith("https://ccc-x.jd.com/"):
         return f"https://item.jd.com/{acid}.html"
     return link
+
 
 def clean_comment_count(comment_str):
     if '万' in comment_str:
@@ -57,14 +63,16 @@ def clean_comment_count(comment_str):
 
     return int(comment_str)
 
+
 def generate_random_price(min_price, max_price):
     while True:
         price = round(random.uniform(min_price, max_price))
         if str(price)[-1] in ['8', '9']:
             return float(f"{price}.00")
 
+
 def import_goods():
-    csv_file_path = 'D:\\course\\intern\\MDLAC-master\\MDLAC\\dataset\\goods.csv'
+    csv_file_path = r'D:\course\intern\MDLAC-master\MDLAC\dataset\good_1_filtered.csv'
 
     df = pd.read_csv(csv_file_path, encoding='utf-8')
 
@@ -82,16 +90,16 @@ def import_goods():
         if price is None:
             price = generate_random_price(min_price, max_price)
 
-        detail_link = clean_detail_link(clean_value(row['商品详情链接地址'], max_length=255), acid)
+        detail_link = clean_detail_link(clean_value(row.get('商品详情链接地址'), max_length=255), acid)
 
         defaults = {
             'price': price,
-            'name': clean_value(row['商品名称'], max_length=255),
+            'name': clean_value(row.get('商品名称'), max_length=255),
             'detail_link': detail_link,
-            'image_link': clean_value(row['商品图片链接'], max_length=255),
+            'image_link': clean_value(row.get('商品图片链接'), max_length=255),
             'comment_count': clean_value(row.get('评论数', 0), default=0, value_type=int),
-            'shop': clean_value(row['店铺'], max_length=255),
-            'shop_link': clean_value(row['店铺链接'], max_length=255)
+            'shop': clean_value(row.get('店铺'), max_length=255),
+            'shop_link': clean_value(row.get('店铺链接'), max_length=255)
         }
 
         try:
@@ -111,9 +119,9 @@ def import_goods():
 
 
 def import_comments():
-    csv_file_path = 'D:\\course\\intern\\MDLAC-master\\MDLAC\\dataset\\comments.csv'
+    csv_file_path = r'D:\course\intern\MDLAC-master\MDLAC\dataset\100w_comments_part1.csv'
 
-    df = pd.read_csv(csv_file_path, encoding='gbk', dtype={'good_ID': str})
+    df = pd.read_csv(csv_file_path, encoding='utf-8', dtype={'good_ID': str})
 
     df.drop_duplicates(inplace=True)
 

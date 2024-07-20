@@ -15,7 +15,6 @@ class JdGoodAdmin(admin.ModelAdmin):
     inlines = [CommentInline]
     list_display = ["acid", "name", "price", "comment_count", "shop"]
     search_fields = ["acid", "name", "price", "shop"]
-    list_filter = ["price", "comment_count", "shop"]
 
 
 admin.site.register(JdGood, JdGoodAdmin)

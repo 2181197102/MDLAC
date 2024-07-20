@@ -9,14 +9,21 @@ from .models import User
 
 def index(request):
     print("Rendering index page")
-    return render(request, 'index/index.html')
+    user = request.user
+    if request.method == 'GET':
+        user.username = user.username
+        print(user.username)
+    context = {
+        'username': user.username,
+        'nickname': user.nickname,
+    }
+    return render(request, 'index/index.html', context)
 
 
 def login_view(request):  # 避免与内置login函数重名
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-
         print(f"Received POST request with username: {username}")
 
         user = authenticate(request, username=username, password=password)
