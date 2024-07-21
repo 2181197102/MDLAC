@@ -18,7 +18,9 @@
         <link href="{% static 'shows/vertical/assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
         <link href="{% static 'shows/vertical/assets/css/icons.css' %}" rel="stylesheet" type="text/css">
         <link href="{% static 'shows/vertical/assets/css/style.css' %}" rel="stylesheet" type="text/css">
-
+        <script src="{% static 'shows/plugins/chartist/js/jquery-3.5.1.js' %}"></script>
+        <script src="{% static 'shows/plugins/chartist/js/echarts.js' %}"></script>
+{#        <script src="{% static 'shows/plugins/chartjs/chart.min.js' %}"></script>#}
     </head>
 
 
@@ -376,9 +378,8 @@
                                         <div class="card-body">
             
                                             <h4 class="mt-0 header-title">Bar Chart</h4>
-                                            <p class="text-muted m-b-30">Display as Bar Chart.</p>
-            
-                                            <div id="chart"></div>
+                                            <!--月份的价格和平均价格-->
+                                            <div id="trend-example" style=" height: 450px;"></div>
                                         </div>
                                     </div>
                                 </div> <!-- end col -->
@@ -388,10 +389,22 @@
                                         <div class="card-body">
             
                                             <h4 class="mt-0 header-title">Stacked Area Chart</h4>
-                                            <p class="text-muted m-b-30">Display as Stacked Area Chart.</p>
+                                            <div id="change-example" style=" height: 450px;"></div>
             
-                                            <div id="chart-stacked"></div>
+                                        </div>
+                                    </div>
+                                </div> <!-- end col -->
+                            </div> <!-- end row -->
             
+            
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="card m-b-30">
+                                        <div class="card-body">
+
+                                            <h4 class="mt-0 header-title">Large Scale Area Chart</h4>
+                                            <!--大规模数据图-->
+                                            <div id="scale-example" style=" height: 400px;"></div>
                                         </div>
                                     </div>
                                 </div> <!-- end col -->
@@ -403,38 +416,8 @@
                                     <div class="card m-b-30">
                                         <div class="card-body">
             
-                                            <h4 class="mt-0 header-title">Roated Chart</h4>
-                                            <p class="text-muted m-b-30">Display as roated Chart.</p>
-            
-                                            <div id="roated-chart"></div>
-                                        </div>
-                                    </div>
-                                </div> <!-- end col -->
-            
-                                <div class="col-xl-6">
-                                    <div class="card m-b-30">
-                                        <div class="card-body">
-            
-                                            <h4 class="mt-0 header-title">Combine Chart</h4>
-                                            <p class="text-muted m-b-30">Display all kinda charts up in here.</p>
-            
-                                            <div id="combine-chart"></div>
-            
-                                        </div>
-                                    </div>
-                                </div> <!-- end col -->
-                            </div> <!-- end row -->
-            
-            
-                            <div class="row">
-                                <div class="col-xl-6">
-                                    <div class="card m-b-30">
-                                        <div class="card-body">
-            
-                                            <h4 class="mt-0 header-title">Donut Chart</h4>
-                                            <p class="text-muted m-b-30">Display as Donut Chart.</p>
-            
-                                            <div id="donut-chart"></div>
+                                            <h4 class="mt-0 header-title">Sunburst Chart</h4>
+                                            <div id="continuous-example" style=" height: 500px;"></div>
             
                                         </div>
                                     </div>
@@ -444,10 +427,8 @@
                                     <div class="card m-b-30">
                                         <div class="card-body">
             
-                                            <h4 class="mt-0 header-title">Pie Chart</h4>
-                                            <p class="text-muted m-b-30">Display as Pie Chart.</p>
-            
-                                            <div id="pie-chart"></div>
+                                            <h4 class="mt-0 header-title">Radar Chart</h4>
+                                            <div id="radar-example" style=" height: 500px;"></div>
             
                                         </div>
                                     </div>
@@ -487,7 +468,11 @@
         <script src="{% static 'shows/plugins/d3/d3.min.js' %}"></script>
         <script src="{% static 'shows/plugins/c3/c3.min.js' %}"></script>
         <script src="{% static 'shows/vertical/assets/pages/c3-chart-init.js' %}"></script>        
-
+        <script src="{% static 'shows/vertical/assets/pages/c3-chart-trend.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/pages/c3-chart-scale.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/pages/c3-chart-continuous.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/pages/c3-chart-radar.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/pages/c3-chart-change.js' %}"></script>
         <!-- App js -->
         <script src="{% static 'shows/vertical/assets/js/app.js' %}"></script>
 

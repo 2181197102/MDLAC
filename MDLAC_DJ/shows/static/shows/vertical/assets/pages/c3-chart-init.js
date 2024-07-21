@@ -11,7 +11,8 @@
     var ChartC3 = function() {};
 
     ChartC3.prototype.init = function () {
-        //generating chart 
+        //generating chart
+        /*
         c3.generate({
             bindto: '#chart',
             data: {
@@ -88,13 +89,14 @@
                 }
             }
         });
-
+        */
         //stacked chart
+        /*
         c3.generate({
             bindto: '#chart-stacked',
             data: {
                 columns: [
-                    ['Revenue', 130, 120, 150, 140, 160, 150, 130, 120, 150, 140, 160, 150],
+                    ['Revenue', 500, 120, 150, 140, 160, 150, 130, 120, 150, 140, 160, 150],
                     ['Pageview', 200, 130, 90, 240, 130, 220, 200, 130, 90, 240, 130, 220]
                 ],
                 types: {
@@ -108,7 +110,7 @@
                 }
             }
         });
-        
+
         //Donut Chart
         c3.generate({
              bindto: '#donut-chart',
@@ -132,7 +134,7 @@
             	pattern: ['#5985ee', "#ebeff2", '#46cd93', '#4bbbce']
             }
         });
-        
+
         //Pie Chart
         c3.generate({
              bindto: '#pie-chart',
@@ -154,7 +156,7 @@
 		        }
 		    }
         });
-
+        */
     },
     $.ChartC3 = new ChartC3, $.ChartC3.Constructor = ChartC3
 
