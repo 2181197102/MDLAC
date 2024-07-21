@@ -119,7 +119,7 @@ def import_goods():
 
 
 def import_comments():
-    csv_file_path = r'D:\course\intern\MDLAC-master\MDLAC\dataset\100w_comments_part1.csv'
+    csv_file_path = r'D:\course\intern\MDLAC-master\MDLAC\dataset\100w_comments_part1_filtered_2.csv'
 
     df = pd.read_csv(csv_file_path, encoding='utf-8', dtype={'good_ID': str})
 
@@ -132,6 +132,7 @@ def import_comments():
 
     for index, row in df.iterrows():
         good_id_cleaned = str(clean_value(row['good_ID']))  # 确保 good_ID 是字符串类型
+        user_id_cleaned = str(clean_value(row['user_ID']))
         good = JdGood.objects.filter(acid=good_id_cleaned).first()
 
         if good is not None:
@@ -146,7 +147,7 @@ def import_comments():
                 score=clean_value(row['score'], value_type=int),
                 user_level_id=clean_value(row['userLevelId'], value_type=int),
                 user_province=clean_value(row['userProvince']),
-                user_id=clean_value(row['user_ID']),
+                user_id=user_id_cleaned,
                 user_name=clean_value(row['user_name']),
                 score1=clean_value(row['score1'], default=0, value_type=int),
                 score2=clean_value(row['score2'], default=0, value_type=int),

@@ -5,16 +5,6 @@ import pytz
 import random
 from django.db.utils import DataError
 import re
-from transformers import BertTokenizer, BertForTokenClassification
-import torch
-
-# 指定本地路径
-local_model_path = 'D:/course/intern/models/chinese-roberta-wwm-ext/'
-
-# 加载本地的中文RoBERTa-wwm-ext模型和分词器
-tokenizer = BertTokenizer.from_pretrained(local_model_path)
-model = BertForTokenClassification.from_pretrained(local_model_path)
-
 
 def clean_value(value, default=None, value_type=str, max_length=None):
     if pd.isna(value) or value == '#':
@@ -37,7 +27,6 @@ def clean_value(value, default=None, value_type=str, max_length=None):
     except (ValueError, TypeError):
         return default
 
-
 def clean_comment_count(comment_str):
     if '万' in comment_str:
         num_str = comment_str.replace('万', '')
@@ -54,37 +43,107 @@ def clean_comment_count(comment_str):
 
     return int(comment_str)
 
+def parse_product_parameters(parameters_str):
+    # Remove the trailing "更多参数>>"
+    if parameters_str.strip().endswith("更多参数>>"):
+        parameters_str = parameters_str.strip()[:-6]
 
-def process_with_bert(text):
-    # 将文本转化为BERT模型的输入格式
-    inputs = tokenizer(text, return_tensors='pt', truncation=True, padding=True, max_length=512)
+    parameters = {}
 
-    # 获取模型输出
-    with torch.no_grad():
-        outputs = model(**inputs)
+    # Extract brand
+    brand = None
+    if '品牌：' in parameters_str and '商品名称' in parameters_str:
+        brand = parameters_str.split('品牌：')[1].split('商品名称')[0].replace(" ", "")
+    parameters['brand'] = brand
 
-    # 获取预测标签
-    logits = outputs.logits
-    predictions = torch.argmax(logits, dim=-1).squeeze().tolist()
+    # Extract control method
+    control_method = None
+    if '操控方式：' in parameters_str and '能效等级' in parameters_str:
+        control_method = parameters_str.split('操控方式：')[1].split('能效等级')[0].strip()
+    parameters['control_method'] = control_method
 
-    # 将预测标签映射回文本
-    tokens = tokenizer.convert_ids_to_tokens(inputs['input_ids'][0])
-    return tokens, predictions
+    # Extract energy efficiency
+    energy_efficiency = None
+    if '能效等级：' in parameters_str:
+        energy_efficiency = parameters_str.split('能效等级：')[1][:4].strip()
+    parameters['energy_efficiency'] = energy_efficiency
 
+    # Extract inverter or not
+    inverter_or_not = None
+    if '变频/定频：' in parameters_str:
+        inverter_or_not = parameters_str.split('变频/定频：')[1][:2].strip()
+    parameters['inverter_or_not'] = inverter_or_not
 
-def extract_entities(text):
-    tokens, predictions = process_with_bert(text)
-    entities = {}
-    for token, prediction in zip(tokens, predictions):
-        # 根据预测标签进行实体提取
-        # 这里假设实体标签为0是实体类型
-        if prediction == 0:
-            entities[token] = True
-    return entities
+    # Extract other parameters
+    other_parameters = None
+    if '变频/定频：' in parameters_str:
+        other_parameters = parameters_str.split('变频/定频：')[1][2:].strip()
+    parameters['other_parameters'] = other_parameters
 
+    return parameters
+
+def parse_main_body(main_body_str):
+    main_body = {}
+
+    # Extract applicable area
+    if '适用面积' in main_body_str:
+        # Split the string at '适用面积' and take the part after it
+        applicable_area_split = main_body_str.split('适用面积')[1].strip()
+
+        # Extract content until the next Chinese character
+        applicable_area = re.split(r'[\u4e00-\u9fff]', applicable_area_split)[0].strip()
+        main_body['applicable_area'] = applicable_area
+
+    return main_body
+
+def parse_specifications(specifications_str):
+    specifications = {}
+
+    # Extract inner machine dimensions
+    if '内机机身尺寸' in specifications_str:
+        inner_machine_split = specifications_str.split('内机机身尺寸')[1].strip()
+        inner_machine_dimensions = ''.join(re.split(r'[\u4e00-\u9fff]', inner_machine_split, maxsplit=4)[:4]).strip()
+        specifications['inner_machine_dimensions'] = inner_machine_dimensions
+
+    # Extract outer machine dimensions
+    if '外机尺寸' in specifications_str:
+        outer_machine_split = specifications_str.split('外机尺寸')[1].strip()
+        outer_machine_dimensions = ''.join(re.split(r'[\u4e00-\u9fff]', outer_machine_split, maxsplit=4)[:4]).strip()
+        specifications['outer_machine_dimensions'] = outer_machine_dimensions
+
+    return specifications
+
+def parse_features(features_str):
+    features = {}
+
+    # Extract cooling power
+    if '制冷功率' in features_str:
+        cooling_power_split = features_str.split('制冷功率')[1].strip()
+        cooling_power = re.split(r'[\u4e00-\u9fff]', cooling_power_split, maxsplit=1)[0].strip()
+        features['cooling_power'] = cooling_power
+
+    # Extract heating power
+    if '制热功率' in features_str:
+        heating_power_split = features_str.split('制热功率')[1].strip()
+        heating_power = re.split(r'[\u4e00-\u9fff]', heating_power_split, maxsplit=1)[0].strip()
+        features['heating_power'] = heating_power
+
+    # Extract max noise
+    if '最大噪音' in features_str:
+        max_noise_split = features_str.split('最大噪音')[1].strip()
+        max_noise = re.split(r'[\u4e00-\u9fff]', max_noise_split, maxsplit=1)[0].strip()
+        features['max_noise'] = max_noise
+
+    # Extract comfort performance energy efficiency ratio
+    if '舒适性能能效比' in features_str:
+        comfort_ratio_split = features_str.split('舒适性能能效比')[1].strip()
+        comfort_ratio = re.split(r'[\u4e00-\u9fff]', comfort_ratio_split, maxsplit=1)[0].strip()
+        features['comfort_performance_energy_efficiency_ratio'] = comfort_ratio
+
+    return features
 
 def import_details():
-    csv_file_path = 'D:\\course\\intern\\MDLAC-master\\MDLAC\\dataset\\details.csv'
+    csv_file_path = r'D:\course\intern\MDLAC-master\MDLAC\dataset\details_filtered_2.csv'
 
     df = pd.read_csv(csv_file_path, encoding='utf-8')
 
@@ -97,48 +156,37 @@ def import_details():
         goods = JdGood.objects.filter(acid=acid).first()
 
         if goods is None:
-            print(f"Skipping row {index} due to missing good for 商品ID: {acid}")
-            continue
+            # Try appending '0', '00', '000', '22', '01' to the acid
+            alternative_ids = [f"{acid}0", f"{acid}00", f"{acid}000", f"{acid}0000", f"{acid}22", f"{acid}01"]
+            for alt_id in alternative_ids:
+                goods = JdGood.objects.filter(acid=alt_id).first()
+                if goods is not None:
+                    acid = alt_id  # Update acid to the matched alternative ID
+                    break
 
-        product_parameters_str = clean_value(row['商品参数'], default='')
-        main_body_str = clean_value(row['主体'], default='')
-        specifications_str = clean_value(row['规格'], default='')
-        features_str = clean_value(row['功能'], default='')
+            if goods is None:
+                print(f"Skipping row {index} due to missing good for 商品ID: {acid}")
+                continue
 
-        # 使用BERT模型提取信息
-        product_parameters = extract_entities(product_parameters_str)
-        main_body = extract_entities(main_body_str)
-        specifications = extract_entities(specifications_str)
-        features = extract_entities(features_str)
+        product_parameters = parse_product_parameters(clean_value(row['商品参数'], default=''))
+        main_body = parse_main_body(clean_value(row['主体'], default=''))
+        specifications = parse_specifications(clean_value(row['规格'], default=''))
+        features = parse_features(clean_value(row['功能'], default=''))
+        comment_count = clean_comment_count(clean_value(row['商品评价数'], default='0', value_type=str))
 
-        # 解析BERT模型输出并填充默认值
         defaults = {
-            'brand': clean_value(product_parameters.get('brand', ''), max_length=100),
-            'control_method': clean_value(product_parameters.get('control_method', ''), max_length=50),
-            'energy_efficiency': clean_value(product_parameters.get('energy_efficiency', ''), max_length=50),
-            'inverter_or_not': clean_value(product_parameters.get('inverter_or_not', ''), max_length=20),
-            'type': clean_value(product_parameters.get('type', ''), max_length=50),
-            'horse_power': clean_value(product_parameters.get('horse_power', ''), max_length=50),
-            'cold_warm_type': clean_value(product_parameters.get('cold_warm_type', ''), max_length=50),
-            'series': clean_value(main_body.get('series', ''), max_length=100),
-            'applicable_area': clean_value(main_body.get('applicable_area', ''), max_length=50),
-            'certification_model': clean_value(main_body.get('certification_model', ''), max_length=100),
-            'product_model': clean_value(main_body.get('product_model', ''), max_length=100),
-            'panel_material': clean_value(main_body.get('panel_material', ''), max_length=100),
-            'voltage_frequency': clean_value(specifications.get('voltage_frequency', ''), max_length=50),
-            'inner_machine_dimensions': clean_value(specifications.get('inner_machine_dimensions', ''), max_length=100),
-            'outer_machine_dimensions': clean_value(specifications.get('outer_machine_dimensions', ''), max_length=100),
-            'inner_machine_weight': clean_value(specifications.get('inner_machine_weight', ''), max_length=50),
-            'outer_machine_weight': clean_value(specifications.get('outer_machine_weight', ''), max_length=50),
-            'refrigerant': clean_value(specifications.get('refrigerant', ''), max_length=50),
-            'circulation_air_volume': clean_value(features.get('circulation_air_volume', ''), max_length=50),
-            'cooling_power': clean_value(features.get('cooling_power', ''), max_length=50),
-            'swing_mode': clean_value(features.get('swing_mode', ''), max_length=50),
-            'max_noise': clean_value(features.get('max_noise', ''), max_length=50),
-            'heating_capacity': clean_value(features.get('heating_capacity', ''), max_length=50),
-            'cooling_capacity': clean_value(features.get('cooling_capacity', ''), max_length=50),
-            'sleep_mode': clean_value(features.get('sleep_mode', ''), max_length=50),
-            'function_description': clean_value(features.get('function_description', '')),
+            'brand': clean_value(product_parameters.get('brand'), max_length=100),
+            'control_method': clean_value(product_parameters.get('control_method'), max_length=50),
+            'energy_efficiency': clean_value(product_parameters.get('energy_efficiency'), max_length=50),
+            'inverter_or_not': clean_value(product_parameters.get('inverter_or_not'), max_length=20),
+            'other_parameters': clean_value(product_parameters.get('other_parameters'), max_length=255),
+            'applicable_area': clean_value(main_body.get('applicable_area'), max_length=50),
+            'inner_machine_dimensions': clean_value(specifications.get('inner_machine_dimensions'), max_length=100),
+            'outer_machine_dimensions': clean_value(specifications.get('outer_machine_dimensions'), max_length=100),
+            'cooling_power': clean_value(features.get('cooling_power'), max_length=50),
+            'heating_power': clean_value(features.get('heating_power'), max_length=50),
+            'max_noise': clean_value(features.get('max_noise'), max_length=50),
+            'comfort_performance_energy_efficiency_ratio': clean_value(features.get('comfort_performance_energy_efficiency_ratio'), max_length=50),
         }
 
         try:
@@ -149,8 +197,8 @@ def import_details():
                 updated_rows += 1
 
             # 更新关联的good的comment_count
-            if goods.comment_count != clean_comment_count(clean_value(row['商品评价数'], default='0', value_type=str)):
-                goods.comment_count = clean_comment_count(clean_value(row['商品评价数'], default='0', value_type=str))
+            if goods.comment_count == 0:
+                goods.comment_count = comment_count
                 goods.save(update_fields=['comment_count'])
 
         except DataError as e:
@@ -161,3 +209,4 @@ def import_details():
             print(f"Processed {index + 1}/{total_rows} rows. Inserted: {inserted_rows}, Updated: {updated_rows}")
 
     print(f"Total rows: {total_rows}, Inserted rows: {inserted_rows}, Updated rows: {updated_rows}")
+

@@ -28,42 +28,24 @@ class JdDetail(models.Model):
     goods = models.OneToOneField(JdGood, on_delete=models.CASCADE, related_name='details')
 
     # 商品参数
-    brand = models.CharField(max_length=100, null=True, blank=True)
-    control_method = models.CharField(max_length=50, null=True, blank=True)
-    energy_efficiency = models.CharField(max_length=50, null=True, blank=True)
-    inverter_or_not = models.CharField(max_length=20, null=True, blank=True)
-    type = models.CharField(max_length=50, null=True, blank=True)
-    horse_power = models.CharField(max_length=50, null=True, blank=True)
-    cold_warm_type = models.CharField(max_length=50, null=True, blank=True)
+    brand = models.CharField(max_length=100, null=True, blank=True)  # 品牌
+    control_method = models.CharField(max_length=50, null=True, blank=True)  # 操控方式
+    energy_efficiency = models.CharField(max_length=50, null=True, blank=True)  # 能效等级
+    inverter_or_not = models.CharField(max_length=20, null=True, blank=True)  # 变频/定频
+    other_parameters = models.CharField(max_length=255, null=True, blank=True)  # 其他参数
 
     # 主体信息
-    series = models.CharField(max_length=100, null=True, blank=True)
-    applicable_area = models.CharField(max_length=50, null=True, blank=True)
-    certification_model = models.CharField(max_length=100, null=True, blank=True)
-    product_model = models.CharField(max_length=100, null=True, blank=True)
-    panel_material = models.CharField(max_length=100, null=True, blank=True)  # 新增字段
+    applicable_area = models.CharField(max_length=50, null=True, blank=True)  # 适用面积
 
     # 规格
-    voltage_frequency = models.CharField(max_length=50, null=True, blank=True)
-    inner_machine_dimensions = models.CharField(max_length=100, null=True, blank=True)
-    outer_machine_dimensions = models.CharField(max_length=100, null=True, blank=True)
-    inner_machine_weight = models.CharField(max_length=50, null=True, blank=True)
-    outer_machine_weight = models.CharField(max_length=50, null=True, blank=True)
-    refrigerant = models.CharField(max_length=50, null=True, blank=True)
+    inner_machine_dimensions = models.CharField(max_length=100, null=True, blank=True)  # 内机机身尺寸
+    outer_machine_dimensions = models.CharField(max_length=100, null=True, blank=True)  # 外机尺寸
 
     # 功能
-    circulation_air_volume = models.CharField(max_length=50, null=True, blank=True)
-    cooling_power = models.CharField(max_length=50, null=True, blank=True)
-    swing_mode = models.CharField(max_length=50, null=True, blank=True)
-    max_noise = models.CharField(max_length=50, null=True, blank=True)
-    heating_capacity = models.CharField(max_length=50, null=True, blank=True)
-    cooling_capacity = models.CharField(max_length=50, null=True, blank=True)
-    sleep_mode = models.CharField(max_length=50, null=True, blank=True)
-    function_description = models.TextField(null=True, blank=True)  # 新增字段
-
-    purification_type = models.CharField(max_length=100, null=True, blank=True)  # 新增字段
-    launch_date = models.DateField(null=True, blank=True)  # 新增字段
-
+    cooling_power = models.CharField(max_length=50, null=True, blank=True)  # 制冷功率
+    heating_power = models.CharField(max_length=50, null=True, blank=True)  # 制热功率
+    max_noise = models.CharField(max_length=50, null=True, blank=True)  # 最大噪音
+    comfort_performance_energy_efficiency_ratio = models.CharField(max_length=50, null=True, blank=True)  # 舒适性能能效比
     class Meta:
         db_table = 'jd_details'
         verbose_name = 'JD 商品详情'
