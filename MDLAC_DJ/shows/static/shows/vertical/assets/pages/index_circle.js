@@ -39,14 +39,14 @@ document.addEventListener('DOMContentLoaded', function () {
           show: false
         },
         data: [
-          { value: 4390, name: '格力' },
-          { value: 2534, name: '美的' },
-          { value: 2446, name: '海尔' },
-          { value: 2156, name: '海信'},
-          { value: 2043, name: '奥克斯' },
-          { value: 1935, name: '小米' },
-          { value: 1831, name: '志高' },
-          { value: 1102, name: '荣事' },
+          { value: 5872, name: '格力' },
+          { value: 2737, name: '美的' },
+          { value: 3278, name: '海尔' },
+          { value: 2350, name: '海信'},
+          { value: 2536, name: '奥克斯' },
+          { value: 2588, name: '小米' },
+          { value: 2236, name: '志高' },
+          { value: 1593, name: '荣事达' },
             // { value: , name: '其他' },
         ]
       }
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   myChart.setOption(option);
   myChart.on('click', function (params) {
-                  alert((params.name));
+                  // alert((params.name));
                   // window.open('https://www.baidu.com/s?wd=' + encodeURIComponent(params.name));
                   //在当前页面跳转
                   window.location.href = 'http://127.0.0.1:8000/shows/calendar/' + encodeURIComponent(params.name);
