@@ -1,10 +1,14 @@
 import csv
 from collections import defaultdict
 
-from django.shortcuts import render
+from django.contrib import messages
+from django.forms import forms
+from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
-from .models import JdGood
+from .models import JdGood, Article
 from django.http import JsonResponse
+from .forms import ArticleForm
+
 
 # Create your views here.
 
@@ -21,12 +25,14 @@ def jdgood_list(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, "shows/jdgood_list.html", {'page_obj': page_obj, 'query': query})
+
+
 def search(request):
-    answer =defaultdict(int)
+    answer = defaultdict(int)
     filter_answer = JdGood.objects.all()
     for temp in filter_answer:
         answer[temp.brand] += temp.price
-    return render(request, "shows/search.html",{'n1':answer})
+    return render(request, "shows/search.html", {'n1': answer})
 
 
 # tables-responsive.html
@@ -82,10 +88,6 @@ def ui_progressbars(request):
 
 def ui_pagination(request):
     return render(request, "shows/vertical/ui-pagination.html")
-
-
-def ui_popover_tooltips(request):
-    return render(request, "shows/vertical/ui-popover-tooltips.html")
 
 
 def ui_spinner(request):
@@ -168,8 +170,39 @@ def form_advanced(request):
     return render(request, "shows/vertical/form-advanced.html")
 
 
+def ui_popover_tooltips(request):
+    articles = Article.objects.all()
+    return render(request, 'shows/vertical/ui-popover-tooltips.html', {'articles': articles})
+
+
 def form_editors(request):
-    return render(request, "shows/vertical/form-editors.html")
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        content = request.POST.get('content')
+        content = content[3:-4]
+        # 创建新的 Article 对象
+        Article.objects.create(title=title, content=content)
+
+        # 获取所有文章对象
+        articles = Article.objects.all()
+        print(articles)  # 调试输出
+
+        # 传递文章列表到模板中，并重新加载页面
+        return render(request, 'shows/vertical/ui-popover-tooltips.html', {'articles': articles})
+    else:
+        return render(request, 'shows/vertical/form-editors.html')
+
+
+def delete_article(request):
+    article_id = request.POST.get('article_id')
+    try:
+        article = Article.objects.get(id=article_id)
+        article.delete()
+        messages.success(request, 'Article deleted successfully.')
+    except Article.DoesNotExist:
+        messages.error(request, 'Article not found.')
+
+    return redirect('shows:ui_popover_tooltips') # 重定向到文章列表页面或其他适当的页面
 
 
 def form_uploads(request):

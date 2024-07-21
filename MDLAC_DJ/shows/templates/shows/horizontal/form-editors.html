@@ -390,8 +390,12 @@
                                     plugin that makes it easy to create simple, beautiful wysiwyg editors
                                     with the help of wysihtml5 and Twitter Bootstrap.</p>
 
-                                <form method="post">
+                                <form id="myForm" method="post" action="#">
+                                    {% csrf_token %}
                                     <textarea id="elm1" name="area"></textarea>
+                                    <div style="text-align: center;">
+                                        <button type="submit" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px;">send</button>
+                                    </div>
                                 </form>
 
                             </div>
