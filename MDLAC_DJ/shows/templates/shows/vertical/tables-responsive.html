@@ -114,8 +114,13 @@
                                 </li>
                             </ul>
                         </li>
-                        <li>
-                            <a href="{% url "shows:calendar" %}" class="waves-effect"><i class="dripicons-calendar"></i><span> 日历图 </span></a>
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-calendar"></i><span> 词云库 </span><span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li style="background: linear-gradient(45deg,#ddba62, rgba(239,239,236,0.87), #dab75f);">
+                                    <a href="{% url "shows:calendar" %}"><strong>热点词云</strong></a>
+                                </li>
+                            </ul>
                         </li>
 
                         <li class="has_sub">
