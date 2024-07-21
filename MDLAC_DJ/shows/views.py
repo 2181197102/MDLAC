@@ -7,7 +7,6 @@ from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from .models import JdGood, Article
 from django.http import JsonResponse
-from .forms import ArticleForm
 
 
 # Create your views here.
