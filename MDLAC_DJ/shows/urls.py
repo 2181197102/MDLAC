@@ -48,6 +48,7 @@ urlpatterns = [
     path("form_summernote/", form_summernote, name='form_summernote'),
     path("form_xeditable/", form_xeditable, name='form_xeditable'),
     path("calendar/", calendar, name='calendar'),
+    path("calendar/<str:brand>", calendar_ciyun, name='calendar'),   # 网址后面带参数
     path("charts_morris/", charts_morris, name='charts_morris'),
     path("charts_chartist/", charts_chartist, name='charts_chartist'),
     path("charts_chartjs/", charts_chartjs, name='charts_chartjs'),

@@ -2,13 +2,13 @@ import csv
 import json
 from collections import defaultdict
 import requests
-
+import jieba
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.forms import forms
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
-from .models import JdGood, Article, JdComment
+from .models import JdGood, Article, JdComment, JdDetail
 from django.http import JsonResponse
 
 
@@ -59,21 +59,8 @@ def submit(request):
         return JsonResponse({'message': '数据已接收', 'answer': answer})
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
-
-from django.shortcuts import redirect
-
-
-@login_required
-
 def ui_alerts(request):
     user = request.user
-    role_ID = user.role_ID.role_ID if user.role_ID else None
-
-    # 检查用户角色是否允许访问该页面
-    if role_ID not in ['102', '103']:
-        messages.error(request, "您访问的功能是会员专属，请先充值会员。")
-        return redirect('index:wallet')  # 重定向到充值页面
-
     answer = ""
     if request.method == 'POST':
         content = request.POST.get('content', '')
@@ -94,7 +81,7 @@ def ui_alerts(request):
             "messages": [
                 {"role": "system", "content": "作为一个空调领域的专家，你将仔细而专业地回答用户的问题。"
                                               "你知道有一个公司叫美的利公司，它是一个空调大数据分析公司，如果有人问你这个公司是否成功，请你立即给出肯定的回答！"
-                                              "但是如果没有人问你美的利公司，请你不要提及它。"},
+                                               "但是如果没有人问你美的利公司，请你不要提及它。"},
                 {"role": "user", "content": content}
             ]
         }
@@ -186,14 +173,6 @@ def ui_typography(request):
 
 
 def ui_grid(request):
-    user = request.user
-    role_ID = user.role_ID.role_ID if user.role_ID else None
-
-    # 检查用户角色是否允许访问该页面
-    if role_ID not in ['102', '103']:
-        messages.error(request, "您访问的功能是会员专属，请先充值会员。")
-        return redirect('index:wallet')  # 重定向到充值页面
-
     context = {}
     if request.method == 'GET':
         user = request.user
@@ -311,7 +290,7 @@ def delete_article(request):
     except Article.DoesNotExist:
         messages.error(request, 'Article not found.')
 
-    return redirect('shows:ui_popover_tooltips')  # 重定向到文章列表页面或其他适当的页面
+    return redirect('shows:ui_popover_tooltips') # 重定向到文章列表页面或其他适当的页面
 
 
 def form_uploads(request):
@@ -331,6 +310,29 @@ def form_xeditable(request):
 
 
 def calendar(request):
+    # 联表查询
+    jd_details = JdDetail.objects.select_related('goods').filter(brand__in=['格力（GREE）','格力(GREE)', '格力GREE', '格力'])
+    print(len(jd_details))
+    # 提取所有关联的 JdGood 对象的 name 字段
+    names = [detail.goods.name for detail in jd_details]
+    wordlist = jieba.cut_for_search(''.join(names))
+    # print(wordlist)
+    # 设置停用词
+    stop_words = ['空调']
+    ciyun_words = ''
+    result = defaultdict(int)
+
+    # 过滤
+    for word in wordlist:
+        if word not in stop_words and len(word) > 1:
+            result[word] += 1
+    # 选出前100个词
+    result = dict(sorted(result.items(), key=lambda x: x[1], reverse=True)[:100])
+    # print(result)
+    # 建立一个字典列表，每个字典里面有两个键值对，一个是 name，一个是 value
+    data = [{'name': k, 'value': v} for k, v in result.items()]
+    print(data)
+
     context = {}
     if request.method == 'GET':
         user = request.user
@@ -338,9 +340,21 @@ def calendar(request):
             'username': user.username,
             'nickname': user.nickname,
             'role_ID': user.role_ID.role_ID if user.role_ID else None,
+            'data': data
         }
     return render(request, "shows/vertical/calendar.html", context)
 
+def calendar_ciyun(request, brand):
+    context = {}
+    if request.method == 'GET':
+        user = request.user
+        context = {
+            'username': user.username,
+            'nickname': user.nickname,
+            'role_ID': user.role_ID.role_ID if user.role_ID else None,
+            'brand': brand,
+        }
+    return render(request, "shows/vertical/calendar.html", context)
 
 def charts_morris(request):
     context = {}
@@ -367,14 +381,6 @@ def charts_flot(request):
 
 
 def charts_c3(request):
-    user = request.user
-    role_ID = user.role_ID.role_ID if user.role_ID else None
-
-    # 检查用户角色是否允许访问该页面
-    if role_ID not in ['102', '103']:
-        messages.error(request, "您访问的功能是会员专属，请先充值会员。")
-        return redirect('index:wallet')  # 重定向到充值页面
-
     context = {}
     if request.method == 'GET':
         user = request.user
@@ -538,8 +544,6 @@ def get_csv_data(request):
     }
     return JsonResponse(response_data)
 
-
-
 def get_csv_data_comments(request):
     try:
         # 从数据库中获取数据，并按照某个字段排序（例如 date）
@@ -588,4 +592,3 @@ def get_csv_data_comments(request):
         import traceback
         traceback.print_exc()
         return JsonResponse({'error': str(e)}, status=500)
-

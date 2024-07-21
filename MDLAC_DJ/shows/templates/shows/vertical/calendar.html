@@ -295,8 +295,12 @@
                             <!-- end page title -->
 
                             <div class="row">
-                                <div id="calendar" style="width: 1000px;height: 550px"></div>
-                                
+                                <div id="wordcloud_1" class="col-xl-6" style="width: 800px;height: 400px"></div>
+                                <script>
+                                    var brand = "{{ brand | safe}}";
+                                </script>
+<!--                                <div id="wordcloud_1" class="col-xl-6" style="width: 1000px;height: 550px"></div>-->
+                                <div id="wordcloud_2" class="col-xl-6" style="width: 800px;height: 400px"></div>
                             </div>           
 
                         </div><!-- container fluid -->
@@ -317,7 +321,12 @@
 
 
         <!-- jQuery  -->
-        <script src="{% static 'shows/plugins/chartist/js/echarts.js' %}"></script>
+<!--        <script src="{% static 'shows/plugins/chartist/js/echart3.js' %}"></script>-->
+<!--        <script src="{% static 'shows/plugins/chartist/js/echarts-wordcloud.js' %}"></script>-->
+        <script src="{% static 'shows/plugins/chartist/js/echarts_380.js' %}"></script>
+        <script src="{% static 'shows/plugins/chartist/js/echarts-wordcloud.min.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/pages/ciyun.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/pages/ciyun_2.js' %}"></script>
         <script src="{% static 'shows/vertical/assets/pages/calendar.js' %}"></script>
         <script src="{% static 'shows/vertical/assets/js/jquery.min.js' %}"></script>
         <script src="{% static 'shows/vertical/assets/js/bootstrap.bundle.min.js' %}"></script>
