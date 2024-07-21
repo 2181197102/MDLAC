@@ -5,7 +5,8 @@ from .models import User, Role
 
 from django.contrib import messages
 from .models import User
-
+from shows.models import JdGood
+from shows.models import JdDetail
 
 def index(request):
     print("Rendering index page")
@@ -13,6 +14,28 @@ def index(request):
     if request.method == 'GET':
         user.username = user.username
         print(user.username)
+
+    # brands = JdDetail.objects.values_list('brand', flat=True).distinct()
+    # print(len(brands))
+    # # 提取品牌列的所有内容
+    # brands = [str(brand) for brand in JdDetail.objects.values_list('brand', flat=True)]
+    # 初始化一个字典来统计品牌数量
+    # brand_counts = {}
+    # print(brands)
+    # 统计每个品牌的数量
+    # for brand in brands:
+    #     # 检查品牌是否在字典中
+    #     if brand in brand_counts:
+    #         brand_counts[brand] += 1
+    #     else:
+    #         brand_counts[brand] = 1
+    # 打印每个品牌和其出现的次数
+    # for brand, count in brand_counts.items():
+    #     print(f"{brand}: {count}")
+    # 根据品牌数量排序
+    # sorted_brand_counts = sorted(brand_counts.items(), key=lambda x: x[1], reverse=True)
+    # print(sorted_brand_counts)
+
     context = {
         'username': user.username,
         'nickname': user.nickname,
