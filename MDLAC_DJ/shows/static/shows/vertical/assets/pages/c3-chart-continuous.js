@@ -4,108 +4,90 @@ var option_continuous;
 
 var data_continuous = [
   {
-    name: 'Grandpa',
+    name: '美的',
     children: [
       {
-        name: 'Uncle Leo',
-        value: 15,
+        name: '评论大于5000',
+        value: 2690,
         children: [
           {
-            name: 'Cousin Jack',
-            value: 2
+            name: '价格大于5000',
+            value: 1050,
+            children: [{
+              name: '好评数',
+              value: 800
+            }]
           },
           {
-            name: 'Cousin Mary',
-            value: 5,
-            children: [
-              {
-                name: 'Jackson',
-                value: 2
-              }
-            ]
-          },
-          {
-            name: 'Cousin Ben',
-            value: 4
-          }
-        ]
-      },
-      {
-        name: 'Aunt Jane',
-        children: [
-          {
-            name: 'Cousin Kate',
-            value: 4
-          }
-        ]
-      },
-      {
-        name: 'Father',
-        value: 10,
-        children: [
-          {
-            name: 'Me',
-            value: 5,
-            itemStyle: {
-              color: 'red'
-            }
-          },
-          {
-            name: 'Brother Peter',
-            value: 1
+            name: '价格大于5000',
+            value: 1640
           }
         ]
       }
     ]
   },
   {
-    name: 'Mike',
-    children: [
+    name: '格力',
+    children:  [
       {
-        name: 'Uncle Dan',
+        name: '评论大于5000',
+        value: 1700,
         children: [
           {
-            name: 'Cousin Lucy',
-            value: 3
-          },
-          {
-            name: 'Cousin Luck',
-            value: 4,
-            children: [
-              {
-                name: 'Nephew',
-                value: 2
-              }
-            ]
+            name: '价格大于5000',
+            value: 1190
           }
         ]
       }
     ]
   },
   {
-    name: 'Nancy',
+    name: '海尔',
     children: [
       {
-        name: 'Uncle Nike',
+        name: '评论大于5000',
+        value: 1113,
         children: [
           {
-            name: 'Cousin Betty',
-            value: 1
-          },
-          {
-            name: 'Cousin Jenny',
-            value: 2
+            name: '价格大于5000',
+            value: 328
           }
         ]
       }
+    ]
+  },
+  {
+    name: '小米',
+    children: [
+      {
+        name: '评论大于5000',
+        value: 1158,
+        children: [
+          {
+            name: '价格大于5000'
+          },
+          {
+            name: '五星好评率',
+            value: 1038,
+            children:[
+              {
+                name:"好评数",
+                value:700
+              }
+            ]
+
+          }
+        ]
+      },
     ]
   }
+
 ];
 option_continuous = {
   visualMap: {
     type: 'continuous',
     min: 0,
-    max: 10,
+    max: 2690, // 修改为数据中的最大值
     inRange: {
       color: ['#2F93C8', '#AEC48F', '#FFDB5C', '#F98862']
     }
