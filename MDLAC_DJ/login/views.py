@@ -39,6 +39,7 @@ def index(request):
     context = {
         'username': user.username,
         'nickname': user.nickname,
+        'role_ID': user.role_ID
     }
     return render(request, 'index/index.html', context)
 

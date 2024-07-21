@@ -89,18 +89,26 @@ def ui_alerts(request):
         print("Answer:", answer)
         return JsonResponse({'message': '数据已接收', 'answer': answer})
 
-    else :
+    else:
         user = request.user
-        username = user.username
         context = {
-            'user': username,
+            'username': user.username,
             'nickname': user.nickname,
+            'role_ID': user.role_ID
         }
     return render(request, "shows/vertical/ui-alerts.html", context)
 
 
 def ui_badge(request):
-    return render(request, "shows/vertical/ui-badge.html")
+    context = {}
+    if request.method == 'GET':
+        user = request.user
+        context = {
+            'username': user.username,
+            'nickname': user.nickname,
+            'role_ID': user.role_ID
+        }
+    return render(request, "shows/vertical/ui-badge.html", context)
 
 
 def ui_buttons(request):
@@ -108,7 +116,15 @@ def ui_buttons(request):
 
 
 def ui_cards(request):
-    return render(request, "shows/vertical/ui-cards.html")
+    context = {}
+    if request.method == 'GET':
+        user = request.user
+        context = {
+            'username': user.username,
+            'nickname': user.nickname,
+            'role_ID': user.role_ID
+        }
+    return render(request, "shows/vertical/ui-cards.html", context)
 
 
 def ui_dropdowns(request):
@@ -156,7 +172,15 @@ def ui_typography(request):
 
 
 def ui_grid(request):
-    return render(request, "shows/vertical/ui-grid.html")
+    context = {}
+    if request.method == 'GET':
+        user = request.user
+        context = {
+            'username': user.username,
+            'nickname': user.nickname,
+            'role_ID': user.role_ID,
+        }
+    return render(request, "shows/vertical/ui-grid.html", context)
 
 
 def advanced_alertify(request):
@@ -221,7 +245,16 @@ def form_advanced(request):
 
 def ui_popover_tooltips(request):
     articles = Article.objects.all()
-    return render(request, 'shows/vertical/ui-popover-tooltips.html', {'articles': articles})
+    context = {}
+    if request.method == 'GET':
+        user = request.user
+        context = {
+            'username': user.username,
+            'nickname': user.nickname,
+            'role_ID': user.role_ID,
+            'articles': articles
+        }
+    return render(request, 'shows/vertical/ui-popover-tooltips.html', context)
 
 
 def form_editors(request):
@@ -238,7 +271,13 @@ def form_editors(request):
         # 传递文章列表到模板中，并重新加载页面
         return redirect('shows:ui_popover_tooltips')
     else:
-        return render(request, 'shows/vertical/form-editors.html')
+        user = request.user
+        context = {
+            'username': user.username,
+            'nickname': user.nickname,
+            'role_ID': user.role_ID
+        }
+        return render(request, 'shows/vertical/form-editors.html', context)
 
 
 def delete_article(request):
@@ -270,11 +309,27 @@ def form_xeditable(request):
 
 
 def calendar(request):
-    return render(request, "shows/vertical/calendar.html")
+    context = {}
+    if request.method == 'GET':
+        user = request.user
+        context = {
+            'username': user.username,
+            'nickname': user.nickname,
+            'role_ID': user.role_ID,
+        }
+    return render(request, "shows/vertical/calendar.html", context)
 
 
 def charts_morris(request):
-    return render(request, "shows/vertical/charts-morris.html")
+    context = {}
+    if request.method == 'GET':
+        user = request.user
+        context = {
+            'username': user.username,
+            'nickname': user.nickname,
+            'role_ID': user.role_ID,
+        }
+    return render(request, "shows/vertical/charts-morris.html", context)
 
 
 def charts_chartist(request):
@@ -290,7 +345,15 @@ def charts_flot(request):
 
 
 def charts_c3(request):
-    return render(request, "shows/vertical/charts-c3.html")
+    context = {}
+    if request.method == 'GET':
+        user = request.user
+        context = {
+            'username': user.username,
+            'nickname': user.nickname,
+            'role_ID': user.role_ID,
+        }
+    return render(request, "shows/vertical/charts-c3.html", context)
 
 
 def charts_other(request):
@@ -302,11 +365,27 @@ def tables_basic(request):
 
 
 def tables_datatable(request):
-    return render(request, "shows/vertical/tables-datatable.html")
+    context = {}
+    if request.method == 'GET':
+        user = request.user
+        context = {
+            'username': user.username,
+            'nickname': user.nickname,
+            'role_ID': user.role_ID,
+        }
+    return render(request, "shows/vertical/tables-datatable.html", context)
 
 
 def tables_responsive(request):
-    return render(request, "shows/vertical/tables-responsive.html")
+    context = {}
+    if request.method == 'GET':
+        user = request.user
+        context = {
+            'username': user.username,
+            'nickname': user.nickname,
+            'role_ID': user.role_ID,
+        }
+    return render(request, "shows/vertical/tables-responsive.html", context)
 
 
 def tables_editable(request):
@@ -314,7 +393,15 @@ def tables_editable(request):
 
 
 def maps_google(request):
-    return render(request, "shows/vertical/maps-google.html")
+    context = {}
+    if request.method == 'GET':
+        user = request.user
+        context = {
+            'username': user.username,
+            'nickname': user.nickname,
+            'role_ID': user.role_ID,
+        }
+    return render(request, "shows/vertical/maps-google.html", context)
 
 
 def maps_vector(request):
@@ -342,7 +429,15 @@ def pages_500(request):
 
 
 def extras_pricing(request):
-    return render(request, "shows/vertical/extras-pricing.html")
+    context = {}
+    if request.method == 'GET':
+        user = request.user
+        context = {
+            'username': user.username,
+            'nickname': user.nickname,
+            'role_ID': user.role_ID,
+        }
+    return render(request, "shows/vertical/extras-pricing.html", context)
 
 
 def extras_invoice(request):
@@ -354,7 +449,15 @@ def extras_timeline(request):
 
 
 def extras_faqs(request):
-    return render(request, "shows/vertical/extras-faqs.html")
+    context = {}
+    if request.method == 'GET':
+        user = request.user
+        context = {
+            'username': user.username,
+            'nickname': user.nickname,
+            'role_ID': user.role_ID,
+        }
+    return render(request, "shows/vertical/extras-faqs.html", context)
 
 
 def extras_maintenance(request):
