@@ -39,77 +39,79 @@
 
             <!-- ========== Left Sidebar Start ========== -->
             <div class="left side-menu">
-            <button type="button" class="button-menu-mobile button-menu-mobile-topbar open-left waves-effect">
-                <i class="mdi mdi-close"></i>
-            </button>
+                <button type="button" class="button-menu-mobile button-menu-mobile-topbar open-left waves-effect">
+                    <i class="mdi mdi-close"></i>
+                </button>
 
-            <div class="left-side-logo d-block d-lg-none">
-                <div class="text-center">
-                    
-                    <a href="{% url 'index' %}" class="logo"><img src="{% static 'shows/vertical/assets/images/logo_dark.png' %}" height="20" alt="logo"></a>
+                <div class="left-side-logo d-block d-lg-none">
+                    <div class="text-center">
+
+                        <a href="{% url 'index' %}" class="logo"><img src="{% static 'shows/vertical/assets/images/logo_dark.png' %}" height="20" alt="logo"></a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="sidebar-inner slimscrollleft">
-            <div id="sidebar-menu">
-                <ul>
-                    <li class="menu-title">Main</li>
-        
-                    <li>
-                        <a href="{% url 'index' %}" class="waves-effect">
-                            <i class="dripicons-home"></i>
-                            <span> 首页 <span class="badge badge-success badge-pill float-right"></span></span>
-                        </a>
-                    </li>
-                    <li class="has_sub">
-                        <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-briefcase"></i> <span> 导航 </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                        <ul class="list-unstyled">
-                            <li><a href="{% url "shows:ui_alerts" %}">智能问答</a></li>
-                            <li><a href="{% url "shows:ui_badge" %}">热门评论</a></li>
-                            <li><a href="{% url "shows:form_editors" %}">发布测评</a></li>
-                            <li><a href="{% url "shows:ui_cards" %}">畅销空调</a></li>
-                            <li><a href="{% url "shows:ui_popover_tooltips" %}">综合测评</a></li>
-                            <li><a href="{% url "shows:ui_grid" %}">智能对比</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="{% url "shows:calendar" %}" class="waves-effect"><i class="dripicons-calendar"></i><span> 日历图 </span></a>
-                    </li>
-        
-                    <li class="has_sub">
-                        <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-graph-bar"></i><span> echarts图 </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                        <ul class="list-unstyled">
-                            <li><a href="{% url "shows:charts_morris" %}">时间销量</a></li>
-                            <li><a href="{% url "shows:charts_c3" %}">品牌销量</a></li>
-                        </ul>
-                    </li>
-                    <li class="has_sub">
-                        <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-view-thumb"></i><span> 表格 </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                        <ul class="list-unstyled">
-                            <li><a href="{% url "shows:tables_responsive" %}">商品信息</a></li>
-                            <li><a href="{% url "shows:tables_datatable" %}">商品评论</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu-title">扩展</li>
-                    <li class="has_sub">
-                        <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-location"></i><span> 地图 </span> <span class="badge badge-danger badge-pill float-right"></span></a>
-                        <ul class="list-unstyled">
-                            <li><a href="{% url "shows:maps_google" %}"> 热力图 </a></li>
-                        </ul>
-                    </li>
-                    <li class="has_sub">
-                        <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-medical"></i><span> 扩展 </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                        <ul class="list-unstyled">
-                            <li><a href="{% url "shows:extras_pricing" %}">支持一下</a></li>
-                            <li><a href="{% url "shows:extras_faqs" %}">常见问题</a></li>
-                        </ul>
-                    </li>
-        
-                </ul>
-            </div>
-        <div class="clearfix"></div>
-    </div> <!-- end sidebarinner -->
-</div>
+                <div class="sidebar-inner slimscrollleft">
+                <div id="sidebar-menu">
+                    <ul>
+                        <li class="menu-title">Main</li>
+
+                        <li>
+                            <a href="{% url 'index' %}" class="waves-effect">
+                                <i class="dripicons-home"></i>
+                                <span> 首页 <span class="badge badge-success badge-pill float-right"></span></span>
+                            </a>
+                        </li>
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-briefcase"></i> <span> 导航 </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li style="background: linear-gradient(45deg,#ddba62, rgba(239,239,236,0.87), #dab75f);">
+                                    <a href="{% url "shows:ui_alerts" %}"><strong>智能问答</strong></a>
+                                </li>
+                                <li><a href="{% url "shows:ui_badge" %}">热门评论</a></li>
+                                <li><a href="{% url "shows:form_editors" %}">发布测评</a></li>
+                                <li><a href="{% url "shows:ui_cards" %}">畅销空调</a></li>
+                                <li><a href="{% url "shows:ui_popover_tooltips" %}">综合测评</a></li>
+                                <li><a href="{% url "shows:ui_grid" %}">智能对比</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="{% url "shows:calendar" %}" class="waves-effect"><i class="dripicons-calendar"></i><span> 日历图 </span></a>
+                        </li>
+
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-graph-bar"></i><span> echarts图 </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="{% url "shows:charts_morris" %}">时间销量</a></li>
+                                <li><a href="{% url "shows:charts_c3" %}">品牌销量</a></li>
+                            </ul>
+                        </li>
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-view-thumb"></i><span> 表格 </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="{% url "shows:tables_responsive" %}">商品信息</a></li>
+                                <li><a href="{% url "shows:tables_responsive" %}">商品评论</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-title">扩展</li>
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-location"></i><span> 地图 </span> <span class="badge badge-danger badge-pill float-right"></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="{% url "shows:maps_google" %}"> 热力图 </a></li>
+                            </ul>
+                        </li>
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-medical"></i><span> 扩展 </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="{% url "shows:extras_pricing" %}">支持一下</a></li>
+                                <li><a href="{% url "shows:extras_faqs" %}">常见问题</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+            <div class="clearfix"></div>
+        </div> <!-- end sidebarinner -->
+    </div>
             <!-- Start right Content here -->
 
             <div class="content-page">
@@ -121,7 +123,7 @@
 
                         <div class="topbar-left	d-none d-lg-block">
                             <div class="text-center">
-                                <a href="{% url "index" %}" class="logo"><img src="{% static 'shows/vertical/assets/images/logo.png' %}" height="22" alt="logo"></a>
+                                <a href="{% url "index" %}" class="logo"><img src="{% static 'shows/vertical/assets/images/logo.png' %}" height="30" alt="logo"></a>
                             </div>
                         </div>
 
@@ -148,7 +150,6 @@
                                     <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button"
                                     aria-haspopup="false" aria-expanded="false">
                                         <i class="mdi mdi-bell-outline noti-icon"></i>
-                                        <span class="badge badge-danger badge-pill noti-icon-badge">3</span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-menu-lg dropdown-menu-animated">
                                         <!-- item-->
@@ -188,7 +189,7 @@
                                             </a>
 
                                         </div>
-                                        
+
 
                                         <!-- All-->
                                         <a href="javascript:void(0);" class="dropdown-item notify-all">
@@ -197,21 +198,19 @@
 
                                     </div>
                                 </li>
-    
+
 
                                 <li class="list-inline-item dropdown notification-list nav-user">
                                     <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button"
                                     aria-haspopup="false" aria-expanded="false">
-                                        <img src="{% static 'shows/vertical/assets/images/users/avatar-6.jpg' %}" alt="user" class="rounded-circle">
-                                        <span class="d-none d-md-inline-block ml-1">David M. Bailey <i class="mdi mdi-chevron-down"></i> </span>
+                                        <img src="{% static 'shows/vertical/assets/images/users/avatar-' %}{{ role_ID }}.jpg" alt="user" class="rounded-circle">
+                                        <span class="d-none d-md-inline-block ml-1">{{ nickname }} <i class="mdi mdi-chevron-down"></i> </span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown">
-                                        <a class="dropdown-item" href="#"><i class="dripicons-user text-muted"></i> Profile</a>
-                                        <a class="dropdown-item" href="#"><i class="dripicons-wallet text-muted"></i> My Wallet</a>
-                                        <a class="dropdown-item" href="#"><span class="badge badge-success float-right m-t-5">5</span><i class="dripicons-gear text-muted"></i> Settings</a>
-                                        <a class="dropdown-item" href="#"><i class="dripicons-lock text-muted"></i> Lock screen</a>
+                                        <a class="dropdown-item" href="{% url 'index:profile' %}"><i class="dripicons-user text-muted"></i> Profile</a>
+                                        <a class="dropdown-item" href="{% url 'index:wallet' %}"><i class="dripicons-wallet text-muted"></i> My Wallet</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#"><i class="dripicons-exit text-muted"></i> Logout</a>
+                                        <a class="dropdown-item" href="{% url 'logout' %}"><i class="dripicons-exit text-muted"></i> Logout</a>
                                     </div>
                                 </li>
 
