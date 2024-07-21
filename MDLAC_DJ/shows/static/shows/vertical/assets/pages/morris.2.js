@@ -5,7 +5,7 @@
         option_2 = {
           color: ['#80FFA5', '#00DDFF', '#37A2FF', '#FF0087', '#FFBF00'],
           title: {
-            text: 'Gradient Stacked Area Chart',
+            text: '省份销量渐变堆叠面积图',
             top: '1%' // 相对于图表容器顶部的距离
           },
           tooltip: {
@@ -18,7 +18,7 @@
             }
           },
           legend: {
-            data: ['Line 1', 'Line 2', 'Line 3', 'Line 4', 'Line 5'],
+            data: ['广东', '山东', '江苏', '河北', '河南'],
             right: '5%', // 将图例移动到图表的右侧
             top: '10%' // 距离图表容器顶部 5% 的位置
             //orient: 'vertical'
@@ -49,7 +49,7 @@
           ],
           series: [
             {
-              name: 'Line 1',
+              name: '广东',
               type: 'line',
               stack: 'Total',
               smooth: true,
@@ -73,10 +73,10 @@
               emphasis: {
                 focus: 'series'
               },
-              data: [140, 232, 101, 264, 90, 340, 250,140, 232, 90, 340, 250]
+              data: [2770,1788,6978,15848, 20589,35946,24928,4524,2886,1968,2954,2611]
             },
             {
-              name: 'Line 2',
+              name: '山东',
               type: 'line',
               stack: 'Total',
               smooth: true,
@@ -100,10 +100,10 @@
               emphasis: {
                 focus: 'series'
               },
-              data: [120, 282, 111, 234, 220, 340, 310, 282, 111, 234, 220, 340]
+              data: [1396,1233,3591,8099,9687,16629,9089,1492,573,731,1642,1124]
             },
             {
-              name: 'Line 3',
+              name: '江苏',
               type: 'line',
               stack: 'Total',
               smooth: true,
@@ -127,10 +127,10 @@
               emphasis: {
                 focus: 'series'
               },
-              data: [320, 132, 334, 190, 130, 220,132, 201, 334, 190, 130, 220]
+              data: [1647,1443,2833,5945,8073,14883,10522,1511,721,857,1331,1651]
             },
             {
-              name: 'Line 4',
+              name: '河北',
               type: 'line',
               stack: 'Total',
               smooth: true,
@@ -154,10 +154,10 @@
               emphasis: {
                 focus: 'series'
               },
-              data: [220, 402, 231, 230, 120,220, 402, 231, 134, 190, 230, 120]
+              data: [510,706,2242,5873,7435,13688,7530,1085,446,486,1077,800]
             },
             {
-              name: 'Line 5',
+              name: '河南',
               type: 'line',
               stack: 'Total',
               smooth: true,
@@ -185,7 +185,7 @@
               emphasis: {
                 focus: 'series'
               },
-              data: [220, 302, 181, 234, 210, 290, 302, 181, 234, 210, 290, 150]
+              data: [1107,739,1997,3759,6897,10719,6303,1088,379,428,1129,1005]
             }
           ]
         };
