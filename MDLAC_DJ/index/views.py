@@ -39,6 +39,15 @@ def profile(request):
 
         return redirect('index:profile')
 
+    role_ID = user.role_ID.role_ID
+    if role_ID == '101':
+        role_name = '普通用户'
+    elif role_ID == '102':
+        role_name = '会员用户'
+    elif role_ID == '103':
+        role_name = '超级管理员'
+    else:
+        role_name = 'N/A'
     context = {
         'username': user.username,
         'nickname': user.nickname,
@@ -46,6 +55,7 @@ def profile(request):
         'phone': user.phone,
         'sex': user.sex,
         'role_ID': user.role_ID.role_ID if user.role_ID else None,
+        'role_name': role_name,
         'date_joined': user.date_joined,
     }
     return render(request, 'index/form-profile.html', context)

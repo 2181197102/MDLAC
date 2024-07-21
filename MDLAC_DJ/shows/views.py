@@ -64,7 +64,6 @@ from django.shortcuts import redirect
 
 
 @login_required
-
 def ui_alerts(request):
     user = request.user
     role_ID = user.role_ID.role_ID if user.role_ID else None
@@ -539,7 +538,6 @@ def get_csv_data(request):
     return JsonResponse(response_data)
 
 
-
 def get_csv_data_comments(request):
     try:
         # 从数据库中获取数据，并按照某个字段排序（例如 date）
@@ -588,4 +586,3 @@ def get_csv_data_comments(request):
         import traceback
         traceback.print_exc()
         return JsonResponse({'error': str(e)}, status=500)
-
