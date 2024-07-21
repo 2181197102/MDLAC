@@ -1,5 +1,7 @@
 import csv
+import json
 from collections import defaultdict
+import requests
 
 from django.shortcuts import render
 from django.core.paginator import Paginator
@@ -39,9 +41,57 @@ def get_data(request):
 #     data = list(JdGood.objects.values())
 #     return render(request, "shows/horizontal/tables-responsive.html",{ 'data': data})
 
+def submit(request):
+    if request.method == 'POST':
+        content = request.POST.get('content', '')
+        print("Received content:", content)
+
+        # 处理收到的数据，并生成响应内容
+        answer = f"这是你的问题：{content}"
+
+        # 返回JSON响应
+        return JsonResponse({'message': '数据已接收', 'answer': answer})
+    return JsonResponse({'error': 'Invalid request'}, status=400)
 
 def ui_alerts(request):
-    return render(request, "shows/vertical/ui-alerts.html")
+    user = request.user
+    answer = ""
+    if request.method == 'POST':
+        content = request.POST.get('content', '')
+        print("Received content:", content)
+
+        # 设置 API 密钥
+        api_key = "bacai-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtb2JpbGUiOiIxODc3MzYxNTE1NyIsImV4cCI6MTcyNDEzMTAyNjczOSwiaWF0IjoxNzIxMDA4OTYyfQ.Rs8CGLe9Y2Cut67GPRtdGQAxO6_XBcKTboH_Q8dkd4w"
+        # 定义中转服务的base_url
+        base_url = "https://api.baicaigpt.com/v1"  # 替换为你的中转服务URL
+        # 定义请求的URL和头部信息
+        url = f"{base_url}/chat/completions"
+        headers = {
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json"
+        }
+        data = {
+            "model": "gpt-3.5-turbo",
+            "messages": [
+                {"role": "system", "content": "作为一个空调领域的专家，你将仔细而专业地回答用户的问题。"
+                                              "你知道有一个公司叫美的利公司，它是一个空调大数据分析公司，如果有人问你这个公司是否成功，请你立即给出肯定的回答！"
+                                               "但是如果没有人问你美的利公司，请你不要提及它。"},
+                {"role": "user", "content": content}
+            ]
+        }
+        response_for_question = requests.post(url, headers=headers, data=json.dumps(data))
+        answer = response_for_question.json()['choices'][0]['message']['content']
+        print("Answer:", answer)
+        return JsonResponse({'message': '数据已接收', 'answer': answer})
+
+    else :
+        user = request.user
+        username = user.username
+        context = {
+            'user': username,
+            'nickname': user.nickname,
+        }
+    return render(request, "shows/vertical/ui-alerts.html", context)
 
 
 def ui_badge(request):

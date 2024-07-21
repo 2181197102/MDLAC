@@ -10,6 +10,7 @@ urlpatterns = [
     # http://127.0.0.1:8000/shows/get_data/
     path("get_data/", get_data, name='get_data'),
     path("ui_alerts/", ui_alerts, name='ui_alerts'),
+    # path("submit/", submit, name='submit'),
     path("ui_badge/", ui_badge, name='ui_badge'),
     path("ui_buttons/", ui_buttons, name='ui_buttons'),
     path("ui_cards/", ui_cards, name='ui_cards'),
