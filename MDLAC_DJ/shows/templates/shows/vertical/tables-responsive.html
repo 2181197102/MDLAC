@@ -12,12 +12,47 @@
 
         <link rel="shortcut icon" href="{% static 'shows/vertical/assets/images/acicon-2.png' %}">
 
-        <!-- morris css -->
-        <link rel="stylesheet" href="{% static 'shows/plugins/morris/morris.css' %}">
+        <!-- Table css -->
+        <link href="{% static 'shows/plugins/RWD-Table-Patterns/dist/css/rwd-table.min.css' %}" rel="stylesheet" type="text/css" media="screen">
 
         <link href="{% static 'shows/vertical/assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
         <link href="{% static 'shows/vertical/assets/css/icons.css' %}" rel="stylesheet" type="text/css">
         <link href="{% static 'shows/vertical/assets/css/style.css' %}" rel="stylesheet" type="text/css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <style>
+          .pagination {
+            display: flex;
+            justify-content: center; /* 居中对齐按钮 */
+            align-items: center;     /* 垂直居中对齐按钮 */
+            margin-top: 10px;
+          }
+
+          .pagination-btn {
+            margin: 0 5px;
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            background-color: #f8f8f8;
+            cursor: pointer;
+          }
+
+          .pagination-btn:hover {
+            background-color: #e0e0e0;
+          }
+
+          .pagination-btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+          }
+
+          .pagination-btn:focus {
+            outline: none;
+          }
+
+          #page-info {
+            margin: 0 10px;
+          }
+        </style>
 
     </head>
 
@@ -263,7 +298,7 @@
                                     <div class="page-title-box">
                                         <div class="row align-items-center">
                                             <div class="col-md-8">
-                                                <h4 class="page-title m-0">Responsive Table</h4>
+                                                <h4 class="page-title m-0">空调商品信息表</h4>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="float-right d-none d-md-block">
