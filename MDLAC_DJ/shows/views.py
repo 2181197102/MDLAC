@@ -330,6 +330,14 @@ def form_xeditable(request):
 
 
 def calendar(request):
+    user = request.user
+    role_ID = user.role_ID.role_ID if user.role_ID else None
+
+    # 检查用户角色是否允许访问该页面
+    if role_ID not in ['102', '103']:
+        messages.error(request, "您访问的功能是会员专属，请先充值会员。")
+        return redirect('index:wallet')  # 重定向到充值页面
+
     # 联表查询
     jd_details = JdDetail.objects.select_related('goods').filter(brand__in=['格力（GREE）','格力(GREE)', '格力GREE', '格力'])
     print(len(jd_details))
