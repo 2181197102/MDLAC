@@ -39,158 +39,77 @@
 
             <!-- ========== Left Sidebar Start ========== -->
             <div class="left side-menu">
-                <button type="button" class="button-menu-mobile button-menu-mobile-topbar open-left waves-effect">
-                    <i class="mdi mdi-close"></i>
-                </button>
+            <button type="button" class="button-menu-mobile button-menu-mobile-topbar open-left waves-effect">
+                <i class="mdi mdi-close"></i>
+            </button>
 
-                <div class="left-side-logo d-block d-lg-none">
-                    <div class="text-center">
-                        
-                        <a href="{% url "index" %}" class="logo"><img src="{% static 'shows/vertical/assets/images/logo_dark.png' %}" height="20" alt="logo"></a>
-                    </div>
+            <div class="left-side-logo d-block d-lg-none">
+                <div class="text-center">
+                    
+                    <a href="{% url 'index' %}" class="logo"><img src="{% static 'shows/vertical/assets/images/logo_dark.png' %}" height="20" alt="logo"></a>
                 </div>
-
-                <div class="sidebar-inner slimscrollleft">
-
-                    <div id="sidebar-menu">
-                        <ul>
-                            <li class="menu-title">Main</li>
-
-                            <li>
-                                <a href="{% url 'index' %}" class="waves-effect">
-                                    <i class="dripicons-home"></i>
-                                    <span> 首页 <span class="badge badge-success badge-pill float-right">3</span></span>
-                                </a>
-                            </li>
-
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-briefcase"></i> <span> 导航 </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="{% url "shows:ui_alerts" %}">Alerts</a></li>
-                                    <li><a href="{% url "shows:ui_badge" %}">Badge</a></li>
-                                    <li><a href="{% url "shows:form_editors" %}">Form Editors</a></li>
-                                    <li><a href="{% url "shows:ui_buttons" %}">Buttons</a></li>
-                                    <li><a href="{% url "shows:ui_cards" %}">Cards</a></li>
-                                    <li><a href="{% url "shows:ui_dropdowns" %}">Dropdowns</a></li>
-                                    <li><a href="{% url "shows:ui_navs" %}">Navs</a></li>
-                                    <li><a href="{% url "shows:ui_tabs_accordions" %}">Tabs &amp; Accordions</a></li>
-                                    <li><a href="{% url "shows:ui_modals" %}">Modals</a></li>
-                                    <li><a href="{% url "shows:ui_images" %}">Images</a></li>
-                                    <li><a href="{% url "shows:ui_progressbars" %}">Progress Bars</a></li>
-                                    <li><a href="{% url "shows:ui_pagination" %}">Pagination</a></li>
-                                    <li><a href="{% url "shows:ui_popover_tooltips" %}">Popover & Tooltips</a></li>
-                                    <li><a href="{% url "shows:ui_spinner" %}">Spinner</a></li>
-                                    <li><a href="{% url "shows:ui_carousel" %}">Carousel</a></li>
-                                    <li><a href="{% url "shows:ui_video" %}">Video</a></li>
-                                    <li><a href="{% url "shows:ui_typography" %}">Typography</a></li>
-                                    <li><a href="{% url "shows:ui_grid" %}">Grid</a></li>
-                                </ul>
-                            </li>
-
-{#                            <li class="has_sub">#}
-{#                                <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-archive"></i> <span> Advanced UI </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>#}
-{#                                <ul class="list-unstyled">#}
-{#                                    <li><a href="{% url "shows:advanced_alertify" %}">Alertify</a></li>#}
-{#                                    <li><a href="{% url "shows:advanced_rating" %}">Rating</a></li>#}
-{#                                    <li><a href="{% url "shows:advanced_nestable" %}">Nestable</a></li>#}
-{#                                    <li><a href="{% url "shows:advanced_rangeslider" %}">Range Slider</a></li>#}
-{#                                    <li><a href="{% url "shows:advanced_sweet_alert" %}">Sweet-Alert</a></li>#}
-{#                                    <li><a href="{% url "shows:advanced_lightbox" %}">Lightbox</a></li>#}
-{#                                </ul>#}
-{#                            </li>#}
-{##}
-{#                            <li class="has_sub">#}
-{#                                <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-rocket"></i> <span> Icons </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>#}
-{#                                <ul class="icons_ionlist-unstyled">#}
-{#                                    <li><a href="{% url "shows:icons_material" %}">Material Design</a></li>#}
-{#                                    <li><a href="{% url "shows:icons_ion" %}">Ion Icons</a></li>#}
-{#                                    <li><a href="{% url "shows:icons_fontawesome" %}">Font Awesome</a></li>#}
-{#                                    <li><a href="{% url "shows:icons_themify" %}">Themify Icons</a></li>#}
-{#                                    <li><a href="{% url "shows:icons_dripicons" %}">Dripicons</a></li>#}
-{#                                    <li><a href="{% url "shows:icons_typicons" %}">Typicons Icons</a></li>#}
-{#                                </ul>#}
-{#                            </li>#}
-
-                            <li>
-                                <a href="{% url "shows:calendar" %}" class="waves-effect"><i class="dripicons-calendar"></i><span> 日历图 </span></a>
-                            </li>
-
-{#                            <li class="has_sub">#}
-{#                                <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-document"></i><span> Forms </span> <span class="badge badge-warning badge-pill float-right">8</span></a>#}
-{#                                <ul class="list-unstyled">#}
-{#                                    <li><a href="{% url "shows:form_elements" %}">Form Elements</a></li>#}
-{#                                    <li><a href="{% url "shows:form_validation" %}">Form Validation</a></li>#}
-{#                                    <li><a href="{% url "shows:form_advanced" %}">Form Advanced</a></li>#}
-{#                                    <li><a href="{% url "shows:form_editors" %}">Form Editors</a></li>#}
-{#                                    <li><a href="{% url "shows:form_uploads" %}">Form File Upload</a></li>#}
-{#                                    <li><a href="{% url "shows:form_mask" %}">Form Mask</a></li>#}
-{#                                    <li><a href="{% url "shows:form_summernote" %}">Summernote</a></li>#}
-{#                                    <li><a href="{% url "shows:form_xeditable" %}">Form Xeditable</a></li>#}
-{#                                </ul>#}
-{#                            </li>#}
-
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-graph-bar"></i><span> echarts图 </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="{% url "shows:charts_morris" %}">Morris Chart</a></li>
-                                    <li><a href="{% url "shows:charts_chartist" %}">Chartist Chart</a></li>
-                                    <li><a href="{% url "shows:charts_chartjs" %}">Chartjs Chart</a></li>
-                                    <li><a href="{% url "shows:charts_flot" %}">Flot Chart</a></li>
-                                    <li><a href="{% url "shows:charts_c3" %}">C3 Chart</a></li>
-                                    <li><a href="{% url "shows:charts_other" %}">Jquery Knob Chart</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-view-thumb"></i><span> 表格 </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="{% url "shows:tables_basic" %}">Basic Tables</a></li>
-                                    <li><a href="{% url "shows:tables_datatable" %}">Data Table</a></li>
-                                    <li><a href="{% url "shows:tables_responsive" %}">Responsive Table</a></li>
-                                    <li><a href="{% url "shows:tables_editable" %}">Editable Table</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="menu-title">扩展</li>
-
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-location"></i><span> 地图 </span> <span class="badge badge-danger badge-pill float-right">2</span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="{% url "shows:maps_google" %}"> 向量图 </a></li>
-                                    <li><a href="{% url "shows:maps_vector" %}"> Vector Map</a></li>
-                                </ul>
-                            </li>
-
-{#                            <li class="has_sub">#}
-{#                                <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-copy"></i><span> Pages </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>#}
-{#                                <ul class="list-unstyled">#}
-{#                                    <li><a href="{% url "shows:pages_blank" %}">Blank Page</a></li>#}
-{#                                    <li><a href="{% url "login" %}">Login</a></li>#}
-{#                                    <li><a href="{% url "register" %}">Register</a></li>#}
-{#                                    <li><a href="{% url "shows:pages_recoverpw" %}">Recover Password</a></li>#}
-{#                                    <li><a href="{% url "shows:pages_lock_screen" %}">Lock Screen</a></li>#}
-{#                                    <li><a href="{% url "shows:pages_404" %}">Error 404</a></li>#}
-{#                                    <li><a href="{% url "shows:pages_500" %}">Error 500</a></li>#}
-{#                                </ul>#}
-{#                            </li>#}
-
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-medical"></i><span> 扩展 </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="{% url "shows:extras_pricing" %}">Pricing</a></li>
-                                    <li><a href="{% url "shows:extras_invoice" %}">Invoice</a></li>
-                                    <li><a href="{% url "shows:extras_timeline" %}">Timeline</a></li>
-                                    <li><a href="{% url "shows:extras_faqs" %}">FAQs</a></li>
-                                    <li><a href="{% url "shows:extras_maintenance" %}">Maintenance</a></li>
-                                    <li><a href="{% url "shows:extras_comingsoon" %}">Coming Soon</a></li>
-                                </ul>
-                            </li>
-
-                        </ul>
-                    </div>
-                    <div class="clearfix"></div>
-                </div> <!-- end sidebarinner -->
             </div>
+
+            <div class="sidebar-inner slimscrollleft">
+            <div id="sidebar-menu">
+                <ul>
+                    <li class="menu-title">Main</li>
+        
+                    <li>
+                        <a href="{% url 'index' %}" class="waves-effect">
+                            <i class="dripicons-home"></i>
+                            <span> 首页 <span class="badge badge-success badge-pill float-right"></span></span>
+                        </a>
+                    </li>
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-briefcase"></i> <span> 导航 </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <ul class="list-unstyled">
+                            <li><a href="{% url "shows:ui_alerts" %}">智能问答</a></li>
+                            <li><a href="{% url "shows:ui_badge" %}">热门评论</a></li>
+                            <li><a href="{% url "shows:form_editors" %}">发布测评</a></li>
+                            <li><a href="{% url "shows:ui_cards" %}">畅销空调</a></li>
+                            <li><a href="{% url "shows:ui_popover_tooltips" %}">综合测评</a></li>
+                            <li><a href="{% url "shows:ui_grid" %}">智能对比</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="{% url "shows:calendar" %}" class="waves-effect"><i class="dripicons-calendar"></i><span> 日历图 </span></a>
+                    </li>
+        
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-graph-bar"></i><span> echarts图 </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <ul class="list-unstyled">
+                            <li><a href="{% url "shows:charts_morris" %}">时间销量</a></li>
+                            <li><a href="{% url "shows:charts_c3" %}">品牌销量</a></li>
+                        </ul>
+                    </li>
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-view-thumb"></i><span> 表格 </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <ul class="list-unstyled">
+                            <li><a href="{% url "shows:tables_responsive" %}">商品信息</a></li>
+                            <li><a href="{% url "shows:tables_datatable" %}">商品评论</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-title">扩展</li>
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-location"></i><span> 地图 </span> <span class="badge badge-danger badge-pill float-right"></span></a>
+                        <ul class="list-unstyled">
+                            <li><a href="{% url "shows:maps_google" %}"> 热力图 </a></li>
+                        </ul>
+                    </li>
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-medical"></i><span> 扩展 </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <ul class="list-unstyled">
+                            <li><a href="{% url "shows:extras_pricing" %}">支持一下</a></li>
+                            <li><a href="{% url "shows:extras_faqs" %}">常见问题</a></li>
+                        </ul>
+                    </li>
+        
+                </ul>
+            </div>
+        <div class="clearfix"></div>
+    </div> <!-- end sidebarinner -->
+</div>
             <!-- Left Sidebar End -->
 
             <!-- Start right Content here -->
@@ -341,7 +260,7 @@
                                     <div class="page-title-box">
                                         <div class="row align-items-center">
                                             <div class="col-md-8">
-                                                <h4 class="page-title m-0">Alerts</h4>
+                                                <h4 class="page-title m-0">常见问题</h4>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="float-right d-none d-md-block">
@@ -373,25 +292,22 @@
                                     <div class="card m-b-30">
                                         <div class="card-body">
             
-                                            <h4 class="mt-0 header-title">Examples</h4>
-                                            <p class="text-muted m-b-30">Alerts are available for any length of
-                                                text, as well as an optional dismiss button. For proper styling, use one
-                                                of the four <strong>required</strong> contextual classes (e.g., <code
-                                                        class="highlighter-rouge">.alert-success</code>). For inline
-                                                dismissal, use the alerts jQuery plugin.</p>
+                                            <h4 class="mt-0 header-title">空调购买相关问题</h4>
+                                            <p class="text-muted m-b-30">空调购买学问多多，
+                                            不妨问问空调助手，买空调时要注意些啥吧~</p>
             
                                             <div class="">
                                                 <div class="alert alert-success" role="alert">
-                                                    <strong>Well done!</strong> You successfully read this important alert message.
+                                                    <strong>Well done!</strong> 选择空调时应该关注哪些能效标识？
                                                 </div>
                                                 <div class="alert alert-info" role="alert">
-                                                    <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
+                                                    <strong>Heads up!</strong> 家用空调的安装费用一般是多少？
                                                 </div>
                                                 <div class="alert alert-warning" role="alert">
-                                                    <strong>Warning!</strong> Better check yourself, you're not looking too good.
+                                                    <strong>Warning!</strong> 各种类型的空调（中央空调、分体式空调、便携式空调等）有什么区别？
                                                 </div>
                                                 <div class="alert alert-danger mb-0" role="alert">
-                                                    <strong>Oh snap!</strong> Change a few things up and try submitting again.
+                                                    <strong>Oh snap!</strong> 怎样选择适合自己家庭的空调容量？
                                                 </div>
                                             </div>
                                         </div>
@@ -402,23 +318,22 @@
                                     <div class="card m-b-30">
                                         <div class="card-body">
             
-                                            <h4 class="mt-0 header-title">Link color</h4>
-                                            <p class="text-muted m-b-30">Use the <code
-                                                    class="highlighter-rouge">.alert-link</code> utility class to
-                                                quickly provide matching colored links within any alert.</p>
+                                            <h4 class="mt-0 header-title">空调使用相关问题</h4>
+                                            <p class="text-muted m-b-30"> 空调怎么调最凉快？盛夏已至，我们该如何正确使用空调呢？来聊聊吧客官~</p>
+
             
                                             <div class="">
                                                 <div class="alert alert-success" role="alert">
-                                                    <strong>Well done!</strong> You successfully read <a href="#" class="alert-link">this important alert message</a>.
+                                                    <strong>Well done!</strong> 夏季高温天气，室内温度设置多少度最合适？
                                                 </div>
                                                 <div class="alert alert-info" role="alert">
-                                                    <strong>Heads up!</strong> This <a href="#" class="alert-link">alert needs your attention</a>, but it's not super important.
+                                                    <strong>Heads up!</strong> 使用空调过程中应该注意哪些维护保养工作？
                                                 </div>
                                                 <div class="alert alert-warning" role="alert">
-                                                    <strong>Warning!</strong> Better check yourself, you're <a href="#" class="alert-link">not looking too good</a>.
+                                                    <strong>Warning!</strong> 夏季家庭空调使用增加时，如何节约用电？
                                                 </div>
                                                 <div class="alert alert-danger mb-0" role="alert">
-                                                    <strong>Oh snap!</strong> <a href="#" class="alert-link">Change a few things up</a> and try submitting again.
+                                                    <strong>Oh snap!</strong> 夏季空调长时间不使用，如何进行保养？
                                                 </div>
                                             </div>
                                         </div>
@@ -432,33 +347,33 @@
                                     <div class="card m-b-30">
                                         <div class="card-body">
             
-                                            <h4 class="mt-0 header-title">Dismissing</h4>
-                                            <p class="text-muted m-b-30">You can see this in action with a live demo:</p>
+                                            <h4 class="mt-0 header-title">空调修理相关问题</h4>
+                                                <p class="text-muted m-b-30">谁家空调不会坏？坏了就找美的利！VIP定制智能专家为您答疑解惑！</p>
             
                                             <div class="">
                                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
-                                                    <strong>Well done!</strong> You successfully read this important alert message.
+                                                    <strong>Well done!</strong> 空调使用中常见的故障有哪些，如何避免？
                                                 </div>
                                                 <div class="alert alert-info alert-dismissible fade show" role="alert">
                                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
-                                                    <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
+                                                    <strong>Heads up!</strong> 空调制冷效果差的可能原因有哪些？
                                                 </div>
                                                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
                                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
-                                                    <strong>Warning!</strong> Better check yourself, you're not looking too good.
+                                                    <strong>Warning!</strong> 空调出现漏电现象可能是什么原因？
                                                 </div>
                                                 <div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
                                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
-                                                    <strong>Oh snap!</strong> Change a few things up and try submitting again.
+                                                    <strong>Oh snap!</strong> 空调的滴水现象是正常现象还是故障？
                                                 </div>
                                             </div>
                                         </div>
@@ -469,14 +384,114 @@
                                     <div class="card m-b-30">
                                         <div class="card-body">
             
-                                            <h4 class="mt-0 header-title">Additional content</h4>
-                                            <p class="text-muted m-b-30">Alerts can also contain additional HTML elements like headings and paragraphs.</p>
-            
+                                            <h4 class="mt-0 header-title">空调智能专家</h4>
+                                            <p class="text-muted m-b-30">空调智能专家是基于Chat GPT的AI智能助手，帮助您解决一切空调相关问题！</p>
+                                            <div class="form-group">
+                                                <label for="inputContent">有什么疑问，考考AI智能专家吧:</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" id="inputContent" placeholder="请输入内容">
+                                                    <div class="input-group-append">
+                                                        <button id="SendText" class="btn btn-primary" type="button" onclick="send_text">发送</button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="">
                                                 <div class="alert alert-success mb-0" role="alert">
-                                                    <h4 class="alert-heading mt-0 font-18">Well done!</h4>
-                                                    <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
-                                                    <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+                                                    <h4 class="alert-heading mt-0 font-18"><会员专属></h4>
+                                                    <p id="typewriterText" style="color: #01ba9a"></p>
+<!--                                                    <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>-->
+<!--                                                    <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>-->
+                                                    <script>
+                                                        document.addEventListener("DOMContentLoaded", function() {
+                                                            // 你想显示的文本
+                                                            var text = "您好，我是您的智能空调专家，您可以问我任何空调相关问题，在上面的输入框试试吧！";
+
+                                                            // 获取显示文本的元素
+                                                            var typewriterText = document.getElementById("typewriterText");
+
+                                                            var index = 0;
+
+                                                            function typeWriter() {
+                                                                if (index < text.length) {
+                                                                    typewriterText.innerHTML += text.charAt(index);
+                                                                    index++;
+                                                                    setTimeout(typeWriter, 20); // 调整此值以控制打字速度
+                                                                }
+                                                            }
+
+                                                            typeWriter();
+                                                        });
+
+                                                        let send_text = document.getElementById("SendText");
+                                                        send_text.onclick = function() {
+                                                            var inputContent = document.getElementById("inputContent").value;
+                                                            // var typewriterText = document.getElementById("typewriterText");
+                                                            // typewriterText.innerHTML = inputContent;
+                                                            // console.log(inputContent);
+                                                            //清空输入框的内容
+                                                            document.getElementById("inputContent").value = "";
+                                                            // 将用户输入的内容发送给后端
+                                                            // 获取CSRF令牌
+                                                            var csrftoken = getCookie('csrftoken');
+                                                            // 发送Ajax请求
+                                                            $.ajax({
+                                                                type: "POST",
+                                                                url: '{% url "shows:ui_alerts" %}',
+                                                                data: {
+                                                                    content: inputContent,
+                                                                    csrfmiddlewaretoken: csrftoken
+                                                                },
+                                                                success: function(data) {
+                                                                    console.log(inputContent);
+                                                                    // 更新前端的p标签
+                                                                    // $('#typewriterText').text(data.answer);
+
+                                                                    // 获取显示文本的元素
+                                                                    var typewriterText = document.getElementById("typewriterText");
+                                                                    // 清空显示框的内容
+                                                                    typewriterText.innerHTML = "";
+                                                                    // 你想显示的文本
+                                                                    var text = data.answer;
+                                                                    var index = 0;
+                                                                    function typeWriter() {
+                                                                        if (index < text.length) {
+                                                                            typewriterText.innerHTML += text.charAt(index);
+                                                                            index++;
+                                                                            setTimeout(typeWriter, 50); // 调整此值以控制打字速度
+                                                                        }
+                                                                    }
+                                                                    typeWriter();
+                                                                },
+                                                                error: function(xhr, errmsg, err) {
+                                                                    console.error(xhr.status + ": " + xhr.responseText);
+                                                                }
+                                                            });
+                                                            // $.ajax({
+                                                            //     type: "POST",
+                                                            //     url: '{% url "shows:ui_alerts" %}',
+                                                            //     data: inputContent,
+                                                            //     success: function (data) {
+                                                            //         console.log(data);
+                                                            //     }
+                                                            // });
+                                                        }
+                                                        function getCookie(name) {
+                                                            var cookieValue = null;
+                                                            if (document.cookie && document.cookie !== '') {
+                                                                var cookies = document.cookie.split(';');
+                                                                //把cookie放到cookieValue中
+                                                                for (var i = 0; i < cookies.length; i++) {
+                                                                    var cookie = cookies[i].trim();
+                                                                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                                                                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                                                        break;
+                                                                    }
+                                                                }
+                                                            }
+                                                            return cookieValue;
+                                                        }
+
+                                                    </script>
                                                 </div>
                                             </div>
                                         </div>

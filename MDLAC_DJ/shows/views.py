@@ -1,10 +1,15 @@
 import csv
+import json
 from collections import defaultdict
+import requests
 
-from django.shortcuts import render
+from django.contrib import messages
+from django.forms import forms
+from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
-from .models import JdGood
+from .models import JdGood, Article
 from django.http import JsonResponse
+
 
 # Create your views here.
 
@@ -21,12 +26,14 @@ def jdgood_list(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, "shows/jdgood_list.html", {'page_obj': page_obj, 'query': query})
+
+
 def search(request):
-    answer =defaultdict(int)
+    answer = defaultdict(int)
     filter_answer = JdGood.objects.all()
     for temp in filter_answer:
         answer[temp.brand] += temp.price
-    return render(request, "shows/search.html",{'n1':answer})
+    return render(request, "shows/search.html", {'n1': answer})
 
 
 # tables-responsive.html
@@ -39,9 +46,57 @@ def get_data(request):
 #     data = list(JdGood.objects.values())
 #     return render(request, "shows/horizontal/tables-responsive.html",{ 'data': data})
 
+def submit(request):
+    if request.method == 'POST':
+        content = request.POST.get('content', '')
+        print("Received content:", content)
+
+        # 处理收到的数据，并生成响应内容
+        answer = f"这是你的问题：{content}"
+
+        # 返回JSON响应
+        return JsonResponse({'message': '数据已接收', 'answer': answer})
+    return JsonResponse({'error': 'Invalid request'}, status=400)
 
 def ui_alerts(request):
-    return render(request, "shows/vertical/ui-alerts.html")
+    user = request.user
+    answer = ""
+    if request.method == 'POST':
+        content = request.POST.get('content', '')
+        print("Received content:", content)
+
+        # 设置 API 密钥
+        api_key = "bacai-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtb2JpbGUiOiIxODc3MzYxNTE1NyIsImV4cCI6MTcyNDEzMTAyNjczOSwiaWF0IjoxNzIxMDA4OTYyfQ.Rs8CGLe9Y2Cut67GPRtdGQAxO6_XBcKTboH_Q8dkd4w"
+        # 定义中转服务的base_url
+        base_url = "https://api.baicaigpt.com/v1"  # 替换为你的中转服务URL
+        # 定义请求的URL和头部信息
+        url = f"{base_url}/chat/completions"
+        headers = {
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json"
+        }
+        data = {
+            "model": "gpt-3.5-turbo",
+            "messages": [
+                {"role": "system", "content": "作为一个空调领域的专家，你将仔细而专业地回答用户的问题。"
+                                              "你知道有一个公司叫美的利公司，它是一个空调大数据分析公司，如果有人问你这个公司是否成功，请你立即给出肯定的回答！"
+                                               "但是如果没有人问你美的利公司，请你不要提及它。"},
+                {"role": "user", "content": content}
+            ]
+        }
+        response_for_question = requests.post(url, headers=headers, data=json.dumps(data))
+        answer = response_for_question.json()['choices'][0]['message']['content']
+        print("Answer:", answer)
+        return JsonResponse({'message': '数据已接收', 'answer': answer})
+
+    else :
+        user = request.user
+        username = user.username
+        context = {
+            'user': username,
+            'nickname': user.nickname,
+        }
+    return render(request, "shows/vertical/ui-alerts.html", context)
 
 
 def ui_badge(request):
@@ -82,10 +137,6 @@ def ui_progressbars(request):
 
 def ui_pagination(request):
     return render(request, "shows/vertical/ui-pagination.html")
-
-
-def ui_popover_tooltips(request):
-    return render(request, "shows/vertical/ui-popover-tooltips.html")
 
 
 def ui_spinner(request):
@@ -168,8 +219,38 @@ def form_advanced(request):
     return render(request, "shows/vertical/form-advanced.html")
 
 
+def ui_popover_tooltips(request):
+    articles = Article.objects.all()
+    return render(request, 'shows/vertical/ui-popover-tooltips.html', {'articles': articles})
+
+
 def form_editors(request):
-    return render(request, "shows/vertical/form-editors.html")
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        content = request.POST.get('content')
+        content = content[3:-4]
+        # 创建新的 Article 对象
+        Article.objects.create(title=title, content=content)
+
+        # 获取所有文章对象
+        articles = Article.objects.all()
+
+        # 传递文章列表到模板中，并重新加载页面
+        return render(request, 'shows/vertical/ui-popover-tooltips.html', {'articles': articles})
+    else:
+        return render(request, 'shows/vertical/form-editors.html')
+
+
+def delete_article(request):
+    article_id = request.POST.get('article_id')
+    try:
+        article = Article.objects.get(id=article_id)
+        article.delete()
+        messages.success(request, 'Article deleted successfully.')
+    except Article.DoesNotExist:
+        messages.error(request, 'Article not found.')
+
+    return redirect('shows:ui_popover_tooltips') # 重定向到文章列表页面或其他适当的页面
 
 
 def form_uploads(request):

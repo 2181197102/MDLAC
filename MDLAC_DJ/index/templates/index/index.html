@@ -54,146 +54,65 @@
                 </div>
 
                 <div class="sidebar-inner slimscrollleft">
+                <div id="sidebar-menu">
+                    <ul>
+                        <li class="menu-title">Main</li>
 
-                    <div id="sidebar-menu">
-                        <ul>
-                            <li class="menu-title">Main</li>
+                        <li>
+                            <a href="{% url 'index' %}" class="waves-effect">
+                                <i class="dripicons-home"></i>
+                                <span> 首页 <span class="badge badge-success badge-pill float-right"></span></span>
+                            </a>
+                        </li>
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-briefcase"></i> <span> 导航 </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="{% url "shows:ui_alerts" %}">智能问答</a></li>
+                                <li><a href="{% url "shows:ui_badge" %}">热门评论</a></li>
+                                <li><a href="{% url "shows:form_editors" %}">发布测评</a></li>
+                                <li><a href="{% url "shows:ui_cards" %}">畅销空调</a></li>
+                                <li><a href="{% url "shows:ui_popover_tooltips" %}">综合测评</a></li>
+                                <li><a href="{% url "shows:ui_grid" %}">智能对比</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="{% url "shows:calendar" %}" class="waves-effect"><i class="dripicons-calendar"></i><span> 日历图 </span></a>
+                        </li>
 
-                            <li>
-                                <a href="{% url 'index' %}" class="waves-effect">
-                                    <i class="dripicons-home"></i>
-                                    <span> 首页 <span class="badge badge-success badge-pill float-right">3</span></span>
-                                </a>
-                            </li>
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-graph-bar"></i><span> echarts图 </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="{% url "shows:charts_morris" %}">时间销量</a></li>
+                                <li><a href="{% url "shows:charts_c3" %}">品牌销量</a></li>
+                            </ul>
+                        </li>
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-view-thumb"></i><span> 表格 </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="{% url "shows:tables_responsive" %}">商品信息</a></li>
+                                <li><a href="{% url "shows:tables_responsive" %}">商品评论</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-title">扩展</li>
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-location"></i><span> 地图 </span> <span class="badge badge-danger badge-pill float-right"></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="{% url "shows:maps_google" %}"> 热力图 </a></li>
+                            </ul>
+                        </li>
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-medical"></i><span> 扩展 </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="{% url "shows:extras_pricing" %}">支持一下</a></li>
+                                <li><a href="{% url "shows:extras_faqs" %}">常见问题</a></li>
+                            </ul>
+                        </li>
 
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-briefcase"></i> <span> 导航 </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="{% url "shows:ui_alerts" %}">Alerts</a></li>
-                                    <li><a href="{% url "shows:ui_badge" %}">热评</a></li>
-                                    <li><a href="{% url "shows:form_editors" %}">发布</a></li>
-{#                                    <li><a href="{% url "shows:ui_buttons" %}">Buttons</a></li>#}
-                                    <li><a href="{% url "shows:ui_cards" %}">排行</a></li>
-{#                                    <li><a href="{% url "shows:ui_dropdowns" %}">Dropdowns</a></li>#}
-{#                                    <li><a href="{% url "shows:ui_navs" %}">Navs</a></li>#}
-                                    <li><a href="{% url "shows:ui_tabs_accordions" %}">Tabs &amp; Accordions</a></li>
-{#                                    <li><a href="{% url "shows:ui_modals" %}">Modals</a></li>#}
-                                    <li><a href="{% url "shows:ui_images" %}">评论</a></li>
-{#                                    <li><a href="{% url "shows:ui_progressbars" %}">Progress Bars</a></li>#}
-{#                                    <li><a href="{% url "shows:ui_pagination" %}">Pagination</a></li>#}
-                                    <li><a href="{% url "shows:ui_popover_tooltips" %}">测评</a></li>
-{#                                    <li><a href="{% url "shows:ui_spinner" %}">Spinner</a></li>#}
-{#                                    <li><a href="{% url "shows:ui_carousel" %}">Carousel</a></li>#}
-{#                                    <li><a href="{% url "shows:ui_video" %}">Video</a></li>#}
-{#                                    <li><a href="{% url "shows:ui_typography" %}">Typography</a></li>#}
-                                    <li><a href="{% url "shows:ui_grid" %}">对比</a></li>
-                                </ul>
-                            </li>
-
-{#                            <li class="has_sub">#}
-{#                                <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-archive"></i> <span> Advanced UI </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>#}
-{#                                <ul class="list-unstyled">#}
-{#                                    <li><a href="{% url "shows:advanced_alertify" %}">Alertify</a></li>#}
-{#                                    <li><a href="{% url "shows:advanced_rating" %}">Rating</a></li>#}
-{#                                    <li><a href="{% url "shows:advanced_nestable" %}">Nestable</a></li>#}
-{#                                    <li><a href="{% url "shows:advanced_rangeslider" %}">Range Slider</a></li>#}
-{#                                    <li><a href="{% url "shows:advanced_sweet_alert" %}">Sweet-Alert</a></li>#}
-{#                                    <li><a href="{% url "shows:advanced_lightbox" %}">Lightbox</a></li>#}
-{#                                </ul>#}
-{#                            </li>#}
-{##}
-{#                            <li class="has_sub">#}
-{#                                <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-rocket"></i> <span> Icons </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>#}
-{#                                <ul class="icons_ionlist-unstyled">#}
-{#                                    <li><a href="{% url "shows:icons_material" %}">Material Design</a></li>#}
-{#                                    <li><a href="{% url "shows:icons_ion" %}">Ion Icons</a></li>#}
-{#                                    <li><a href="{% url "shows:icons_fontawesome" %}">Font Awesome</a></li>#}
-{#                                    <li><a href="{% url "shows:icons_themify" %}">Themify Icons</a></li>#}
-{#                                    <li><a href="{% url "shows:icons_dripicons" %}">Dripicons</a></li>#}
-{#                                    <li><a href="{% url "shows:icons_typicons" %}">Typicons Icons</a></li>#}
-{#                                </ul>#}
-{#                            </li>#}
-
-                            <li>
-                                <a href="{% url "shows:calendar" %}" class="waves-effect"><i class="dripicons-calendar"></i><span> 日历图 </span></a>
-                            </li>
-
-{#                            <li class="has_sub">#}
-{#                                <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-document"></i><span> Forms </span> <span class="badge badge-warning badge-pill float-right">8</span></a>#}
-{#                                <ul class="list-unstyled">#}
-{#                                    <li><a href="{% url "shows:form_elements" %}">Form Elements</a></li>#}
-{#                                    <li><a href="{% url "shows:form_validation" %}">Form Validation</a></li>#}
-{#                                    <li><a href="{% url "shows:form_advanced" %}">Form Advanced</a></li>#}
-{#                                    <li><a href="{% url "shows:form_editors" %}">Form Editors</a></li>#}
-{#                                    <li><a href="{% url "shows:form_uploads" %}">Form File Upload</a></li>#}
-{#                                    <li><a href="{% url "shows:form_mask" %}">Form Mask</a></li>#}
-{#                                    <li><a href="{% url "shows:form_summernote" %}">Summernote</a></li>#}
-{#                                    <li><a href="{% url "shows:form_xeditable" %}">Form Xeditable</a></li>#}
-{#                                </ul>#}
-{#                            </li>#}
-
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-graph-bar"></i><span> echarts图 </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="{% url "shows:charts_morris" %}">Morris Chart</a></li>
-                                    <li><a href="{% url "shows:charts_chartist" %}">Chartist Chart</a></li>
-                                    <li><a href="{% url "shows:charts_chartjs" %}">Chartjs Chart</a></li>
-                                    <li><a href="{% url "shows:charts_flot" %}">Flot Chart</a></li>
-                                    <li><a href="{% url "shows:charts_c3" %}">C3 Chart</a></li>
-                                    <li><a href="{% url "shows:charts_other" %}">Jquery Knob Chart</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-view-thumb"></i><span> 表格 </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="{% url "shows:tables_basic" %}">Basic Tables</a></li>
-                                    <li><a href="{% url "shows:tables_datatable" %}">Data Table</a></li>
-                                    <li><a href="{% url "shows:tables_responsive" %}">Responsive Table</a></li>
-                                    <li><a href="{% url "shows:tables_editable" %}">Editable Table</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="menu-title">扩展</li>
-
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-location"></i><span> 地图 </span> <span class="badge badge-danger badge-pill float-right">2</span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="{% url "shows:maps_google" %}"> 向量图 </a></li>
-                                    <li><a href="{% url "shows:maps_vector" %}"> Vector Map</a></li>
-                                </ul>
-                            </li>
-
-{#                            <li class="has_sub">#}
-{#                                <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-copy"></i><span> Pages </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>#}
-{#                                <ul class="list-unstyled">#}
-{#                                    <li><a href="{% url "shows:pages_blank" %}">Blank Page</a></li>#}
-{#                                    <li><a href="{% url "login" %}">Login</a></li>#}
-{#                                    <li><a href="{% url "register" %}">Register</a></li>#}
-{#                                    <li><a href="{% url "shows:pages_recoverpw" %}">Recover Password</a></li>#}
-{#                                    <li><a href="{% url "shows:pages_lock_screen" %}">Lock Screen</a></li>#}
-{#                                    <li><a href="{% url "shows:pages_404" %}">Error 404</a></li>#}
-{#                                    <li><a href="{% url "shows:pages_500" %}">Error 500</a></li>#}
-{#                                </ul>#}
-{#                            </li>#}
-
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-medical"></i><span> 扩展 </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="{% url "shows:extras_pricing" %}">Pricing</a></li>
-                                    <li><a href="{% url "shows:extras_invoice" %}">Invoice</a></li>
-                                    <li><a href="{% url "shows:extras_timeline" %}">Timeline</a></li>
-                                    <li><a href="{% url "shows:extras_faqs" %}">FAQs</a></li>
-                                    <li><a href="{% url "shows:extras_maintenance" %}">Maintenance</a></li>
-                                    <li><a href="{% url "shows:extras_comingsoon" %}">Coming Soon</a></li>
-                                </ul>
-                            </li>
-
-                        </ul>
-                    </div>
-                    <div class="clearfix"></div>
-                </div> <!-- end sidebarinner -->
-            </div>
+                    </ul>
+                </div>
+            <div class="clearfix"></div>
+        </div> <!-- end sidebarinner -->
+    </div>
             <!-- Left Sidebar End -->
 
             <!-- Start right Content here -->
@@ -418,7 +337,7 @@
                                         <div class="p-3 mini-stat-desc">
                                             <div class="clearfix">
                                                 <h4 class="text-uppercase mt-0 float-left text-white-50">品牌数目</h4>
-                                                <h1 class="mb-3 mt-0 float-right">141</h1>
+                                                <h1 class="mb-3 mt-0 float-right">433</h1>
                                             </div>
 <!--                                            <div>-->
 <!--                                                <span class="badge badge-light text-primary"> 0% </span> <span class="ml-2">From previous period</span>-->
