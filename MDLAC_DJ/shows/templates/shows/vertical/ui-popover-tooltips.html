@@ -296,7 +296,7 @@
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                     <h3 class="mt-0 header-title">{{ article.title }}</h3>
-                                                    <p class="text-muted m-b-30">{{ article.content }}</p>
+                                                    <p class="text-muted m-b-30">{{ article.content|safe }}</p>
                                                     <input type="hidden" name="article_id_{{ article.id }}" value="{{ article.id }}">
                                                 </div>
                                             </div>
