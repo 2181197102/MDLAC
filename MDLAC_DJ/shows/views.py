@@ -4,6 +4,7 @@ from collections import defaultdict
 import requests
 
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.forms import forms
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
@@ -59,8 +60,20 @@ def submit(request):
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
 
+from django.shortcuts import redirect
+
+
+@login_required
+
 def ui_alerts(request):
     user = request.user
+    role_ID = user.role_ID.role_ID if user.role_ID else None
+
+    # 检查用户角色是否允许访问该页面
+    if role_ID not in ['102', '103']:
+        messages.error(request, "您访问的功能是会员专属，请先充值会员。")
+        return redirect('index:wallet')  # 重定向到充值页面
+
     answer = ""
     if request.method == 'POST':
         content = request.POST.get('content', '')
@@ -173,6 +186,14 @@ def ui_typography(request):
 
 
 def ui_grid(request):
+    user = request.user
+    role_ID = user.role_ID.role_ID if user.role_ID else None
+
+    # 检查用户角色是否允许访问该页面
+    if role_ID not in ['102', '103']:
+        messages.error(request, "您访问的功能是会员专属，请先充值会员。")
+        return redirect('index:wallet')  # 重定向到充值页面
+
     context = {}
     if request.method == 'GET':
         user = request.user
@@ -346,6 +367,14 @@ def charts_flot(request):
 
 
 def charts_c3(request):
+    user = request.user
+    role_ID = user.role_ID.role_ID if user.role_ID else None
+
+    # 检查用户角色是否允许访问该页面
+    if role_ID not in ['102', '103']:
+        messages.error(request, "您访问的功能是会员专属，请先充值会员。")
+        return redirect('index:wallet')  # 重定向到充值页面
+
     context = {}
     if request.method == 'GET':
         user = request.user
