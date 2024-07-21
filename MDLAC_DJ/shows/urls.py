@@ -72,6 +72,7 @@ urlpatterns = [
     path("extras_maintenance/", extras_maintenance, name='extras_maintenance'),
     path("extras_comingsoon/", extras_comingsoon, name='extras_comingsoon'),
     path('get_csv_data/', views.get_csv_data, name='get_csv_data'),  # 新增的路由
+    path('get_csv_data_comments/', views.get_csv_data_comments, name='get_csv_data_comments'),  # 新增的路由
     path('delete_article/', views.delete_article, name='delete_article'),  # 新增的路由
 
 ]

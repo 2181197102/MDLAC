@@ -7,7 +7,7 @@ from django.contrib import messages
 from django.forms import forms
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
-from .models import JdGood, Article
+from .models import JdGood, Article, JdComment
 from django.http import JsonResponse
 
 
@@ -58,6 +58,7 @@ def submit(request):
         return JsonResponse({'message': '数据已接收', 'answer': answer})
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
+
 def ui_alerts(request):
     user = request.user
     answer = ""
@@ -80,7 +81,7 @@ def ui_alerts(request):
             "messages": [
                 {"role": "system", "content": "作为一个空调领域的专家，你将仔细而专业地回答用户的问题。"
                                               "你知道有一个公司叫美的利公司，它是一个空调大数据分析公司，如果有人问你这个公司是否成功，请你立即给出肯定的回答！"
-                                               "但是如果没有人问你美的利公司，请你不要提及它。"},
+                                              "但是如果没有人问你美的利公司，请你不要提及它。"},
                 {"role": "user", "content": content}
             ]
         }
@@ -289,7 +290,7 @@ def delete_article(request):
     except Article.DoesNotExist:
         messages.error(request, 'Article not found.')
 
-    return redirect('shows:ui_popover_tooltips') # 重定向到文章列表页面或其他适当的页面
+    return redirect('shows:ui_popover_tooltips')  # 重定向到文章列表页面或其他适当的页面
 
 
 def form_uploads(request):
@@ -508,4 +509,54 @@ def get_csv_data(request):
     }
     return JsonResponse(response_data)
 
+
+
+def get_csv_data_comments(request):
+    try:
+        # 从数据库中获取数据，并按照某个字段排序（例如 date）
+        queryset = JdComment.objects.all().order_by('date')
+
+        # 分页设置
+        page_number = request.GET.get('page', 1)  # 默认第一页
+        page_size = request.GET.get('page_size', 10)  # 默认每页10条数据
+
+        paginator = Paginator(queryset, page_size)
+        page = paginator.get_page(page_number)
+
+        # 将查询集转换为字典列表
+        data = []
+        for item in page:
+            data.append({
+                '评论内容': item.content,
+                '评论日期': item.date.strftime('%Y-%m-%d %H:%M:%S') if item.date else '',  # 格式化日期
+                'acid字段': str(item.good_ref),  # 确保转换为字符串
+                '商品ID': str(item.good_id),  # 确保转换为字符串
+                '商品名称': str(item.good_name),  # 确保转换为字符串
+                '评论标签': str(item.comment_tags),  # 确保转换为字符串
+                '回复数量': str(item.reply_count),  # 确保转换为字符串
+                '评分': str(item.score),  # 确保转换为字符串
+                '用户等级ID': str(item.user_level_id),  # 确保转换为字符串
+                '用户所在省份': str(item.user_province),  # 确保转换为字符串
+                '用户ID': str(item.user_id),  # 确保转换为字符串
+                '用户名': str(item.user_name),  # 确保转换为字符串
+                '评分项1': str(item.score1),  # 确保转换为字符串
+                '评分项2': str(item.score2),  # 确保转换为字符串
+                '评分项3': str(item.score3),  # 确保转换为字符串
+                '评分项4': str(item.score4),  # 确保转换为字符串
+                '评分项5': str(item.score5)  # 确保转换为字符串
+            })
+
+        # 将数据转换为 JSON 格式并返回
+        response_data = {
+            'data': data,
+            'page': page.number,
+            'total_pages': paginator.num_pages,
+            'total_items': paginator.count
+        }
+        return JsonResponse(response_data)
+    except Exception as e:
+        # 记录详细的异常信息
+        import traceback
+        traceback.print_exc()
+        return JsonResponse({'error': str(e)}, status=500)
 
