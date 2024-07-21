@@ -45,7 +45,7 @@ def profile(request):
         'email': user.email,
         'phone': user.phone,
         'sex': user.sex,
-        'role_id': user.role_ID.role_Name if user.role_ID else 'N/A',
+        'role_ID': user.role_ID.role_ID if user.role_ID else None,
         'date_joined': user.date_joined,
     }
     return render(request, 'index/form-profile.html', context)
@@ -106,6 +106,7 @@ def wallet(request):
                 '%Y-%m-%d %H:%M:%S') if user.membership_period else None,
         'remaining_days': remaining_days,
         'role_ID': user.role_ID.role_ID if user.role_ID else None,
+        'nickname': user.nickname,
     }
     return render(request, 'index/extras-wallet.html', context)
 

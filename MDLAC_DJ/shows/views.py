@@ -507,3 +507,5 @@ def get_csv_data(request):
         'total_items': paginator.count
     }
     return JsonResponse(response_data)
+
+

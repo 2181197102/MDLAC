@@ -75,7 +75,9 @@
                                 <li><a href="{% url "shows:form_editors" %}">发布测评</a></li>
                                 <li><a href="{% url "shows:ui_cards" %}">畅销空调</a></li>
                                 <li><a href="{% url "shows:ui_popover_tooltips" %}">综合测评</a></li>
-                                <li><a href="{% url "shows:ui_grid" %}">智能对比</a></li>
+                                <li style="background: linear-gradient(45deg,#ddba62, rgba(239,239,236,0.87), #dab75f);">
+                                    <a href="{% url "shows:ui_grid" %}"><strong>智能对比</strong></a>
+                                </li>
                             </ul>
                         </li>
                         <li>
@@ -93,7 +95,7 @@
                             <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-view-thumb"></i><span> 表格 </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                             <ul class="list-unstyled">
                                 <li><a href="{% url "shows:tables_responsive" %}">商品信息</a></li>
-                                <li><a href="{% url "shows:tables_responsive" %}">商品评论</a></li>
+                                <li><a href="{% url "shows:tables_datatable" %}">商品评论</a></li>
                             </ul>
                         </li>
                         <li class="menu-title">扩展</li>
