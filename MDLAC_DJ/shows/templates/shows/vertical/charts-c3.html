@@ -20,6 +20,7 @@
         <link href="{% static 'shows/vertical/assets/css/style.css' %}" rel="stylesheet" type="text/css">
         <script src="{% static 'shows/plugins/chartist/js/jquery-3.5.1.js' %}"></script>
         <script src="{% static 'shows/plugins/chartist/js/echarts.js' %}"></script>
+        <script src="{% static 'shows/plugins/morris/ecSimpleTransform.js' %}"></script>
 {#        <script src="{% static 'shows/plugins/chartjs/chart.min.js' %}"></script>#}
 
     </head>
@@ -323,9 +324,9 @@
                                     <div class="card m-b-30">
                                         <div class="card-body">
 
-                                            <h4 class="mt-0 header-title" style="font-size: 20px;">商品销量大数据规模图</h4>
+
                                             <!--大规模数据图-->
-                                            <div id="scale-example" style=" height: 400px;"></div>
+                                            <div id="boxblot-example" style=" height: 400px;"></div>
                                         </div>
                                     </div>
                                 </div> <!-- end col -->
@@ -390,7 +391,7 @@
         <script src="{% static 'shows/plugins/c3/c3.min.js' %}"></script>
         <script src="{% static 'shows/vertical/assets/pages/c3-chart-init.js' %}"></script>        
         <script src="{% static 'shows/vertical/assets/pages/c3-chart-trend.js' %}"></script>
-        <script src="{% static 'shows/vertical/assets/pages/c3-chart-scale.js' %}"></script>
+        <script src="{% static 'shows/vertical/assets/pages/c3-chart-boxblot.js' %}"></script>
         <script src="{% static 'shows/vertical/assets/pages/c3-chart-continuous.js' %}"></script>
         <script src="{% static 'shows/vertical/assets/pages/c3-chart-radar.js' %}"></script>
         <script src="{% static 'shows/vertical/assets/pages/c3-chart-change.js' %}"></script>
