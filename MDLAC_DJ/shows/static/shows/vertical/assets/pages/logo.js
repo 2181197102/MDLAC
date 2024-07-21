@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
           },
           // 动画配置
           keyframeAnimation: {
-            duration: 10000,
+            duration: 8000,
             loop: false,
             keyframes: [
               {

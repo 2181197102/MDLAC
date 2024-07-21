@@ -228,7 +228,7 @@ def form_editors(request):
     if request.method == 'POST':
         title = request.POST.get('title')
         content = request.POST.get('content')
-        content = content[3:-4]
+        # content = content[3:-4]
         # 创建新的 Article 对象
         Article.objects.create(title=title, content=content)
 
@@ -236,7 +236,7 @@ def form_editors(request):
         articles = Article.objects.all()
 
         # 传递文章列表到模板中，并重新加载页面
-        return render(request, 'shows/vertical/ui-popover-tooltips.html', {'articles': articles})
+        return redirect('shows:ui_popover_tooltips')
     else:
         return render(request, 'shows/vertical/form-editors.html')
 

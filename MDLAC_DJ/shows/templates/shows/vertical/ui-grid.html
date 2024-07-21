@@ -259,7 +259,7 @@
                                     <div class="page-title-box">
                                         <div class="row align-items-center">
                                             <div class="col-md-8">
-                                                <h4 class="page-title m-0">Grid</h4>
+                                                <h4 class="page-title m-0">智能对比</h4>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="float-right d-none d-md-block">
@@ -288,81 +288,93 @@
 
                             <div class="row">
                                 <div class="col-12">
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <input type="text" name="id_1" >
+                                        <input type="text" name="id_2">
+                                        <button type="submit">搜索</button>
+                                    </form>
+                                        
                                     <div class="card m-b-20">
                                         <div class="card-body">
             
-                                            <h4 class="mt-0 header-title">Grid options</h4>
-                                            <p class="text-muted m-b-30">See how aspects of the Bootstrap grid
-                                                system work across multiple devices with a handy table.</p>
+                                            <h4 class="mt-0 header-title">商品对比</h4>
+                                            <p class="text-muted m-b-30">仅供参考</p>
             
                                             <div class="table-responsive">
                                                 <table class="table table-bordered table-striped mb-0">
                                                     <thead>
                                                     <tr>
-                                                        <th></th>
-                                                        <th class="text-center">
-                                                            Extra small<br>
-                                                            <small>&lt;576px</small>
-                                                        </th>
-                                                        <th class="text-center">
-                                                            Small<br>
-                                                            <small>≥576px</small>
-                                                        </th>
-                                                        <th class="text-center">
-                                                            Medium<br>
-                                                            <small>≥768px</small>
-                                                        </th>
-                                                        <th class="text-center">
-                                                            Large<br>
-                                                            <small>≥992px</small>
-                                                        </th>
-                                                        <th class="text-center">
-                                                            Extra large<br>
-                                                            <small>≥1200px</small>
-                                                        </th>
+                                                        <th>商品名称</th>
+                                                        <th>{{ name_1.name}}</th>
+                                                        <th>{{ name_1.name}}</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
                                                     <tr>
-                                                        <th class="text-nowrap" scope="row">Grid behavior</th>
-                                                        <td>Horizontal at all times</td>
-                                                        <td colspan="4">Collapsed to start, horizontal above breakpoints</td>
+                                                        <th class="text-nowrap" scope="row">商品ID</th>
+                                                        <td>{{ goods_1.goods_id}}</td>
+                                                        <td>{{ goods_2.goods_id}}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th class="text-nowrap" scope="row">Max container width</th>
-                                                        <td>None (auto)</td>
-                                                        <td>540px</td>
-                                                        <td>720px</td>
-                                                        <td>960px</td>
-                                                        <td>1140px</td>
+                                                        <th class="text-nowrap" scope="row">品牌</th>
+                                                        <td>{{ goods_1.brand}}</td>
+                                                        <td>{{ goods_2.brand}}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th class="text-nowrap" scope="row">Class prefix</th>
-                                                        <td><code>.col-</code></td>
-                                                        <td><code>.col-sm-</code></td>
-                                                        <td><code>.col-md-</code></td>
-                                                        <td><code>.col-lg-</code></td>
-                                                        <td><code>.col-xl-</code></td>
+                                                        <th class="text-nowrap" scope="row">控制方式</th>
+                                                        <td>{{ goods_1.control_method}}</td>
+                                                        <td>{{ goods_2.control_method}}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th class="text-nowrap" scope="row"># of columns</th>
-                                                        <td colspan="5">12</td>
+                                                        <th class="text-nowrap" scope="row">能效等级</th>
+                                                        <td>{{ goods_1.energy_efficiency}}</td>
+                                                        <td>{{ goods_2.energy_efficiency}}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th class="text-nowrap" scope="row">Gutter width</th>
-                                                        <td colspan="5">20px (10px on each side of a column)</td>
+                                                        <th class="text-nowrap" scope="row">是否变频</th>
+                                                        <td>{{ goods_1.inverter_or_not}}</td>
+                                                        <td>{{ goods_2.inverter_or_not}}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th class="text-nowrap" scope="row">Nestable</th>
-                                                        <td colspan="5">Yes</td>
+                                                        <th class="text-nowrap" scope="row">适用面积</th>
+                                                        <td>{{ goods_1.applicable_area}}</td>
+                                                        <td>{{ goods_2.applicable_area}}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th class="text-nowrap" scope="row">Offsets</th>
-                                                        <td colspan="5">Yes</td>
+                                                        <th class="text-nowrap" scope="row">内机机身尺寸</th>
+                                                        <td>{{ goods_1.inner_machine_dimensions}}</td>
+                                                        <td>{{ goods_2.inner_machine_dimensions}}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th class="text-nowrap" scope="row">Column ordering</th>
-                                                        <td colspan="5">Yes</td>
+                                                        <th class="text-nowrap" scope="row">外机尺寸</th>
+                                                        <td>{{ goods_1.outer_machine_dimensions}}</td>
+                                                        <td>{{ goods_2.outer_machine_dimensions}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="text-nowrap" scope="row">制冷功率</th>
+                                                        <td>{{ goods_1.cooling_power}}</td>
+                                                        <td>{{ goods_2.cooling_power}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="text-nowrap" scope="row">最大噪声</th>
+                                                        <td>{{ goods_1.max_noise}}</td>
+                                                        <td>{{ goods_2.max_noise}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="text-nowrap" scope="row">舒适性能能效比</th>
+                                                        <td>{{ goods_1.comfort_performance_energy_efficiency_ratio}}</td>
+                                                        <td>{{ goods_2.comfort_performance_energy_efficiency_ratio}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="text-nowrap" scope="row">制热功率</th>
+                                                        <td>{{ goods_1.heating_power}}</td>
+                                                        <td>{{ goods_2.heating_power}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="text-nowrap" scope="row">其他</th>
+                                                        <td>{{ goods_1.other_parameters}}</td>
+                                                        <td>{{ goods_2.other_parameters}}</td>
                                                     </tr>
                                                     </tbody>
                                                 </table>
