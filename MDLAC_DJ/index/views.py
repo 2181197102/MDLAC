@@ -1,10 +1,10 @@
+from datetime import datetime, timedelta
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
 from django.contrib import messages
-# from MDLAC.MDLAC_DJ.shows.models import JdGood
-from login.models import User
+from django.views.decorators.csrf import csrf_exempt
 
+from login.models import Role, User
 
 
 @login_required
@@ -65,5 +65,100 @@ def reset_password(request):
             messages.error(request, 'Password cannot be empty')
     return redirect('index:profile')
 
+
 # def set_index(request):
+
+from django.http import JsonResponse
+
+from django.http import JsonResponse
+from django.utils.timezone import make_aware
+import pytz
+from datetime import datetime
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+
+
+@login_required
+def wallet(request):
+    user = request.user
+    now = make_aware(datetime.now(), timezone=pytz.timezone('Asia/Shanghai'))
+    remaining_days = (
+            user.membership_period - now).days if user.membership_period and user.membership_period > now else 0
+
+    if request.method == 'GET' and request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        # 如果是 AJAX GET 请求，返回 JSON 响应
+        return JsonResponse({
+            'balance': user.balance,
+            'date': now.strftime('%Y-%m-%d %H:%M:%S'),
+            'membership_period': user.membership_period.strftime(
+                '%Y-%m-%d %H:%M:%S') if user.membership_period else None,
+            'remaining_days': remaining_days,
+        })
+
+    context = {
+        'balance': user.balance,
+        'date': now.strftime('%Y-%m-%d %H:%M:%S'),
+        'membership_period': user.membership_period.strftime(
+                '%Y-%m-%d %H:%M:%S') if user.membership_period else None,
+        'remaining_days': remaining_days,
+    }
+    return render(request, 'index/extras-wallet.html', context)
+
+
+@csrf_exempt
+@login_required
+def recharge(request):
+    if request.method == 'POST':
+        amount = request.POST.get('amount')
+        if amount:
+            try:
+                amount = int(amount)
+                request.user.balance += amount
+                request.user.save()
+                return JsonResponse({'status': 'success'})
+            except ValueError:
+                return JsonResponse({'status': 'error', 'message': 'Invalid amount'})
+        else:
+            return JsonResponse({'status': 'error', 'message': 'No amount provided'})
+    return JsonResponse({'status': 'error', 'message': 'Invalid request'})
+
+
+@csrf_exempt
+@login_required
+def recharge_membership(request):
+    if request.method == 'POST':
+        amount = request.POST.get('amount')
+        days = request.POST.get('days')
+        if amount and days:
+            try:
+                amount = int(amount)
+                days = int(days)
+
+                # 检查余额是否足够
+                if request.user.balance >= amount:
+                    # 扣除金额
+                    request.user.balance -= amount
+
+                    now = make_aware(datetime.now(), timezone=pytz.timezone('Asia/Shanghai'))
+
+                    # 根据天数延长会员期限
+                    if request.user.membership_period and request.user.membership_period > now:
+                        request.user.membership_period += timedelta(days=days)
+                    else:
+                        request.user.membership_period = now + timedelta(days=days)
+
+                    # 将用户的 role_ID 改为 102
+                    role_102 = Role.objects.get(pk=102)
+                    request.user.role_ID = role_102
+
+                    request.user.save()
+                    return JsonResponse({'status': 'success'})
+                else:
+                    return JsonResponse({'status': 'error', 'message': '余额不足，请充值余额'})
+            except ValueError:
+                return JsonResponse({'status': 'error', 'message': 'Invalid amount or days'})
+        else:
+            return JsonResponse({'status': 'error', 'message': 'No amount or days provided'})
+    return JsonResponse({'status': 'error', 'message': 'Invalid request'})
+
 
