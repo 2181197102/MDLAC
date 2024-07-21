@@ -4019,7 +4019,7 @@ function run(_rawData) {
       }
     ],
     title: {
-      text: 'Sales Distribution by Brand'
+      text: '品牌价格箱线图'
     },
     tooltip: {
       trigger: 'axis',
