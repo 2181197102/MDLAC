@@ -94,7 +94,7 @@ def ui_alerts(request):
         context = {
             'username': user.username,
             'nickname': user.nickname,
-            'role_ID': user.role_ID
+            'role_ID': user.role_ID.role_ID if user.role_ID else None,
         }
     return render(request, "shows/vertical/ui-alerts.html", context)
 
@@ -106,7 +106,7 @@ def ui_badge(request):
         context = {
             'username': user.username,
             'nickname': user.nickname,
-            'role_ID': user.role_ID
+            'role_ID': user.role_ID.role_ID if user.role_ID else None,
         }
     return render(request, "shows/vertical/ui-badge.html", context)
 
@@ -122,7 +122,7 @@ def ui_cards(request):
         context = {
             'username': user.username,
             'nickname': user.nickname,
-            'role_ID': user.role_ID
+            'role_ID': user.role_ID.role_ID if user.role_ID else None,
         }
     return render(request, "shows/vertical/ui-cards.html", context)
 
@@ -178,7 +178,7 @@ def ui_grid(request):
         context = {
             'username': user.username,
             'nickname': user.nickname,
-            'role_ID': user.role_ID,
+            'role_ID': user.role_ID.role_ID if user.role_ID else None,
         }
     return render(request, "shows/vertical/ui-grid.html", context)
 
@@ -251,7 +251,7 @@ def ui_popover_tooltips(request):
         context = {
             'username': user.username,
             'nickname': user.nickname,
-            'role_ID': user.role_ID,
+            'role_ID': user.role_ID.role_ID if user.role_ID else None,
             'articles': articles
         }
     return render(request, 'shows/vertical/ui-popover-tooltips.html', context)
@@ -275,7 +275,7 @@ def form_editors(request):
         context = {
             'username': user.username,
             'nickname': user.nickname,
-            'role_ID': user.role_ID
+            'role_ID': user.role_ID.role_ID if user.role_ID else None,
         }
         return render(request, 'shows/vertical/form-editors.html', context)
 
@@ -315,7 +315,7 @@ def calendar(request):
         context = {
             'username': user.username,
             'nickname': user.nickname,
-            'role_ID': user.role_ID,
+            'role_ID': user.role_ID.role_ID if user.role_ID else None,
         }
     return render(request, "shows/vertical/calendar.html", context)
 
@@ -327,7 +327,7 @@ def charts_morris(request):
         context = {
             'username': user.username,
             'nickname': user.nickname,
-            'role_ID': user.role_ID,
+            'role_ID': user.role_ID.role_ID if user.role_ID else None,
         }
     return render(request, "shows/vertical/charts-morris.html", context)
 
@@ -351,7 +351,7 @@ def charts_c3(request):
         context = {
             'username': user.username,
             'nickname': user.nickname,
-            'role_ID': user.role_ID,
+            'role_ID': user.role_ID.role_ID if user.role_ID else None,
         }
     return render(request, "shows/vertical/charts-c3.html", context)
 
@@ -371,7 +371,7 @@ def tables_datatable(request):
         context = {
             'username': user.username,
             'nickname': user.nickname,
-            'role_ID': user.role_ID,
+            'role_ID': user.role_ID.role_ID if user.role_ID else None,
         }
     return render(request, "shows/vertical/tables-datatable.html", context)
 
@@ -383,7 +383,7 @@ def tables_responsive(request):
         context = {
             'username': user.username,
             'nickname': user.nickname,
-            'role_ID': user.role_ID,
+            'role_ID': user.role_ID.role_ID if user.role_ID else None,
         }
     return render(request, "shows/vertical/tables-responsive.html", context)
 
@@ -399,7 +399,7 @@ def maps_google(request):
         context = {
             'username': user.username,
             'nickname': user.nickname,
-            'role_ID': user.role_ID,
+            'role_ID': user.role_ID.role_ID if user.role_ID else None,
         }
     return render(request, "shows/vertical/maps-google.html", context)
 
@@ -435,7 +435,7 @@ def extras_pricing(request):
         context = {
             'username': user.username,
             'nickname': user.nickname,
-            'role_ID': user.role_ID,
+            'role_ID': user.role_ID.role_ID if user.role_ID else None,
         }
     return render(request, "shows/vertical/extras-pricing.html", context)
 
@@ -455,7 +455,7 @@ def extras_faqs(request):
         context = {
             'username': user.username,
             'nickname': user.nickname,
-            'role_ID': user.role_ID,
+            'role_ID': user.role_ID.role_ID if user.role_ID else None,
         }
     return render(request, "shows/vertical/extras-faqs.html", context)
 
