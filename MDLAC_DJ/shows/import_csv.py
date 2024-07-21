@@ -119,7 +119,7 @@ def import_goods():
 
 
 def import_comments():
-    csv_file_path = r'D:\course\intern\MDLAC-master\MDLAC\dataset\100w_comments_part1_filtered_2.csv'
+    csv_file_path = r'D:\course\intern\MDLAC-master\MDLAC\dataset\100w_comments_part2_filtered_1.csv'
 
     df = pd.read_csv(csv_file_path, encoding='utf-8', dtype={'good_ID': str})
 
