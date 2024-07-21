@@ -38,10 +38,10 @@ import pandas as pd
 # df.to_csv(r'C:\Users\LiuXiang\Desktop\MDLAC-master\MDLAC\dataset\new_goods.csv', index=False)
 
 # 提取出商品详情链接地址，不带表头
-df = pd.read_csv(r'C:\Users\LiuXiang\Desktop\MDLAC-master\MDLAC\dataset\拆分文件（不用看）\goods_50000.csv')
+df = pd.read_csv(r'/MDLAC/dataset/goods_files\goods_50000.csv')
 print(len(df))
 df_url = df['商品详情链接地址']
-df_url.to_csv(r'拆分文件（不用看）\goods_50000_url.csv', index=False, header=False)
+df_url.to_csv(r'goods_files\goods_50000_url.csv', index=False, header=False)
 
 # 删除商品图片链接为空的行
 # df = pd.read_csv(r'C:\Users\LiuXiang\Desktop\MDLAC-master\MDLAC\dataset\goods.csv')
