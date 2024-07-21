@@ -93,14 +93,17 @@ def wallet(request):
             'membership_period': user.membership_period.strftime(
                 '%Y-%m-%d %H:%M:%S') if user.membership_period else None,
             'remaining_days': remaining_days,
+            'role': user.role_ID.role_ID if user.role_ID else None,
         })
 
+    print(user.role_ID.role_ID)
     context = {
         'balance': user.balance,
         'date': now.strftime('%Y-%m-%d %H:%M:%S'),
         'membership_period': user.membership_period.strftime(
                 '%Y-%m-%d %H:%M:%S') if user.membership_period else None,
         'remaining_days': remaining_days,
+        'role': user.role_ID.role_ID if user.role_ID else None,
     }
     return render(request, 'index/extras-wallet.html', context)
 
