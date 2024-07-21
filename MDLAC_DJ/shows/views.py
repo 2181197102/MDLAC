@@ -185,7 +185,6 @@ def form_editors(request):
 
         # 获取所有文章对象
         articles = Article.objects.all()
-        print(articles)  # 调试输出
 
         # 传递文章列表到模板中，并重新加载页面
         return render(request, 'shows/vertical/ui-popover-tooltips.html', {'articles': articles})
