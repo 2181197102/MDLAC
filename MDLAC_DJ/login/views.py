@@ -1,6 +1,9 @@
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
+
 from .models import User, Role
 
 from django.contrib import messages
@@ -64,6 +67,7 @@ def login_view(request):  # 避免与内置login函数重名
     return render(request, 'login/pages-login.html')
 
 
+@csrf_exempt
 def register(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -78,6 +82,19 @@ def register(request):
         security_answer1 = request.POST.get('security_answer1')
         security_answer2 = request.POST.get('security_answer2')
         security_answer3 = request.POST.get('security_answer3')
+
+        # 检查用户名是否已被占用
+        if User.objects.filter(username=username).exists():
+            return JsonResponse({'status': 'fail', 'message': '用户名已被占用'})
+
+        # 检查邮箱是否已被注册
+        if User.objects.filter(email=email).exists():
+            return JsonResponse({'status': 'fail', 'message': '邮箱已被注册'})
+
+        # 检查手机号是否已被注册
+        if User.objects.filter(phone=phone).exists():
+            return JsonResponse({'status': 'fail', 'message': '手机号已被注册'})
+
         try:
             user = User(
                 username=username,
@@ -96,17 +113,15 @@ def register(request):
             user.set_password(password)  # 使用set_password方法对密码进行哈希处理
             user.save()
             print("insert成功了")
-            return redirect('login')
+            return JsonResponse({'status': 'success', 'message': '注册成功'})
         except Exception as e:
             print(e)
-            context = {'error_message': '注册失败'}
-            return render(request, 'login/pages-register.html', context)
+            return JsonResponse({'status': 'fail', 'message': '注册失败'})
 
-    # 处理 GET 请求或其他请求情况，返回登录页面
     return render(request, 'login/pages-register.html')
 
-    # 处理 GET 请求或其他请求情况，返回登录页面
-    return render(request, 'login/pages-register.html')
+
+
 
 
 def recoverpw(request):
@@ -163,6 +178,7 @@ def recoverpw_withsq(request):
     return render(request, 'login/pages-recoverpw.html')
 
 
+@csrf_exempt
 def reset_password(request):
     if request.method == 'POST':
         new_password = request.POST.get('new_password')
@@ -173,12 +189,11 @@ def reset_password(request):
                 user = User.objects.get(id=user_id)
                 user.set_password(new_password)
                 user.save()
-                messages.success(request, '密码重置成功，请使用新密码登录')
-                return redirect('login')
+                return JsonResponse({'status': 'success', 'message': '密码重置成功，请使用新密码登录'})
             except User.DoesNotExist:
-                messages.error(request, '用户不存在，请重试')
+                return JsonResponse({'status': 'fail', 'message': '用户不存在，请重试'})
         else:
-            messages.error(request, '无效的会话，请重试')
+            return JsonResponse({'status': 'fail', 'message': '无效的会话，请重试'})
 
     return render(request, 'login/pages-resetpw.html')
 

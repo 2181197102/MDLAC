@@ -1,12 +1,12 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-        <title>MDLAC - Air Conditioning Big Data Analysis Platform</title>
-        <meta content="Air Conditioning Big Data Analysis Platform Front End" name="description" />
+        <title>MDLAC - 空调大数据分析平台</title>
+        <meta content="空调大数据分析平台前端" name="description" />
         <meta content="Team-MDLAC" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
@@ -35,7 +35,7 @@
 
     <!-- Begin page -->
     <div class="home-btn d-none d-sm-block">
-        <a href="index.html" class="text-dark"><i class="mdi mdi-home h1"></i></a>
+        <a href="/admin/" class="text-dark"><i class="mdi mdi-home h1"></i></a>
     </div>
 
     <div class="account-pages">
@@ -63,29 +63,18 @@
                     <div class="card mb-0">
                         <div class="card-body">
                             <div class="p-2">
-                                    <h4 class="text-muted float-right font-18 mt-4">Reset Password </h4>
+                                    <h4 class="text-muted float-right font-18 mt-4">重置密码</h4>
                                 <div>
                                     <a  class="logo logo-admin"><img src="{% static 'shows/vertical/assets/images/mylogo.png' %}" height="38" alt="logo"></a>
                                 </div>
                             </div>
 
                             <div class="p-2">
-                                <!-- 添加消息显示 -->
-                                {% if messages %}
-                                    {% for message in messages %}
-                                        <div class="alert alert-{{ message.tags }} alert-dismissible">
-                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                            {{ message }}
-                                        </div>
-                                    {% endfor %}
-                                {% endif %}
-                                <!-- 结束消息显示 -->
-
-                                <form class="form-vertical m-t-20" method="post" action="{% url 'reset_password' %}">
+                                <form id="reset-password-form" class="form-vertical m-t-20" method="post" action="{% url 'reset_password' %}">
                                     {% csrf_token %}
                                     <div class="form-group row">
                                         <div class="col-12">
-                                            <input class="form-control" type="password" name="new_password" required="" placeholder="New Password">
+                                            <input class="form-control" type="password" name="new_password" required="" placeholder="新密码">
                                         </div>
                                     </div>
                                     <div class="form-group text-center row m-t-20">
@@ -121,5 +110,33 @@
 
     <!-- App js -->
     <script src="{% static 'shows/vertical/assets/js/app.js' %}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#reset-password-form').on('submit', function(e) {
+                e.preventDefault();
+                $.ajax({
+                    url: $(this).attr('action'),
+                    method: 'POST',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            alert(response.message);
+                            // 重置密码成功后跳转到登录页面
+                            // 2秒后跳转
+                            setTimeout(function() {
+                                window.location.href = '{% url "login" %}';
+                            }, 0);
+                        } else {
+                            alert(response.message);
+                        }
+                    },
+                    error: function() {
+                        alert('重置密码失败，请重试');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
