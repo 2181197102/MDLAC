@@ -93,7 +93,7 @@ def ui_alerts(request):
             "messages": [
                 {"role": "system", "content": "作为一个空调领域的专家，你将仔细而专业地回答用户的问题。"
                                               "你知道有一个公司叫美的利公司，它是一个空调大数据分析公司，如果有人问你这个公司是否成功，请你立即给出肯定的回答！"
-                                               "但是如果没有人问你美的利公司，请你不要提及它。"},
+                                              "但是如果没有人问你美的利公司，请你不要提及它。"},
                 {"role": "user", "content": content}
             ]
         }
@@ -200,6 +200,23 @@ def ui_grid(request):
             'username': user.username,
             'nickname': user.nickname,
             'role_ID': user.role_ID.role_ID if user.role_ID else None,
+        }
+    elif request.method == 'POST':
+        user = request.user
+        id_1 = request.POST.get('id_1')
+        id_2 = request.POST.get('id_2')
+        goods_1 = JdDetail.objects.get(goods_id=id_1)
+        goods_2 = JdDetail.objects.get(goods_id=id_2)
+        name_1 = JdGood.objects.get(acid=id_1)
+        name_2 = JdGood.objects.get(acid=id_2)
+        context = {
+            'username': user.username,
+            'nickname': user.nickname,
+            'role_ID': user.role_ID.role_ID if user.role_ID else None,
+            'name_1': name_1.name,
+            'name_2': name_2.name,
+            'goods_1': goods_1,
+            'goods_2': goods_2,
         }
     return render(request, "shows/vertical/ui-grid.html", context)
 
@@ -310,7 +327,7 @@ def delete_article(request):
     except Article.DoesNotExist:
         messages.error(request, 'Article not found.')
 
-    return redirect('shows:ui_popover_tooltips') # 重定向到文章列表页面或其他适当的页面
+    return redirect('shows:ui_popover_tooltips')  # 重定向到文章列表页面或其他适当的页面
 
 
 def form_uploads(request):
@@ -339,7 +356,8 @@ def calendar(request):
         return redirect('index:wallet')  # 重定向到充值页面
 
     # 联表查询
-    details = JdDetail.objects.select_related('goods').filter(brand__in=['格力（GREE）','格力','格力GREE','GREE格力','格力;GREE'])
+    details = JdDetail.objects.select_related('goods').filter(
+        brand__in=['格力（GREE）', '格力', '格力GREE', 'GREE格力', '格力;GREE'])
     comments_content = []
     for i, detail in enumerate(details):
         # 获取商品ID
@@ -372,8 +390,6 @@ def calendar(request):
     with open('data.txt', 'w', encoding='utf-8') as f:
         f.write(str(data))
 
-
-
     context = {}
     if request.method == 'GET':
         user = request.user
@@ -384,6 +400,7 @@ def calendar(request):
             # 'data': data
         }
     return render(request, "shows/vertical/calendar.html", context)
+
 
 def calendar_ciyun(request, brand):
     user = request.user
@@ -404,6 +421,7 @@ def calendar_ciyun(request, brand):
             'brand': brand,
         }
     return render(request, "shows/vertical/calendar.html", context)
+
 
 def charts_morris(request):
     context = {}
