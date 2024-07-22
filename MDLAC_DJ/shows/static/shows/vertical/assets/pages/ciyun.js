@@ -171,7 +171,7 @@ if (brand === '格力') {
         {'name': '二级', 'value': 176},
         {'name': '时光', 'value': 176});
 }
-else if (brand === '美的') {
+    else if(brand === '美的'){
     JosnList.push(
         {"name": "能效", "value": 3115},
         {"name": "美的", "value": 2875},
@@ -480,7 +480,7 @@ else if (brand === '美的') {
       {"name": "专享", "value": 59},
       {"name": "商用", "value": 58});
     }
-    else if(brand === '奥克斯') {
+    else if(brand === '奥克斯'){
         JosnList.push(
       {"name": "能效", "value": 3100},
       {"name": "变频", "value": 3031},
