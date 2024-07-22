@@ -88,9 +88,9 @@
                         <li class="has_sub">
                             <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-graph-bar"></i><span> echarts图 </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                             <ul class="list-unstyled">
-                                <li><a href="{% url "shows:charts_morris" %}">时间销量</a></li>
+                                <li><a href="{% url "shows:charts_morris" %}">商品信息</a></li>
                                 <li style="background: linear-gradient(45deg,#ddba62, rgba(239,239,236,0.87), #dab75f);">
-                                    <a href="{% url "shows:charts_c3" %}"><strong>品牌销量</strong></a>
+                                    <a href="{% url "shows:charts_c3" %}"><strong>商品对比</strong></a>
                                 </li>
                             </ul>
                         </li>
@@ -296,13 +296,20 @@
 
                             <div class="row">
                                 <div class="col-12">
-                                    <form method="post">
-                                        {% csrf_token %}
-                                        <input type="text" name="id_1" >
-                                        <input type="text" name="id_2">
-                                        <button type="submit">搜索</button>
-                                    </form>
-                                        
+                                     <form class="form" method="post">
+                                          {% csrf_token %}
+                                          <div class="form-row">
+                                            <div class="col-5">
+                                              <input type="text" name="id_1" class="form-control" placeholder="Enter ID 1">
+                                            </div>
+                                            <div class="col-5">
+                                              <input type="text" name="id_2" class="form-control" placeholder="Enter ID 2">
+                                            </div>
+                                            <div class="col-2">
+                                              <button type="submit" style="width:57px;height:38px;background: #dcd9d9">Search</button>
+                                            </div>
+                                          </div>
+                                        </form>
                                     <div class="card m-b-20">
                                         <div class="card-body">
             
