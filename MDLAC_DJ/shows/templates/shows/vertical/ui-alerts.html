@@ -393,7 +393,7 @@
                                         <div class="card-body">
             
                                             <h4 class="mt-0 header-title">空调智能专家</h4>
-                                            <p class="text-muted m-b-30">空调智能专家是基于Chat GPT的AI智能助手，帮助您解决一切空调相关问题！</p>
+                                            <p id="input_place" class="text-muted m-b-30">空调智能专家是基于Chat GPT的AI智能助手，帮助您解决一切空调相关问题！</p>
                                             <div class="form-group">
                                                 <label for="inputContent">有什么疑问，考考AI智能专家吧:</label>
                                                 <div class="input-group">
@@ -404,12 +404,13 @@
                                                 </div>
                                             </div>
                                             <div class="">
-                                                <div class="alert alert-success mb-0" role="alert">
+                                                <div class="alert alert-info mb-0" role="alert">
                                                     <h4 class="alert-heading mt-0 font-18"><会员专属></h4>
-                                                    <p id="typewriterText" style="color: #01ba9a"></p>
+                                                    <p id="typewriterText" style="color: #272727"></p>
 <!--                                                    <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>-->
 <!--                                                    <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>-->
                                                     <script>
+                                                        //  打字机效果
                                                         document.addEventListener("DOMContentLoaded", function() {
                                                             // 你想显示的文本
                                                             var text = "您好，我是您的智能空调专家，您可以问我任何空调相关问题，在上面的输入框试试吧！";
@@ -430,14 +431,41 @@
                                                             typeWriter();
                                                         });
 
+
+                                                        // 监听 Enter 键事件
+                                                        document.getElementById('inputContent').addEventListener('keydown', function(event) {
+                                                            if (event.key === 'Enter') {
+                                                                sendText();
+                                                            }
+                                                        });
+
+                                                        // 点击发送按钮
                                                         let send_text = document.getElementById("SendText");
                                                         send_text.onclick = function() {
-                                                            var inputContent = document.getElementById("inputContent").value;
-                                                            // var typewriterText = document.getElementById("typewriterText");
-                                                            // typewriterText.innerHTML = inputContent;
-                                                            // console.log(inputContent);
+                                                            sendText();
+                                                        }
+
+                                                        // 发送文本
+                                                        sendText = function() {
+                                                            const inputContent = document.getElementById("inputContent").value;
+                                                            console.log(inputContent);
                                                             //清空输入框的内容
                                                             document.getElementById("inputContent").value = "";
+                                                            //将输入的内容显示出来
+                                                            var input_place = document.getElementById("input_place");
+                                                            // 清空显示框的内容
+                                                            input_place.innerHTML = "";
+                                                            var index = 0;
+                                                            var text = inputContent;
+                                                            function typeWriter() {
+                                                                if (index < text.length) {
+                                                                    input_place.innerHTML += inputContent.charAt(index);
+                                                                    index++;
+                                                                    // 数字代表打字速度，数字越大速度越慢
+                                                                    setTimeout(typeWriter, 80); // 调整此值以控制打字速度
+                                                                }
+                                                            }
+                                                            typeWriter();
                                                             // 将用户输入的内容发送给后端
                                                             // 获取CSRF令牌
                                                             var csrftoken = getCookie('csrftoken');
@@ -474,14 +502,6 @@
                                                                     console.error(xhr.status + ": " + xhr.responseText);
                                                                 }
                                                             });
-                                                            // $.ajax({
-                                                            //     type: "POST",
-                                                            //     url: '{% url "shows:ui_alerts" %}',
-                                                            //     data: inputContent,
-                                                            //     success: function (data) {
-                                                            //         console.log(data);
-                                                            //     }
-                                                            // });
                                                         }
                                                         function getCookie(name) {
                                                             var cookieValue = null;
@@ -498,7 +518,6 @@
                                                             }
                                                             return cookieValue;
                                                         }
-
                                                     </script>
                                                 </div>
                                             </div>
