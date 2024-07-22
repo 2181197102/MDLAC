@@ -1939,21 +1939,21 @@ const scatterOption = {
     xAxis: {
         type: 'value',
         scale: true,
-        name: 'Price',
+        name: '价格',
         nameLocation: 'middle',
         nameGap: 30
     },
     yAxis: {
         type: 'value',
         scale: true,
-        name: 'Sales',
+        name: '销量',
         nameLocation: 'middle',
         nameGap: 30
     },
     tooltip: {
         trigger: 'item',
         formatter: function (params) {
-            return params.data.label + ': (Price: ' + params.data.value[0] + ', Sales: ' + params.data.value[1] + ')';
+            return params.data.label + ': (价格: ' + params.data.value[0] + ', 销量: ' + params.data.value[1] + ')';
         }
     },
     series: [

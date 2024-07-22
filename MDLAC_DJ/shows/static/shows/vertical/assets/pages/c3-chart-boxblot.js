@@ -4026,7 +4026,7 @@ function run(_rawData) {
       confine: true
     },
     xAxis: {
-      name: 'Sales',
+      name: '价格',
       nameLocation: 'middle',
       nameGap: 30,
       scale: true
@@ -4051,7 +4051,7 @@ function run(_rawData) {
     ],
     series: [
       {
-        name: 'boxplot',
+        name: '箱线图',
         type: 'boxplot',
         datasetId: 'sales_aggregate',
         itemStyle: {
@@ -4065,7 +4065,7 @@ function run(_rawData) {
         }
       },
       {
-        name: 'detail',
+        name: '商品分布详情',
         type: 'scatter',
         datasetId: 'raw',
         symbolSize: 6,
@@ -4079,9 +4079,9 @@ function run(_rawData) {
           color: '#1d6918'
         },
         encode: {
-          x: 'Sales',
+          x: '价格',
           y: 'brand',
-          tooltip: ['brand', 'Sales', 'Comments']
+          tooltip: ['Sales']
         }
       }
     ]

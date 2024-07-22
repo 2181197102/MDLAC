@@ -19,7 +19,7 @@ var data_continuous = [
             }]
           },
           {
-            name: '价格大于5000',
+            name: '价格小于5000',
             value: 1640
           }
         ]

@@ -5313,7 +5313,10 @@ option_scale = {
   },
   title: {
     left: 'center',
-    text: 'Large Area Chart'
+    text: '商品销量大数据规模图',
+    textStyle: {
+            fontSize: 20  // 设置字体大小
+        }
   },
   toolbox: {
     feature: {
@@ -5346,7 +5349,7 @@ option_scale = {
   ],
   series: [
     {
-      name: 'Static Data',
+      name: '销量',
       type: 'line',
       symbol: 'none',
       sampling: 'lttb',

@@ -71,7 +71,7 @@ const option_3 = {
         {
             type: 'value',
             scale: true,
-            name: 'Sales',
+            name: '销量',
             max: 15000,
             min: 0,
             boundaryGap: [0.2, 0.2]
@@ -79,7 +79,7 @@ const option_3 = {
         {
             type: 'value',
             scale: true,
-            name: 'Growth Rate (%)',
+            name: '销量增率',
             max: 200,
             min: -100,
             boundaryGap: [0.2, 0.2]
@@ -87,12 +87,12 @@ const option_3 = {
     ],
     series: [
         {
-            name: 'Sales Bar',
+            name: '销量',
             type: 'bar',
             data: displayData
         },
         {
-            name: 'Growth Rate',
+            name: '销量增率',
             type: 'line',
             yAxisIndex: 1,
             data: data2

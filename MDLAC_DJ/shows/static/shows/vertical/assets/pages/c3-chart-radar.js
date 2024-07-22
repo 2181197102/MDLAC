@@ -366,11 +366,11 @@ var option_radar = {
   },
   radar: {
     indicator: [
-      { text: 'Cooling Power', max: maxValues[0] },
-      { text: 'Comfort Performance', max: maxValues[1] },
-      { text: 'Heating Power', max: maxValues[2] },
-      { text: 'Energy Efficiency', max: maxValues[3] },
-      { text: 'Max Noise', max: maxValues[4] }
+      { text: '制冷功率', max: maxValues[0] },
+      { text: '舒适性能', max: maxValues[1] },
+      { text: '制热功率', max: maxValues[2] },
+      { text: '空调能效', max: maxValues[3] },
+      { text: '最高噪音', max: maxValues[4] }
     ]
   },
   series: [
