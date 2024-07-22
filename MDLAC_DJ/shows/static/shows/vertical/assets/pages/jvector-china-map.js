@@ -66,12 +66,13 @@ var data = [
   {name: '澳门特别行政区', value: 1957},
   {name: '内蒙古自治区', value: 4908},
 ];
+
 data.sort(function (a, b) {
   return a.value - b.value;
 });
 const mapOption = {
   visualMap: {
-    left: 'right',
+    left: 'center',
     min: 0,
     max: 150000,
     inRange: {
@@ -89,13 +90,29 @@ const mapOption = {
       map: 'USA',
       animationDurationUpdate: 1000,
       universalTransition: true,
-      data: data
+      data: data,
+      tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c}' // 设置格式化显示的数据项
+      }
+    },
+  ],
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+        type: 'shadow'
     }
-  ]
+  },
 };
 const barOption = {
   xAxis: {
     type: 'value'
+  },
+   tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+        type: 'shadow'
+    }
   },
   yAxis: {
     type: 'category',
