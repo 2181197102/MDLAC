@@ -355,41 +355,6 @@ def calendar(request):
         messages.error(request, "您访问的功能是会员专属，请先充值会员。")
         return redirect('index:wallet')  # 重定向到充值页面
 
-    # 联表查询
-    details = JdDetail.objects.select_related('goods').filter(
-        brand__in=['格力（GREE）', '格力', '格力GREE', 'GREE格力', '格力;GREE'])
-    comments_content = []
-    for i, detail in enumerate(details):
-        # 获取商品ID
-        good_ids = JdGood.objects.filter(acid=detail.goods.acid).values_list('acid', flat=True)
-        print(f"{i}:", good_ids)
-        # 根据商品ID获取评论
-        comments = JdComment.objects.filter(good_ref__in=good_ids)
-        # print(comments)
-        # 收集评论内容
-        # comments_content.append(comment.content for comment in comments if comment.content)
-        for comment in comments:
-            if comment.content:
-                comments_content.append(comment.content)
-    print(comments_content)
-    wordlist = jieba.cut_for_search(''.join(comments_content))
-    # 设置停用词
-    stop_words = ['空调', 'hellip']
-    result = defaultdict(int)
-    # 过滤
-    for word in wordlist:
-        if word not in stop_words and len(word) > 3:
-            result[word] += 1
-    # 选出前100个词
-    result = dict(sorted(result.items(), key=lambda x: x[1], reverse=True)[:100])
-    # print(result)
-    # 建立一个字典列表，每个字典里面有两个键值对，一个是 name，一个是 value
-    data = [{'name': k, 'value': v} for k, v in result.items()]
-    print(data)
-    # 输出data到txt文件
-    with open('data.txt', 'w', encoding='utf-8') as f:
-        f.write(str(data))
-
     context = {}
     if request.method == 'GET':
         user = request.user
